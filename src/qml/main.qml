@@ -1,12 +1,13 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 
 ApplicationWindow {
 	id: appWindow
 	visible: true
-	width: 1200
-	height: 600
+	minimumWidth: 1000
+	minimumHeight: 550
 	title: qsTr("EVD Monitor")
 
 	menuBar: AppMenuBar {
@@ -15,11 +16,39 @@ ApplicationWindow {
 
 	header: AppToolBar {
 		id: toolBar
+		anchors.left: parent.left
+		anchors.right: parent.right
 	}
 
-	MainTabView {
-		id: mainTabView
+	GridLayout {
+		anchors.fill: parent
+		anchors.leftMargin: 2
+		anchors.topMargin: 2
+		anchors.rightMargin: 2
+		anchors.bottomMargin: 2
+		rows: 1
+		columns: 2
+		columnSpacing: 2
+
+		MainTabView {
+			id: mainTabView
+			Layout.minimumWidth: 850
+			Layout.minimumHeight: 550
+			Layout.fillWidth: true
+			Layout.fillHeight: true
+		}
+		ControlTabView {
+			id: controlTabView
+			anchors.right: parent.right
+			anchors.top: parent.top
+			Layout.preferredWidth: 350
+			Layout.preferredHeight: 400
+			Layout.fillWidth: false
+			Layout.fillHeight: true
+		}
 	}
+
+
 
 
 

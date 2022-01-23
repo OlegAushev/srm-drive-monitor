@@ -1,0 +1,15 @@
+<RCC>
+	<qresource prefix="/">
+		<file>src/qml/main.qml</file>
+		<file>icons/desktop-classic.png</file>
+		<file>icons/power.png</file>
+		<file>icons/car-electric-outline.png</file>
+		<file>icons/alert-octagon-outline.png</file>
+		<file>icons/link-variant.png</file>
+		<file>icons/link-variant-off.png</file>
+		<file>icons/exit-to-app.png</file>
+		<file>icons/play-circle-outline.png</file>
+		<file>icons/stop-circle-outline.png</file>
+		<file>icons/app.png</file>
+	</qresource>
+</RCC>

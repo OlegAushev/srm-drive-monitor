@@ -17,6 +17,9 @@ ApplicationWindow {
 		id: toolBar
 	}
 
+	MainTabView {
+		id: mainTabView
+	}
 
 
 

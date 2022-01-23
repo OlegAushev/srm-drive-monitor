@@ -9,13 +9,12 @@ ApplicationWindow {
 	height: 600
 	title: qsTr("EVD Monitor")
 
-	header: AppMenuBar {
+	menuBar: AppMenuBar {
 		id: menuBar
 	}
 
-	AppToolBar {
+	header: AppToolBar {
 		id: toolBar
-		//anchors.top: menubar.bottom
 	}
 
 

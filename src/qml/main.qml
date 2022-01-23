@@ -8,7 +8,7 @@ ApplicationWindow {
 	visible: true
 	minimumWidth: 1000
 	minimumHeight: 550
-	title: qsTr("EVD Monitor")
+	title: qsTr("SRM Drive Monitor")
 
 	menuBar: AppMenuBar {
 		id: menuBar

@@ -34,7 +34,7 @@ else()
     message("Couldn't find Qt")
 endif()
 
-qtquick_compiler_add_resources(RESOURCES resources/resources.qrc)
+qtquick_compiler_add_resources(RESOURCES resources.qrc)
 add_executable(${CMAKE_PROJECT_NAME} 
 	src/main.cpp
 	${RESOURCES}

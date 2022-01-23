@@ -1,12 +1,9 @@
-[Buildset]
-BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x1e\x00e\x00v\x00d\x00-\x00m\x00o\x00n\x00i\x00t\x00o\x00r\x00-\x00q\x00m\x00l)
-
 [CMake]
 Build Directory Count=1
 Current Build Directory Index-Host System=0
 
 [CMake][CMake Build Directory 0]
-Build Directory Path=/home/oleg/MEGA/workdir/vscode/cpp/under-git-control/evd-monitor-qml/build
+Build Directory Path=/home/oleg/MEGA/workdir/vscode/cpp/under-git-control/srm-drive-monitor/build
 Build Type=Debug
 CMake Binary=/usr/bin/cmake
 CMake Executable=/usr/bin/cmake
@@ -21,18 +18,18 @@ Launch Configurations=Launch Configuration 0
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=evd-monitor-qml
+Name=srm-drive-monitor
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
 Arguments=
-Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00\x1e\x00e\x00v\x00d\x00-\x00m\x00o\x00n\x00i\x00t\x00o\x00r\x00-\x00q\x00m\x00l\x00\x00\x00\x1e\x00e\x00v\x00d\x00-\x00m\x00o\x00n\x00i\x00t\x00o\x00r\x00-\x00q\x00m\x00l)
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00"\x00s\x00r\x00m\x00-\x00d\x00r\x00i\x00v\x00e\x00-\x00m\x00o\x00n\x00i\x00t\x00o\x00r\x00\x00\x00"\x00s\x00r\x00m\x00-\x00d\x00r\x00i\x00v\x00e\x00-\x00m\x00o\x00n\x00i\x00t\x00o\x00r)
 Dependency Action=Build
 EnvironmentGroup=
-Executable=file:///home/oleg/MEGA/workdir/vscode/cpp/under-git-control/evd-monitor-qml
+Executable=file:///home/oleg/MEGA/workdir/vscode/cpp/under-git-control/srm-drive-monitor
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Kill Before Executing Again=4194304
-Project Target=evd-monitor-qml,evd-monitor-qml
+Project Target=srm-drive-monitor,srm-drive-monitor
 Use External Terminal=false
 Working Directory=
 isExecutable=false

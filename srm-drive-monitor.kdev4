@@ -1,4 +1,4 @@
 [Project]
 CreatedFrom=CMakeLists.txt
 Manager=KDevCMakeManager
-Name=evd-monitor-qml
+Name=srm-drive-monitor

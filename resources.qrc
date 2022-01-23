@@ -1,6 +1,8 @@
 <RCC>
 	<qresource prefix="/">
 		<file>src/qml/main.qml</file>
+		<file>src/qml/AppMenuBar.qml</file>
+		<file>src/qml/AppToolBar.qml</file>
 		<file>resources/icons/desktop-classic.png</file>
 		<file>resources/icons/power.png</file>
 		<file>resources/icons/car-electric-outline.png</file>

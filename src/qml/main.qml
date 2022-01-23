@@ -1,19 +1,35 @@
-import QtQuick 2.0
-import QtQuick.Window 2.0
-import QtQuick.Controls 2.0
+import QtQuick 2.5
+import QtQuick.Controls 2.15
 
-Window {
-	id: win
+
+ApplicationWindow {
+	id: appWindow
 	visible: true
-	width: 600
-	height: 400
-	title: qsTr("Hi!")
-	
+	width: 1200
+	height: 600
+	title: qsTr("EVD Monitor")
+
+	header: AppMenuBar {
+		id: menuBar
+	}
+
+	AppToolBar {
+		id: toolBar
+		//anchors.top: menubar.bottom
+	}
+
+
+
+
+
+
+
+
 	Button {
 		text: "Click!"
 		anchors.centerIn: parent
 		onClicked: {
-			win.color = Qt.rgba(Math.random(), Math.random(), Math.random(), Math.random());
+			appWindow.color = Qt.rgba(Math.random(), Math.random(), Math.random(), Math.random());
 		}
 	}
 } 

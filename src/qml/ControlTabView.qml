@@ -6,6 +6,7 @@ TabView {
 		id: tabControl
 		title: "Control"
 	}
+	
 	Tab {
 		id: tabConfiguration
 		title: "Configuration"

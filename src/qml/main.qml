@@ -37,6 +37,7 @@ ApplicationWindow {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 		}
+		
 		ControlTabView {
 			id: controlTabView
 			anchors.right: parent.right

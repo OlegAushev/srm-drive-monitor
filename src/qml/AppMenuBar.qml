@@ -4,17 +4,47 @@ import QtQuick.Controls 2.15
 
 MenuBar {
 	Menu {
-		title: qsTr("Actions")
-		Action { text: qsTr("Reset faults") }
-		Action { text: qsTr("&Calibrate position sensor") }
-		Action { text: qsTr("&Invert rotation direction") }
+		title: qsTr("App")
+
+		Action { text: qsTr("Device Name") }
+
+		Action { text: qsTr("Software Version") }
+
+		Action { text: qsTr("Software Build Configuration") }
+
 		MenuSeparator { }
-		Action { text: qsTr("&Quit") }
+
+		Action {
+			text: qsTr("Quit")
+			onTriggered: Qt.quit();
+		}
 	}
+
 	Menu {
-		title: qsTr("&Help")
-		Action { text: qsTr("&Device name") }
-		Action { text: qsTr("&Software version") }
-		Action { text: qsTr("&Software build configuration") }
+		title: qsTr("Network")
+
+		Menu {
+			title: qsTr("Connect CAN Device")
+			Action {
+				text: qsTr("can0")
+			}
+			Action {
+				text: qsTr("vcan0")
+			}
+		}
+
+		Action {
+			text: qsTr("Disconnect CAN Device")
+		}
+	}
+
+	Menu {
+		title: qsTr("Drive Control")
+
+		Action { text: qsTr("Reset Faults") }
+
+		Action { text: qsTr("Calibrate Position Sensor") }
+		
+		Action { text: qsTr("Invert Rotation Direction") }
 	}
 }

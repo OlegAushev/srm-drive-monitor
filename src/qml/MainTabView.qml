@@ -6,6 +6,7 @@ TabView {
 		id: tabCanData
 		title: "CAN Data"	
 	}
+	
 	Tab {
 		id: tabCharts
 		title: "Charts"

@@ -4,39 +4,37 @@ import QtQuick.Layouts 1.15
 
 
 ToolBar {
-	Action {
-		id: actionConnectCanDevice
-		text: qsTr("&Connect CAN")
-		icon.name: "qrc:/resources/icons/link-variant.png"
-	}
-
-	Action {
-		id: actionDisconnectCanDevice
-		text: qsTr("&Disconnect CAN")
-		icon.name: "qrc:/resources/icons/link-variant-off.png"
-	}
-
-	Action {
-		id: actionQuit
-		text: qsTr("&Quit")
-		icon.name: "qrc:/resources/icons/exit-to-app.png"
-	}
-
-	 
 	RowLayout {
 		ToolButton {
-		id: buttonConnectCanDevice
-		action: actionConnectCanDevice
+			id: buttonTlcEmulation
+			checkable: true
+			icon.name: "qrc:/resources/icons/desktop-classic.png"
+			ToolTip.visible: hovered
+			ToolTip.text: qsTr("TLC Emulation On/Off")
 		}
 
 		ToolButton {
-			id: buttonDisconnectCanDevice
-			action: actionDisconnectCanDevice
+			id: buttonPower
+			checkable: true
+			icon.name: "qrc:/resources/icons/car-electric-outline.png"
+			ToolTip.visible: hovered
+			ToolTip.text: qsTr("Power On/Off")
 		}
 
 		ToolButton {
-			id: buttonQuit
-			action: actionQuit
+			id: buttonMotorRun
+			checkable: true
+			icon.name: "qrc:/resources/icons/power.png"
+			ToolTip.visible: hovered
+			ToolTip.text: qsTr("Motor Run On/Off")
+		}
+
+		ToolButton {
+			id: buttonEmergency
+			checkable: true
+			icon.name: "qrc:/resources/icons/alert-octagon-outline.png"
+			ToolTip.visible: hovered
+			ToolTip.text: qsTr("Emergency On/Off")
 		}
 	}
 

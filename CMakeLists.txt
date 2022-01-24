@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_FLAGS_DEBUG "-g -DDEBUG")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -DDEBUG")
 
-#set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOMOC ON)
 #set(CMAKE_AUTORCC ON)
 #set(CMAKE_AUTOUIC ON)
 
@@ -37,10 +37,10 @@ endif()
 qtquick_compiler_add_resources(RESOURCES resources.qrc)
 add_executable(${CMAKE_PROJECT_NAME} 
 	src/main.cpp
+	src/canbusdevice/canbusdevice.cpp
 	${RESOURCES}
 )
 
 include_directories(src/)
-##include_directories(ui/)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Quick Qt5::Widgets Qt5::SerialBus Qt5::Charts)

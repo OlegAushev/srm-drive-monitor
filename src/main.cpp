@@ -4,6 +4,7 @@
 #include <QtQml/QQmlContext>
 
 #include "canbusdevice/canbusdevice.h"
+#include "models/watchdatatablemodel/watchdatatablemodel.h"
 
 
 int main(int argc, char *argv[])

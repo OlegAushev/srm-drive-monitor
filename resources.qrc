@@ -1,19 +1,19 @@
 <RCC>
 	<qresource prefix="/">
-		<file>src/qml/main.qml</file>
-		<file>src/qml/AppMenuBar.qml</file>
-		<file>src/qml/AppToolBar.qml</file>
-		<file>src/qml/MainTabView.qml</file>
-		<file>src/qml/ControlTabView.qml</file>
-		<file>resources/icons/desktop-classic.png</file>
-		<file>resources/icons/power.png</file>
-		<file>resources/icons/car-electric-outline.png</file>
-		<file>resources/icons/alert-octagon-outline.png</file>
-		<file>resources/icons/link-variant.png</file>
-		<file>resources/icons/link-variant-off.png</file>
-		<file>resources/icons/exit-to-app.png</file>
-		<file>resources/icons/play-circle-outline.png</file>
-		<file>resources/icons/stop-circle-outline.png</file>
-		<file>resources/icons/app.png</file>
+		<file>qml/main.qml</file>
+		<file>qml/AppMenuBar.qml</file>
+		<file>qml/AppToolBar.qml</file>
+		<file>qml/MainTabView.qml</file>
+		<file>qml/ControlTabView.qml</file>
+		<file>images/desktop-classic.png</file>
+		<file>images/power.png</file>
+		<file>images/car-electric-outline.png</file>
+		<file>images/alert-octagon-outline.png</file>
+		<file>images/link-variant.png</file>
+		<file>images/link-variant-off.png</file>
+		<file>images/exit-to-app.png</file>
+		<file>images/play-circle-outline.png</file>
+		<file>images/stop-circle-outline.png</file>
+		<file>images/app.png</file>
 	</qresource>
 </RCC>

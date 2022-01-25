@@ -8,7 +8,7 @@ ToolBar {
 		ToolButton {
 			id: buttonTlcEmulation
 			checkable: true
-			icon.name: "qrc:/resources/icons/desktop-classic.png"
+			icon.name: "qrc:/images/desktop-classic.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("TLC Emulation On/Off")
 		}
@@ -16,7 +16,7 @@ ToolBar {
 		ToolButton {
 			id: buttonPower
 			checkable: true
-			icon.name: "qrc:/resources/icons/car-electric-outline.png"
+			icon.name: "qrc:/images/car-electric-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Power On/Off")
 		}
@@ -24,7 +24,7 @@ ToolBar {
 		ToolButton {
 			id: buttonMotorRun
 			checkable: true
-			icon.name: "qrc:/resources/icons/power.png"
+			icon.name: "qrc:/images/power.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Motor Run On/Off")
 		}
@@ -32,7 +32,7 @@ ToolBar {
 		ToolButton {
 			id: buttonEmergency
 			checkable: true
-			icon.name: "qrc:/resources/icons/alert-octagon-outline.png"
+			icon.name: "qrc:/images/alert-octagon-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Emergency On/Off")
 		}

@@ -27,14 +27,17 @@ MenuBar {
 			title: qsTr("Connect CAN Device")
 			Action {
 				text: qsTr("can0")
+				onTriggered: canBusDevice.connectDevice("socketcan", "can0");
 			}
 			Action {
 				text: qsTr("vcan0")
+				onTriggered: canBusDevice.connectDevice("socketcan", "vcan0");
 			}
 		}
 
 		Action {
 			text: qsTr("Disconnect CAN Device")
+			onTriggered: canBusDevice.disconnectDevice();
 		}
 	}
 

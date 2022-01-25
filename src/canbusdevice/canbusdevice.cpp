@@ -43,7 +43,7 @@ int CanBusDevice::executeConnectionScript(QString scriptPath)
  * @param interface 
  * @return CanBusDevice::Status 
  */
-CanBusDevice::Status CanBusDevice::connectDevice(QString plugin, QString interface)
+void CanBusDevice::connectDevice(QString plugin, QString interface)
 {
 	plugin_ = plugin;
 	interface_ = interface;
@@ -53,7 +53,7 @@ CanBusDevice::Status CanBusDevice::connectDevice(QString plugin, QString interfa
 	if (exitCode != 0)
 	{
 		emit statusMessageAvailable("CAN device connection failed. Exit code: " + QString::number(exitCode));
-		return Status::CONNECTION_ERROR;
+		return;
 	}
 
 	QString errorString, statusString;
@@ -81,8 +81,7 @@ CanBusDevice::Status CanBusDevice::connectDevice(QString plugin, QString interfa
 		connectionStatus = Status::CONNECTED;
 	}
 
-	emit statusMessageAvailable(statusString);	
-	return connectionStatus;
+	emit statusMessageAvailable(statusString);
 }
 
 /**
@@ -90,7 +89,7 @@ CanBusDevice::Status CanBusDevice::connectDevice(QString plugin, QString interfa
  * 
  * @return CanBusDevice::Status 
  */
-CanBusDevice::Status CanBusDevice::disconnectDevice()
+void CanBusDevice::disconnectDevice()
 {
 	if (device_)
 	{
@@ -102,8 +101,6 @@ CanBusDevice::Status CanBusDevice::disconnectDevice()
 	{
 		emit statusMessageAvailable("No CAN device");
 	}
-
-	return Status::DISCONNECTED;
 }
 
 /**

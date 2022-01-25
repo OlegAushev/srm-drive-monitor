@@ -3,6 +3,7 @@
 		<file>qml/main.qml</file>
 		<file>qml/AppMenuBar.qml</file>
 		<file>qml/AppToolBar.qml</file>
+		<file>qml/AppStatusBar.qml</file>
 		<file>qml/MainTabView.qml</file>
 		<file>qml/ControlTabView.qml</file>
 		<file>images/desktop-classic.png</file>

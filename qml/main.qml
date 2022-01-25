@@ -20,6 +20,10 @@ ApplicationWindow {
 		anchors.right: parent.right
 	}
 
+	footer : AppStatusBar {
+		id: statusBar
+	}
+
 	GridLayout {
 		anchors.fill: parent
 		anchors.leftMargin: 2
@@ -49,8 +53,12 @@ ApplicationWindow {
 		}
 	}
 
-
-
+	Connections {
+		target: canBusDevice
+		onStatusMessageAvailable: {
+			statusBar.print(message);
+		}
+	}
 
 
 

@@ -35,13 +35,13 @@ private:
 
 public:
 	CanBusDevice();
-	Status connectDevice(QString plugin, QString interface);
-	Status disconnectDevice();
 
 private slots:
 	void onFrameReceived();
 
 public slots:
+	void connectDevice(QString plugin, QString interface);
+	void disconnectDevice();
 	void sendFrame(QCanBusFrame frame)
 	{
 		if (device_)

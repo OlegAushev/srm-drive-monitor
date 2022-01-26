@@ -1,9 +1,9 @@
-import QtQuick 2.5
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick 2.15 as Q2
+import QtQuick.Controls 2.15 as C2
+import QtQuick.Layouts 1.15// as Layouts
 
 
-ApplicationWindow {
+C2.ApplicationWindow {
 	id: appWindow
 	visible: true
 	minimumWidth: 1000
@@ -53,7 +53,7 @@ ApplicationWindow {
 		}
 	}
 
-	Connections {
+	Q2.Connections {
 		target: canBusDevice
 		onStatusMessageAvailable: {
 			statusBar.print(message);
@@ -65,7 +65,7 @@ ApplicationWindow {
 
 
 
-	Button {
+	C2.Button {
 		text: "Click!"
 		anchors.centerIn: parent
 		onClicked: {

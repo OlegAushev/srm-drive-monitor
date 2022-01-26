@@ -1,53 +1,52 @@
-import QtQuick 2.5
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.15 as C2
 
 
-MenuBar {
-	Menu {
+C2.MenuBar {
+	C2.Menu {
 		title: qsTr("App")
 
-		Action { text: qsTr("Device Name") }
+		C2.Action { text: qsTr("Device Name") }
 
-		Action { text: qsTr("Software Version") }
+		C2.Action { text: qsTr("Software Version") }
 
-		Action { text: qsTr("Software Build Configuration") }
+		C2.Action { text: qsTr("Software Build Configuration") }
 
-		MenuSeparator { }
+		C2.MenuSeparator { }
 
-		Action {
+		C2.Action {
 			text: qsTr("Quit")
 			onTriggered: Qt.quit();
 		}
 	}
 
-	Menu {
+	C2.Menu {
 		title: qsTr("Network")
 
-		Menu {
+		C2.Menu {
 			title: qsTr("Connect CAN Device")
-			Action {
+			C2.Action {
 				text: qsTr("can0")
 				onTriggered: canBusDevice.connectDevice("socketcan", "can0");
 			}
-			Action {
+			C2.Action {
 				text: qsTr("vcan0")
 				onTriggered: canBusDevice.connectDevice("socketcan", "vcan0");
 			}
 		}
 
-		Action {
+		C2.Action {
 			text: qsTr("Disconnect CAN Device")
 			onTriggered: canBusDevice.disconnectDevice();
 		}
 	}
 
-	Menu {
+	C2.Menu {
 		title: qsTr("Drive Control")
 
-		Action { text: qsTr("Reset Faults") }
+		C2.Action { text: qsTr("Reset Faults") }
 
-		Action { text: qsTr("Calibrate Position Sensor") }
+		C2.Action { text: qsTr("Calibrate Position Sensor") }
 		
-		Action { text: qsTr("Invert Rotation Direction") }
+		C2.Action { text: qsTr("Invert Rotation Direction") }
 	}
 }

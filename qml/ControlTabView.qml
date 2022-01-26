@@ -1,13 +1,13 @@
-import QtQuick.Controls 1.4
+import QtQuick.Controls 1.4 as C1
 
 
-TabView {
-	Tab {
+C1.TabView {
+	C1.Tab {
 		id: tabControl
 		title: "Control"
 	}
 	
-	Tab {
+	C1.Tab {
 		id: tabConfiguration
 		title: "Configuration"
 	}

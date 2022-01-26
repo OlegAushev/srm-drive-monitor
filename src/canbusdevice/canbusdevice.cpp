@@ -45,8 +45,8 @@ int CanBusDevice::executeConnectionScript(QString scriptPath)
  */
 void CanBusDevice::connectDevice(QString plugin, QString interface)
 {
-	plugin_ = plugin;
-	interface_ = interface;
+	m_plugin = plugin;
+	m_interface = interface;
 
 	QString scriptPath = findConnectionScript(interface);	
 	int exitCode = executeConnectionScript(scriptPath);
@@ -61,23 +61,23 @@ void CanBusDevice::connectDevice(QString plugin, QString interface)
 
 	if (QCanBus::instance()->plugins().contains(plugin))
 	{
-		device_.reset(QCanBus::instance()->createDevice(plugin, interface, &errorString));
+		m_device.reset(QCanBus::instance()->createDevice(plugin, interface, &errorString));
 	}
 	
-	if (!device_) 
+	if (!m_device) 
 	{
 		statusString = QString("Error creating device %1, reason: %2").arg(plugin).arg(errorString);
 		connectionStatus = Status::CONNECTION_ERROR;
 	}
-	else if (!device_->connectDevice())
+	else if (!m_device->connectDevice())
 	{
-		statusString = QString("Connection error %1: %2").arg(interface).arg(device_->errorString());
+		statusString = QString("Connection error %1: %2").arg(interface).arg(m_device->errorString());
 		connectionStatus = Status::CONNECTION_ERROR;
 	}
 	else
 	{
 		statusString = QString("Plugin: %1, connected to %2").arg(plugin).arg(interface);
-		connect(device_.get(), &QCanBusDevice::framesReceived, this, &CanBusDevice::onFrameReceived);
+		connect(m_device.get(), &QCanBusDevice::framesReceived, this, &CanBusDevice::onFrameReceived);
 		connectionStatus = Status::CONNECTED;
 	}
 
@@ -91,10 +91,10 @@ void CanBusDevice::connectDevice(QString plugin, QString interface)
  */
 void CanBusDevice::disconnectDevice()
 {
-	if (device_)
+	if (m_device)
 	{
-		device_.get()->disconnect();
-		device_->disconnectDevice();
+		m_device.get()->disconnect();
+		m_device->disconnectDevice();
 		emit statusMessageAvailable("CAN device disconnected");
 	}
 	else
@@ -109,9 +109,9 @@ void CanBusDevice::disconnectDevice()
  */
 void CanBusDevice::onFrameReceived()
 {
-	while (device_->framesAvailable())
+	while (m_device->framesAvailable())
 	{
-		QCanBusFrame frame = device_->readFrame();
+		QCanBusFrame frame = m_device->readFrame();
 		emit frameAvailable(frame);
 	}
 }

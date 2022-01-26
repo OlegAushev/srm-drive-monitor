@@ -26,9 +26,9 @@ public:
 	};
 
 private:
-	QString plugin_;
-	QString interface_;
-	std::unique_ptr<QCanBusDevice> device_;
+	QString m_plugin;
+	QString m_interface;
+	std::unique_ptr<QCanBusDevice> m_device;
 
 	QString findConnectionScript(QString interface);
 	int executeConnectionScript(QString scriptPath);
@@ -44,9 +44,9 @@ public slots:
 	void disconnectDevice();
 	void sendFrame(QCanBusFrame frame)
 	{
-		if (device_)
+		if (m_device)
 		{
-			device_->writeFrame(frame);
+			m_device->writeFrame(frame);
 		}
 	}
 

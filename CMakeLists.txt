@@ -35,7 +35,8 @@ qtquick_compiler_add_resources(RESOURCES resources.qrc)
 add_executable(${CMAKE_PROJECT_NAME} 
 	src/main.cpp
 	src/canbusdevice/canbusdevice.cpp
-	src/models/watchdatatablemodel/watchdatatablemodel.cpp
+	src/models/candatatable/candatatablemodel.cpp
+	src/models/candatatable/candatatable.cpp
 	${RESOURCES}
 )
 

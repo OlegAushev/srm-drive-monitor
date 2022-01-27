@@ -3,23 +3,24 @@
 #include <QAbstractTableModel>
 
 
-class CanDataTable;
+class BasicDataTable;
 
 
-class CanDataTableModel : public QAbstractTableModel
+class BasicDataTableModel : public QAbstractTableModel
 {
 	Q_OBJECT
-	Q_PROPERTY(CanDataTable *table READ table WRITE setTable)
+	Q_PROPERTY(BasicDataTable *table READ table WRITE setTable)
 public:
-	CanDataTableModel(QObject* parent = nullptr);
+	BasicDataTableModel(QObject* parent = nullptr);
 	
 	int rowCount(const QModelIndex &parent = QModelIndex()) const override;	
 	int columnCount(const QModelIndex &parent = QModelIndex()) const override;	
+	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 	QHash<int, QByteArray> roleNames() const override;
 
-	CanDataTable* table() const { return m_table; }
-	void setTable(CanDataTable* table);
+	BasicDataTable* table() const { return m_table; }
+	void setTable(BasicDataTable* table);
 
 private:
 	enum RoleName
@@ -29,7 +30,7 @@ private:
 		UNIT
 	};
 
-	CanDataTable* m_table;
+	BasicDataTable* m_table;
 
 signals:
 

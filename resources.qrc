@@ -6,6 +6,7 @@
 		<file>qml/AppStatusBar.qml</file>
 		<file>qml/MainTabView.qml</file>
 		<file>qml/ControlTabView.qml</file>
+		<file>qml/BasicDataTable.qml</file>
 		<file>images/desktop-classic.png</file>
 		<file>images/power.png</file>
 		<file>images/car-electric-outline.png</file>

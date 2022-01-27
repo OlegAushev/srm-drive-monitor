@@ -4,8 +4,8 @@
 #include <QtQml/QQmlContext>
 
 #include "canbusdevice/canbusdevice.h"
-#include "models/candatatable/candatatablemodel.h"
-#include "models/candatatable/candatatable.h"
+#include "models/basicdatatable/basicdatatablemodel.h"
+#include "models/basicdatatable/basicdatatable.h"
 
 
 int main(int argc, char *argv[])
@@ -13,10 +13,10 @@ int main(int argc, char *argv[])
 	QApplication app(argc, argv);
 	app.setWindowIcon(QIcon(":/images/app.png"));
 		
-	qmlRegisterType<CanDataTableModel>("CanDataTableModel", 1, 0, "CanDataTableModel");
-	qmlRegisterUncreatableType<CanDataTable>("CanDataTable", 1, 0, "CanDataTable", QStringLiteral("TESTTEST"));
+	qmlRegisterType<BasicDataTableModel>("BasicDataTableModel", 1, 0, "BasicDataTableModel");
+	qmlRegisterUncreatableType<BasicDataTable>("BasicDataTable", 1, 0, "BasicDataTable", QStringLiteral("BasicDataTable"));
 	
-	CanDataTable table1({{"A","B"},{"C","D"},{"E","F"},{"G","H"}});
+	BasicDataTable table1({{"A","B"},{"C","D"},{"E","F"},{"G","H"}});
 	CanBusDevice canBusDevice;
 
 	QQmlApplicationEngine engine;

@@ -76,7 +76,8 @@
 		"qpushbutton": "cpp",
 		"qdoublespinbox": "cpp",
 		"qchartview": "cpp",
-		"qvector": "cpp"
+		"qvector": "cpp",
+		"qabstracttablemodel": "cpp"
 	},
 	"[Log]": {
 		"editor.fontSize": 10,

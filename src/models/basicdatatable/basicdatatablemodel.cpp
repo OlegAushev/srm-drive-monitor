@@ -55,6 +55,7 @@ QVariant BasicDataTableModel::headerData(int section, Qt::Orientation orientatio
 	{
 		return QString("");
 	}
+	return QVariant();
 }
 
 ///

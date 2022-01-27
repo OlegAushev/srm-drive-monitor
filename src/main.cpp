@@ -6,6 +6,7 @@
 #include "canbusdevice/canbusdevice.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
+#include "mcoclient/mcoclient.h"
 
 
 int main(int argc, char *argv[])
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
 	
 	BasicDataTable table1({{"A","B"},{"C","D"},{"E","F"},{"G","H"}});
 	CanBusDevice canBusDevice;
+	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
 
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("canBusDevice", &canBusDevice);

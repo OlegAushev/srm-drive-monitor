@@ -32,17 +32,8 @@ endif()
 
 
 qtquick_compiler_add_resources(RESOURCES resources.qrc)
-add_executable(${CMAKE_PROJECT_NAME} 
-	src/main.cpp
-	src/canbusdevice/canbusdevice.cpp
-	src/models/basicdatatable/basicdatatablemodel.cpp
-	src/models/basicdatatable/basicdatatable.cpp
-	${RESOURCES}
-)
-
-include_directories(src/)
-
-target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Quick Qt5::Widgets Qt5::SerialBus Qt5::Charts)
+include_directories(src)
+add_subdirectory(src)
 
 
 #set(CMAKE_AUTOUIC_SEARCH_PATHS /ui/)

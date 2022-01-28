@@ -20,6 +20,7 @@ ToolBar {
 			icon.name: "qrc:/images/car-electric-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Power On/Off")
+			onClicked: checked ? driveController.powerUpDrive() : driveController.powerDownDrive()
 		}
 
 		ToolButton {

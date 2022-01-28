@@ -13,7 +13,7 @@ SdoService::SdoService(NodeId serverNodeId)
 {
 	periodicSdoRequestTimer_ = new QTimer(this);
 	connect(periodicSdoRequestTimer_, &QTimer::timeout, this, &SdoService::makePeriodicRequest);
-	periodicSdoRequestTimer_->start();
+	//periodicSdoRequestTimer_->start();
 }
 
 /**

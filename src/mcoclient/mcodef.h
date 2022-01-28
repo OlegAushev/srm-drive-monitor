@@ -102,24 +102,28 @@ enum class TpdoNum {NUM1, NUM2, NUM3, NUM4};
 enum class RpdoNum {NUM1, NUM2, NUM3, NUM4};
 
 
-struct CobSdoDataUINT32 {};
-struct CobSdoDataFLOAT32 {};
-
 class CobSdoData
 {
 private:
-	union
-	{
-		uint32_t u32;
-		float f32;
-	} data_;
+	uint32_t m_data;
 public:
-	CobSdoData() { data_.u32 = 0; }
-	CobSdoData(CobSdoDataUINT32 tag, uint32_t val) { data_.u32 = val; }
-	CobSdoData(CobSdoDataFLOAT32 tag, float val) { data_.f32 = val; }
+	CobSdoData() { m_data = 0; }
+	CobSdoData(uint32_t val) { memcpy(&m_data, &val, sizeof(uint32_t)); }
+	CobSdoData(float val) { memcpy(&m_data, &val, sizeof(uint32_t)); }
 
-	uint32_t u32() const { return data_.u32; }
-	float f32() const { return data_.f32; }
+	uint32_t u32() const
+	{ 
+		uint32_t val;
+		memcpy(&val, &m_data, sizeof(uint32_t));
+		return val;
+	}
+	
+	float f32() const
+	{ 
+		float val;
+		memcpy(&val, &m_data, sizeof(uint32_t));
+		return val;
+	}
 };
 
 

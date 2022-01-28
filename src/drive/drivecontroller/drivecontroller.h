@@ -22,6 +22,8 @@ signals:
 	void messageTpdo2Ready(microcanopen::CobTpdo2 message);
 
 public slots:
+	void powerUpDrive() { m_mcoClient->sdoService.sendWriteRequest("POWER UP DRIVE"); }
+	void powerDownDrive() { m_mcoClient->sdoService.sendWriteRequest("POWER DOWN DRIVE"); }
 	void startMotor() { m_runFlag = true; }
 	void stopMotor() { m_runFlag = false; }
 	void setEmergencyOn() { m_emergencyFlag = true; }

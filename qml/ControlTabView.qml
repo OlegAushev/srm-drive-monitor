@@ -5,6 +5,9 @@ C1.TabView {
 	C1.Tab {
 		id: tabControl
 		title: "Control"
+		SpinboxAndSliderControl {
+			name: "Speed"
+		}
 	}
 	
 	C1.Tab {

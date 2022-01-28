@@ -24,7 +24,7 @@ C2.ApplicationWindow {
 		id: statusBar
 	}
 
-	GridLayout {
+	/*GridLayout {
 		anchors.fill: parent
 		anchors.leftMargin: 2
 		anchors.topMargin: 2
@@ -32,7 +32,7 @@ C2.ApplicationWindow {
 		anchors.bottomMargin: 2
 		rows: 1
 		columns: 2
-		columnSpacing: 2
+		columnSpacing: 2*/
 
 		MainTabView {
 			id: mainTabView
@@ -51,7 +51,7 @@ C2.ApplicationWindow {
 			Layout.fillWidth: false
 			Layout.fillHeight: true
 		}
-	}
+	//}
 
 	Q2.Connections {
 		target: mcoClient

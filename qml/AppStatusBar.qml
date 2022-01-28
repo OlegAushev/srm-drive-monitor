@@ -1,7 +1,7 @@
-import QtQuick.Controls 2.15 as C2
+import QtQuick.Controls 2.15
 
 
-C2.Label {
+Label {
 	text: "No CAN bus connection"
 	function print(message) {
 		text = message;

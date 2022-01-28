@@ -19,10 +19,10 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
 	connect(&sdoService, &SdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
 
-	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::infoMessageAvailable);
-	connect(&sdoService, &SdoService::infoMessageAvailable, this, &McoClient::infoMessageAvailable);
+	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::onInfoMessageReady);
+	connect(&sdoService, &SdoService::infoMessageAvailable, this, &McoClient::onInfoMessageReady);
 
-	connect(m_statusTimer, &QTimer::timeout, [this](){ emit infoMessageAvailable(this->m_canDevice.busStatus()); });
+	connect(m_statusTimer, &QTimer::timeout, [this](){ onInfoMessageReady(this->m_canDevice.busStatus()); });
 	m_statusTimer->setInterval(2000);
 	m_statusTimer->start();
 }
@@ -30,7 +30,7 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 ///
 ///
 ///
-void McoClient::connectCanDevice(QString plugin, QString interface)
+void McoClient::connectCanDevice(const QString& plugin, const QString& interface)
 {
 	m_canDevice.connectDevice(plugin, interface);
 }
@@ -79,7 +79,13 @@ void McoClient::onFrameReceived(QCanBusFrame frame)
 
 }
 
-
+///
+///
+///
+void McoClient::onInfoMessageReady(QString message)
+{
+	emit infoMessageAvailable(message);
+	m_statusTimer->start();
 }
 
 
@@ -87,5 +93,4 @@ void McoClient::onFrameReceived(QCanBusFrame frame)
 
 
 
-
-
+}

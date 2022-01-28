@@ -104,7 +104,7 @@ signals:
 	void messageTpdo2Required();
 	void messageTpdo3Required();
 	void messageTpdo4Required();
-	void frameReady(QCanBusFrame frame);
+	void frameReady(const QCanBusFrame& frame);
 
 public slots:
 	void sendMessageTpdo1(CobTpdo1 message);

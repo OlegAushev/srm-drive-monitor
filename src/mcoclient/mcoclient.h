@@ -32,13 +32,14 @@ signals:
 	void infoMessageAvailable(QString message);
 
 public slots:
-	void connectCanDevice(QString plugin, QString interface);
+	void connectCanDevice(const QString& plugin, const QString& interface);
 	void disconnectCanDevice();
 	void startTpdoService();
 	void stopTpdoService();
 
 private slots:
 	void onFrameReceived(QCanBusFrame frame);
+	void onInfoMessageReady(QString message);
 };
 
 

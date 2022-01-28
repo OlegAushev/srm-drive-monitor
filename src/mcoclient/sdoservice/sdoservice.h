@@ -18,14 +18,14 @@ class SdoService : public QObject
 	Q_OBJECT
 public:
 	SdoService(NodeId serverNodeId);
-	void processResponse(QCanBusFrame frame);
+	void processResponse(const QCanBusFrame& frame);
 	void sendReadRequest(const QString& odEntryName);
 	void sendWriteRequest(const QString& odEntryName, CobSdoData data = {});
 private:
 	const unsigned int serverNodeId_;
 signals:
-	void frameReady(QCanBusFrame frame);
-	void infoMessageAvailable(QString message);
+	void frameReady(const QCanBusFrame& frame);
+	void infoMessageAvailable(const QString& message);
 
 /* ========================================================================== */
 /* =================== APPLICATION-SPECIFIC PART BEGIN ====================== */

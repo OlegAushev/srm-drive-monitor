@@ -34,17 +34,17 @@ private:
 	QString m_interface;
 	std::unique_ptr<QCanBusDevice> m_device;
 
-	QString findConnectionScript(QString interface);
-	int executeConnectionScript(QString scriptPath);
+	QString findConnectionScript(const QString& interface);
+	int executeConnectionScript(const QString& scriptPath);
 
 signals:
-	void frameAvailable(QCanBusFrame frame);
-	void statusMessageAvailable(QString message);
+	void frameAvailable(const QCanBusFrame& frame);
+	void statusMessageAvailable(const QString& message);
 
 public slots:
-	void connectDevice(QString plugin, QString interface);
+	void connectDevice(const QString& plugin, const QString& interface);
 	void disconnectDevice();
-	void sendFrame(QCanBusFrame frame)
+	void sendFrame(const QCanBusFrame& frame)
 	{
 		if (m_device)
 		{

@@ -19,7 +19,7 @@ CanBusDevice::~CanBusDevice()
 ///
 ///
 ///
-QString CanBusDevice::findConnectionScript(QString interface)
+QString CanBusDevice::findConnectionScript(const QString& interface)
 {	
 	return QFileDialog::getOpenFileName(nullptr, tr("Open SocketCAN Script"), "../../", tr("Script Files (*.sh)"));
 }
@@ -27,7 +27,7 @@ QString CanBusDevice::findConnectionScript(QString interface)
 ///
 ///
 ///
-int CanBusDevice::executeConnectionScript(QString scriptPath)
+int CanBusDevice::executeConnectionScript(const QString& scriptPath)
 {
 	QProcess *process = new QProcess();
 	QString exec = "pkexec";
@@ -40,7 +40,7 @@ int CanBusDevice::executeConnectionScript(QString scriptPath)
 ///
 ///
 ///
-void CanBusDevice::connectDevice(QString plugin, QString interface)
+void CanBusDevice::connectDevice(const QString& plugin, const QString& interface)
 {
 	m_plugin = plugin;
 	m_interface = interface;

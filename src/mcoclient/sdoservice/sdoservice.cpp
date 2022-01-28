@@ -64,7 +64,7 @@ void SdoService::sendWriteRequest(const QString& odEntryName, CobSdoData data)
  * 
  * @param frame 
  */
-void SdoService::processResponse(QCanBusFrame frame)
+void SdoService::processResponse(const QCanBusFrame& frame)
 {
 	CobSdo msg = CanBusDevice::mergeBytes<CobSdo>(frame.payload());
 	ODEntryKey key = {msg.index, msg.subindex};

@@ -2,30 +2,31 @@
 #include "canbusdevice.h"
 
 
-/**
- * @brief Construct a new Can Bus Device:: Can Bus Device object
- * 
- */
+///
+///
+///
 CanBusDevice::CanBusDevice()
 {}
 
-/**
- * @brief 
- * 
- * @param interface 
- * @return QString 
- */
+///
+///
+///
+CanBusDevice::~CanBusDevice()
+{
+	disconnectDevice();
+}
+
+///
+///
+///
 QString CanBusDevice::findConnectionScript(QString interface)
 {	
 	return QFileDialog::getOpenFileName(nullptr, tr("Open SocketCAN Script"), "../../", tr("Script Files (*.sh)"));
 }
 
-/**
- * @brief 
- * 
- * @param scriptPath 
- * @return int 
- */
+///
+///
+///
 int CanBusDevice::executeConnectionScript(QString scriptPath)
 {
 	QProcess *process = new QProcess();
@@ -36,13 +37,9 @@ int CanBusDevice::executeConnectionScript(QString scriptPath)
 	return process->exitCode();
 }
 
-/**
- * @brief 
- * 
- * @param plugin 
- * @param interface 
- * @return CanBusDevice::Status 
- */
+///
+///
+///
 void CanBusDevice::connectDevice(QString plugin, QString interface)
 {
 	m_plugin = plugin;
@@ -84,16 +81,13 @@ void CanBusDevice::connectDevice(QString plugin, QString interface)
 	emit statusMessageAvailable(statusString);
 }
 
-/**
- * @brief 
- * 
- * @return CanBusDevice::Status 
- */
+///
+///
+///
 void CanBusDevice::disconnectDevice()
 {
 	if (m_device)
 	{
-		m_device.get()->disconnect();
 		m_device->disconnectDevice();
 		emit statusMessageAvailable("CAN device disconnected");
 	}
@@ -101,12 +95,12 @@ void CanBusDevice::disconnectDevice()
 	{
 		emit statusMessageAvailable("No CAN device");
 	}
+	m_device.get()->disconnect();
 }
 
-/**
- * @brief 
- * 
- */
+///
+///
+///
 void CanBusDevice::onFrameReceived()
 {
 	while (m_device->framesAvailable())

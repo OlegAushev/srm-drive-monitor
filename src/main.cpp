@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
 	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM1, 250);
 	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM2, 100);
-	
+
 	drive::DriveController driveController(&mcoClient);
 
 
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	/* START QML ENGINE */
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
+	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("table1", &table1);
 	engine.load(QStringLiteral("qrc:/qml/main.qml"));
 

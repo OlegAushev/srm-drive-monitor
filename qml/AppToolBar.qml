@@ -28,6 +28,7 @@ ToolBar {
 			icon.name: "qrc:/images/power.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Motor Run On/Off")
+			onClicked: checked ? driveController.startMotor() : driveController.stopMotor()
 		}
 
 		ToolButton {
@@ -36,6 +37,7 @@ ToolBar {
 			icon.name: "qrc:/images/alert-octagon-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("Emergency On/Off")
+			onClicked: checked? driveController.setEmergencyOn() : driveController.setEmergencyOff() 
 		}
 	}
 

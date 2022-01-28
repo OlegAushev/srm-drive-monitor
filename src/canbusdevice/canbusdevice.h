@@ -26,6 +26,7 @@ public:
 	};
 
 	CanBusDevice();
+	~CanBusDevice();
 
 private:
 	QString m_plugin;

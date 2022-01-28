@@ -54,8 +54,8 @@ C2.ApplicationWindow {
 	}
 
 	Q2.Connections {
-		target: canBusDevice
-		onStatusMessageAvailable: {
+		target: mcoClient
+		onDeviceStatusMessageAvailable: {
 			statusBar.print(message);
 		}
 	}

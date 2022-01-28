@@ -18,18 +18,25 @@ class McoClient : public QObject
 public:
 	McoClient(NodeId clientNodeId, NodeId serverNodeId);
 
-	CanBusDevice canDevice;
 	TpdoService tpdoService;
 	RpdoService rpdoService;
 	SdoService sdoService;
+
 private:
-	const unsigned int clientNodeId_ = 0;
-	const unsigned int serverNodeId_ = 0;
-	std::array<QTimer, 4> tpdoTimers_;
+	CanBusDevice m_canDevice;
+	const unsigned int m_clientNodeId = 0;
+	const unsigned int m_serverNodeId = 0;
+	std::array<QTimer, 4> m_tpdoTimers;
+
+public slots:
+	void connectCanDevice(QString plugin, QString interface);
+	void disconnectCanDevice();
+
 private slots:
 	void onFrameReceived(QCanBusFrame frame);
 
-
+signals:
+	void deviceStatusMessageAvailable(QString message);
 
 };
 

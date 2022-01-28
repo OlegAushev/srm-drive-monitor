@@ -26,17 +26,17 @@ C2.MenuBar {
 			title: qsTr("Connect CAN Device")
 			C2.Action {
 				text: qsTr("can0")
-				onTriggered: canBusDevice.connectDevice("socketcan", "can0");
+				onTriggered: mcoClient.connectCanDevice("socketcan", "can0");
 			}
 			C2.Action {
 				text: qsTr("vcan0")
-				onTriggered: canBusDevice.connectDevice("socketcan", "vcan0");
+				onTriggered: mcoClient.connectCanDevice("socketcan", "vcan0");
 			}
 		}
 
 		C2.Action {
 			text: qsTr("Disconnect CAN Device")
-			onTriggered: canBusDevice.disconnectDevice();
+			onTriggered: mcoClient.disconnectCanDevice();
 		}
 	}
 

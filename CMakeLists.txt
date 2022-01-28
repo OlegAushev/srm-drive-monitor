@@ -31,7 +31,6 @@ else()
 endif()
 
 
-qtquick_compiler_add_resources(RESOURCES resources.qrc)
 include_directories(src)
 add_subdirectory(src)
 

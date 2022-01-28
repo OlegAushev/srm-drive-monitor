@@ -1,6 +1,8 @@
 add_subdirectory(models)
 add_subdirectory(mcoclient)
 
+qtquick_compiler_add_resources(RESOURCES ./../resources.qrc)
+
 add_executable(${CMAKE_PROJECT_NAME}
 		main.cpp	
 		${SOURCES}

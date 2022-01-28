@@ -4,30 +4,51 @@
 
 namespace microcanopen {
 
-
+///
+///
+///
 McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
-	: clientNodeId_(clientNodeId.value)
-	, serverNodeId_(serverNodeId.value)
+	: m_clientNodeId(clientNodeId.value)
+	, m_serverNodeId(serverNodeId.value)
 	, tpdoService(clientNodeId)
 	, rpdoService(serverNodeId)
 	, sdoService(serverNodeId)
 {
-	connect(&tpdoService, &TpdoService::frameReady, &canDevice, &CanBusDevice::sendFrame);
-	connect(&canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
-	connect(&sdoService, &SdoService::frameReady, &canDevice, &CanBusDevice::sendFrame);
+	connect(&tpdoService, &TpdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
+	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
+	connect(&sdoService, &SdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
+	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::deviceStatusMessageAvailable);
 }
 
+///
+///
+///
+void McoClient::connectCanDevice(QString plugin, QString interface)
+{
+	m_canDevice.connectDevice(plugin, interface);
+}
 
+///
+///
+///
+void McoClient::disconnectCanDevice()
+{
+	m_canDevice.disconnectDevice();
+}
+
+///
+///
+///
 void McoClient::onFrameReceived(QCanBusFrame frame)
 {
-	if ((frame.frameId() == cobId(CobType::TPDO1, serverNodeId_))
+	if ((frame.frameId() == cobId(CobType::TPDO1, m_serverNodeId))
 			|| (frame.frameId() == cobId(CobType::TPDO2, 1))
 			|| (frame.frameId() == cobId(CobType::TPDO3, 1))
 			|| (frame.frameId() == cobId(CobType::TPDO4, 1)))
 	{
 		rpdoService.processFrame(frame);
 	}
-	else if (frame.frameId() == cobId(CobType::TSDO, serverNodeId_))
+	else if (frame.frameId() == cobId(CobType::TSDO, m_serverNodeId))
 	{
 		sdoService.processResponse(frame);
 	}

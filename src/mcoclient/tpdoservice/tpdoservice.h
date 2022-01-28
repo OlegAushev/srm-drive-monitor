@@ -20,7 +20,7 @@ struct CobTpdo1
 {
 	uint16_t run : 1;
 	uint32_t reserved1 : 31;
-	uint16_t emergency_stop : 1;
+	uint16_t emergencyStop : 1;
 	uint16_t reserved2 : 1;
 	uint16_t braking : 1;
 	uint32_t reserved3 : 29;
@@ -40,7 +40,7 @@ struct CobTpdo1
 
 struct CobTpdo2
 {
-	int8_t torque_obsolete : 8;
+	int8_t torqueObsolete : 8;
 	uint8_t reserved1 : 8;
 	int16_t torque : 16;
 	uint32_t reserved2 : 32;
@@ -57,6 +57,17 @@ struct CobTpdo2
 		return data;
 	}
 };
+
+struct CobTpdo3
+{
+	uint64_t data;
+};
+
+struct CobTpdo4
+{
+	uint64_t data;
+};
+
 /* ========================================================================== */
 /* =================== APPLICATION-SPECIFIC PART END ======================== */
 /* ========================================================================== */
@@ -66,10 +77,10 @@ class TpdoService : public QObject
 	Q_OBJECT
 public:
 	TpdoService(NodeId nodeId);
-	void setPeriod(TpdoNum tpdoNum, int msec) { timers_[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
+	void setPeriod(TpdoNum tpdoNum, int msec) { m_timers[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
 	void start()
 	{
-		for (auto& timer : timers_)
+		for (auto& timer : m_timers)
 		{
 			if (timer->interval() != 0)
 			{
@@ -79,44 +90,27 @@ public:
 	}
 	void stop()
 	{
-		for (auto& timer : timers_)
+		for (auto& timer : m_timers)
 		{
 			timer->stop();
 		}
 	}
 private:
-	const unsigned int nodeId_;
-	std::array<QTimer*, 4> timers_;
-	QTimer* timerTpdo1_;
+	const unsigned int m_nodeId;
+	std::array<QTimer*, 4> m_timers;
 
-private slots:
-	void sendTpdo1();
-	void sendTpdo2();
-	void sendTpdo3();
-	void sendTpdo4();
 signals:
+	void messageTpdo1Required();
+	void messageTpdo2Required();
+	void messageTpdo3Required();
+	void messageTpdo4Required();
 	void frameReady(QCanBusFrame frame);
 
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART BEGIN ====================== */
-/* ========================================================================== */
-public:
-	void assignTpdoSrcWidgets(QAction* buttonRun, QAction* buttonEmergencyStop, QDoubleSpinBox*spinBoxTorque)
-	{
-		buttonRun_ = buttonRun;
-		buttonEmergencyStop_ = buttonEmergencyStop;
-		spinBoxTorque_ = spinBoxTorque;
-	}
-private:
-	QAction* buttonRun_ = nullptr;
-	QAction* buttonEmergencyStop_ = nullptr;
-	QDoubleSpinBox* spinBoxTorque_ = nullptr;
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART END   ====================== */
-/* ========================================================================== */
-
-
-
+public slots:
+	void sendMessageTpdo1(CobTpdo1 message);
+	void sendMessageTpdo2(CobTpdo2 message);
+	void sendMessageTpdo3(CobTpdo3 message);
+	void sendMessageTpdo4(CobTpdo4 message);
 };
 
 

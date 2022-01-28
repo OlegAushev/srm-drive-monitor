@@ -25,6 +25,8 @@ public:
 		SCRIPT_NOT_FOUND
 	};
 
+	CanBusDevice();
+
 private:
 	QString m_plugin;
 	QString m_interface;
@@ -33,11 +35,9 @@ private:
 	QString findConnectionScript(QString interface);
 	int executeConnectionScript(QString scriptPath);
 
-public:
-	CanBusDevice();
-
-private slots:
-	void onFrameReceived();
+signals:
+	void frameAvailable(QCanBusFrame frame);
+	void statusMessageAvailable(QString message);
 
 public slots:
 	void connectDevice(QString plugin, QString interface);
@@ -50,9 +50,8 @@ public slots:
 		}
 	}
 
-signals:
-	void frameAvailable(QCanBusFrame frame);
-	void statusMessageAvailable(QString message);
+private slots:
+	void onFrameReceived();
 
 public:
 	template <typename T>

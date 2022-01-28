@@ -4,74 +4,54 @@
 
 namespace microcanopen {
 
-/**
- * @brief Construct a new Tpdo Service:: Tpdo Service object
- * 
- * @param nodeId 
- */
+///
+///
+///
 TpdoService::TpdoService(NodeId nodeId)
-	: nodeId_(nodeId.value)
+	: m_nodeId(nodeId.value)
 {
-	for (auto& timer : timers_)
+	for (auto& timer : m_timers)
 	{
 		timer = new QTimer(this);
 	}
 	
-	connect(timers_[0], &QTimer::timeout, this, &TpdoService::sendTpdo1);
-	connect(timers_[1], &QTimer::timeout, this, &TpdoService::sendTpdo2);
-	connect(timers_[2], &QTimer::timeout, this, &TpdoService::sendTpdo3);
-	connect(timers_[3], &QTimer::timeout, this, &TpdoService::sendTpdo4);
+	connect(m_timers[0], &QTimer::timeout, this, &TpdoService::messageTpdo1Required);
+	connect(m_timers[1], &QTimer::timeout, this, &TpdoService::messageTpdo2Required);
+	connect(m_timers[2], &QTimer::timeout, this, &TpdoService::messageTpdo3Required);
+	connect(m_timers[3], &QTimer::timeout, this, &TpdoService::messageTpdo4Required);
 }
 
-
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART BEGIN ====================== */
-/* ========================================================================== */
-/**
- * @brief 
- * 
- */
-void TpdoService::sendTpdo1()
+///
+///
+///
+void TpdoService::sendMessageTpdo1(CobTpdo1 message)
 {
-	CobTpdo1 msg;
-	msg.run = ((buttonRun_->isChecked()) ? 1 : 0);
-	msg.emergency_stop = ((buttonEmergencyStop_->isChecked()) ? 1 : 0);
-	emit frameReady(CanBusDevice::makeFrame<CobTpdo1>(cobId(CobType::TPDO1, nodeId_), msg));
+	emit frameReady(CanBusDevice::makeFrame<CobTpdo1>(cobId(CobType::TPDO1, m_nodeId), message));
 }
 
-/**
- * @brief 
- * 
- */
-void TpdoService::sendTpdo2()
+///
+///
+///
+void TpdoService::sendMessageTpdo2(CobTpdo2 message)
 {
-	CobTpdo2 msg;
-	msg.torque = ((spinBoxTorque_->value() > 0) ? (spinBoxTorque_->value() / 100) * 32767 : (spinBoxTorque_->value() / 100) * 32768);
-	emit frameReady(CanBusDevice::makeFrame<CobTpdo2>(cobId(CobType::TPDO2, nodeId_), msg));
+	emit frameReady(CanBusDevice::makeFrame<CobTpdo2>(cobId(CobType::TPDO2, m_nodeId), message));
 }
 
-/**
- * @brief 
- * 
- */
-void TpdoService::sendTpdo3()
+///
+///
+///
+void TpdoService::sendMessageTpdo3(CobTpdo3 message)
 {
-	
+	emit frameReady(CanBusDevice::makeFrame<CobTpdo3>(cobId(CobType::TPDO3, m_nodeId), message));
 }
 
-/**
- * @brief 
- * 
- */
-void TpdoService::sendTpdo4()
+///
+///
+///
+void TpdoService::sendMessageTpdo4(CobTpdo4 message)
 {
-	
+	emit frameReady(CanBusDevice::makeFrame<CobTpdo4>(cobId(CobType::TPDO4, m_nodeId), message));
 }
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART END   ====================== */
-/* ========================================================================== */
-
-
 
 
 

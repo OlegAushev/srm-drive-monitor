@@ -9,7 +9,7 @@ C2.ApplicationWindow {
 	minimumWidth: 1000
 	minimumHeight: 550
 	title: qsTr("SRM Drive Monitor")
-
+	
 	menuBar: AppMenuBar {
 		id: menuBar
 	}

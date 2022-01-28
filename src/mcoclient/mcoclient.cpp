@@ -39,6 +39,22 @@ void McoClient::disconnectCanDevice()
 ///
 ///
 ///
+void McoClient::startTpdoService()
+{
+	tpdoService.start();
+}
+
+///
+///
+///
+void McoClient::stopTpdoService()
+{
+	tpdoService.stop();
+}
+
+///
+///
+///
 void McoClient::onFrameReceived(QCanBusFrame frame)
 {
 	if ((frame.frameId() == cobId(CobType::TPDO1, m_serverNodeId))

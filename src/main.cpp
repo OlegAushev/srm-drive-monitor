@@ -4,6 +4,7 @@
 #include <QtQml/QQmlContext>
 
 #include "mcoclient/mcoclient.h"
+#include "drive/drivecontroller/drivecontroller.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
 
@@ -17,8 +18,19 @@ int main(int argc, char *argv[])
 	qmlRegisterUncreatableType<BasicDataTable>("BasicDataTable", 1, 0, "BasicDataTable", QStringLiteral("BasicDataTable"));
 	
 	BasicDataTable table1({{"A","B"},{"C","D"},{"E","F"},{"G","H"}});
-	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
 
+
+	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
+	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM1, 250);
+	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM2, 100);
+	
+	drive::DriveController driveController(&mcoClient);
+
+
+
+
+
+	/* START QML ENGINE */
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("table1", &table1);

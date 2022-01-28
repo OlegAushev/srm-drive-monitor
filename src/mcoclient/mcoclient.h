@@ -28,16 +28,17 @@ private:
 	const unsigned int m_serverNodeId = 0;
 	std::array<QTimer, 4> m_tpdoTimers;
 
-public slots:
-	void connectCanDevice(QString plugin, QString interface);
-	void disconnectCanDevice();
-
-private slots:
-	void onFrameReceived(QCanBusFrame frame);
-
 signals:
 	void deviceStatusMessageAvailable(QString message);
 
+public slots:
+	void connectCanDevice(QString plugin, QString interface);
+	void disconnectCanDevice();
+	void startTpdoService();
+	void stopTpdoService();
+
+private slots:
+	void onFrameReceived(QCanBusFrame frame);
 };
 
 

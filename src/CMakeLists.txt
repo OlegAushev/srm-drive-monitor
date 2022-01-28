@@ -1,5 +1,6 @@
 add_subdirectory(models)
 add_subdirectory(mcoclient)
+add_subdirectory(drive)
 
 qtquick_compiler_add_resources(RESOURCES ./../resources.qrc)
 

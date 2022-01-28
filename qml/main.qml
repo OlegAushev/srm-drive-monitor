@@ -55,7 +55,7 @@ C2.ApplicationWindow {
 
 	Q2.Connections {
 		target: mcoClient
-		onDeviceStatusMessageAvailable: {
+		onInfoMessageAvailable: {
 			statusBar.print(message);
 		}
 	}

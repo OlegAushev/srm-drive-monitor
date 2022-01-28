@@ -29,6 +29,14 @@ public slots:
 	void setEmergencyOn() { m_emergencyFlag = true; }
 	void setEmergencyOff() { m_emergencyFlag = false; }
 
+	void resetFaults() { m_mcoClient->sdoService.sendWriteRequest("RESET FAULTS"); }
+	void calibratePositionSensor() { m_mcoClient->sdoService.sendWriteRequest("BEGIN POSITION SENSOR CALIBRATION"); }
+	void invertRotationDirection() { m_mcoClient->sdoService.sendWriteRequest("INVERT ROTATION"); }
+
+	void getDeviceName() { m_mcoClient->sdoService.sendReadRequest("DEVICE NAME"); }
+	void getSoftwareVersion() { m_mcoClient->sdoService.sendReadRequest("SOFTWARE VERSION"); }
+	void getBuildConfiguration() { m_mcoClient->sdoService.sendReadRequest("BUILD CONFIGURATION"); }
+
 private slots:
 	void onMessageTpdo1Request();
 	void onMessageTpdo2Request();

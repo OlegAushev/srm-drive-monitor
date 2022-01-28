@@ -26,6 +26,7 @@ void SdoService::sendReadRequest(const QString& odEntryName)
 	ODEntryKey key = findODEntry(odEntryName);
 	if (OBJECT_DICTIONARY.at(key).readAccess == false)
 	{
+		emit infoMessageAvailable(QString("Object dictioanry bad read request: ") + odEntryName);
 		return;
 	}
 
@@ -46,6 +47,7 @@ void SdoService::sendWriteRequest(const QString& odEntryName, CobSdoData data)
 	ODEntryKey key = findODEntry(odEntryName);
 	if (OBJECT_DICTIONARY.at(key).writeAccess == false)
 	{
+		emit infoMessageAvailable(QString("Object dictioanry bad write request: ") + odEntryName);
 		return;
 	}
 

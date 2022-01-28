@@ -25,6 +25,7 @@ private:
 	const unsigned int serverNodeId_;
 signals:
 	void frameReady(QCanBusFrame frame);
+	void infoMessageAvailable(QString message);
 
 /* ========================================================================== */
 /* =================== APPLICATION-SPECIFIC PART BEGIN ====================== */

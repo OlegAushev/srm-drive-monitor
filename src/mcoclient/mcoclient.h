@@ -29,7 +29,7 @@ private:
 	std::array<QTimer, 4> m_tpdoTimers;
 
 signals:
-	void deviceStatusMessageAvailable(QString message);
+	void infoMessageAvailable(QString message);
 
 public slots:
 	void connectCanDevice(QString plugin, QString interface);

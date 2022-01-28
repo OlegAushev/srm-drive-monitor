@@ -5,11 +5,20 @@ C2.MenuBar {
 	C2.Menu {
 		title: qsTr("App")
 
-		C2.Action { text: qsTr("Device Name") }
+		C2.Action { 
+			text: qsTr("Device Name")
+			onTriggered: driveController.getDeviceName() 
+		}
 
-		C2.Action { text: qsTr("Software Version") }
+		C2.Action { 
+			text: qsTr("Software Version")
+			onTriggered: driveController.getSoftwareVersion() 
+		}
 
-		C2.Action { text: qsTr("Software Build Configuration") }
+		C2.Action { 
+			text: qsTr("Software Build Configuration")
+			onTriggered: driveController.getBuildConfiguration() 
+		}
 
 		C2.MenuSeparator { }
 
@@ -43,10 +52,19 @@ C2.MenuBar {
 	C2.Menu {
 		title: qsTr("Drive Control")
 
-		C2.Action { text: qsTr("Reset Faults") }
+		C2.Action {
+			text: qsTr("Reset Faults")
+			onTriggered: driveController.resetFaults() 
+		}
 
-		C2.Action { text: qsTr("Calibrate Position Sensor") }
+		C2.Action {
+			text: qsTr("Calibrate Position Sensor")
+			onTriggered: driveController.calibratePositionSensor() 
+		}
 		
-		C2.Action { text: qsTr("Invert Rotation Direction") }
+		C2.Action {
+			text: qsTr("Invert Rotation Direction")
+			onTriggered: driveController.invertRotationDirection() 
+		}
 	}
 }

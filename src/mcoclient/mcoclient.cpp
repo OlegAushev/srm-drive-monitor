@@ -17,7 +17,9 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 	connect(&tpdoService, &TpdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
 	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
 	connect(&sdoService, &SdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
-	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::deviceStatusMessageAvailable);
+
+	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::infoMessageAvailable);
+	connect(&sdoService, &SdoService::infoMessageAvailable, this, &McoClient::infoMessageAvailable);
 }
 
 ///

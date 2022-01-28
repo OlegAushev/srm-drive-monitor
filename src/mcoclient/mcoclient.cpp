@@ -13,6 +13,7 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 	, tpdoService(clientNodeId)
 	, rpdoService(serverNodeId)
 	, sdoService(serverNodeId)
+	, m_statusTimer(new QTimer(this))
 {
 	connect(&tpdoService, &TpdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
 	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
@@ -20,6 +21,10 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 
 	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::infoMessageAvailable);
 	connect(&sdoService, &SdoService::infoMessageAvailable, this, &McoClient::infoMessageAvailable);
+
+	connect(m_statusTimer, &QTimer::timeout, [this](){ emit infoMessageAvailable(this->m_canDevice.busStatus()); });
+	m_statusTimer->setInterval(2000);
+	m_statusTimer->start();
 }
 
 ///

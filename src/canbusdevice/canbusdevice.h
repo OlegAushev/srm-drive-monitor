@@ -27,6 +27,7 @@ public:
 
 	CanBusDevice();
 	~CanBusDevice();
+	QString busStatus() const;
 
 private:
 	QString m_plugin;

@@ -56,7 +56,7 @@ C2.ApplicationWindow {
 	Q2.Connections {
 		target: mcoClient
 		onInfoMessageAvailable: {
-			statusBar.print(message);
+			statusBar.printMessage(message);
 		}
 	}
 

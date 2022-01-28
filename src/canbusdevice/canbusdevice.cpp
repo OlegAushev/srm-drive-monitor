@@ -86,16 +86,44 @@ void CanBusDevice::connectDevice(QString plugin, QString interface)
 ///
 void CanBusDevice::disconnectDevice()
 {
-	if (m_device)
-	{
-		m_device->disconnectDevice();
-		emit statusMessageAvailable("CAN device disconnected");
-	}
-	else
+	if (!m_device)
 	{
 		emit statusMessageAvailable("No CAN device");
+		return;
 	}
+
+	m_device->disconnectDevice();
+	emit statusMessageAvailable("CAN device disconnected");
 	m_device.get()->disconnect();
+}
+
+///
+///
+///
+QString CanBusDevice::busStatus() const
+{
+	if (!m_device || !m_device->hasBusStatus())
+	{
+		return QString("No CAN bus status available");
+	}
+
+	switch (m_device->busStatus()) {
+	case QCanBusDevice::CanBusStatus::Good:
+		return QString("CAN bus status: good");
+		break;
+	case QCanBusDevice::CanBusStatus::Warning:
+		return QString("CAN bus status: warning");
+		break;
+	case QCanBusDevice::CanBusStatus::Error:
+		return QString("CAN bus status: error");
+		break;
+	case QCanBusDevice::CanBusStatus::BusOff:
+		return QString("CAN bus status: bus off");
+		break;
+	default:
+		return QString("CAN bus status: unknown");
+		break;
+	}
 }
 
 ///

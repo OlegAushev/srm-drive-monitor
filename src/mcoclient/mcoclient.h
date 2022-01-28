@@ -26,7 +26,7 @@ private:
 	CanBusDevice m_canDevice;
 	const unsigned int m_clientNodeId = 0;
 	const unsigned int m_serverNodeId = 0;
-	std::array<QTimer, 4> m_tpdoTimers;
+	QTimer* m_statusTimer;
 
 signals:
 	void infoMessageAvailable(QString message);

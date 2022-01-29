@@ -1,9 +1,7 @@
 #pragma once
 
 
-#include "../mcodef.h"
-#include "canbusdevice/canbusdevice.h"
-#include <QTableWidget>
+#include "mcodef.h"
 
 
 namespace microcanopen {
@@ -121,46 +119,6 @@ struct CobRpdo4
 /* ========================================================================== */
 /* =================== APPLICATION-SPECIFIC PART END ======================== */
 /* ========================================================================== */
-
-
-class RpdoService : public QObject
-{
-	Q_OBJECT
-public:
-	RpdoService(NodeId serverNodeId);
-	void processFrame(const QCanBusFrame& frame);
-private:
-	const unsigned int serverNodeId_;
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART BEGIN ====================== */
-/* ========================================================================== */
-public:
-	void assignRpdoDestWidgets(QTableWidget* tableRpdo1, QTableWidget* tableRpdo2, 
-			QTableWidget* tableRpdo3,QTableWidget* tableRpdo4)
-	{
-		tableRpdo1_ = tableRpdo1;
-		tableRpdo2_ = tableRpdo2;
-		tableRpdo3_ = tableRpdo3;
-		tableRpdo4_ = tableRpdo4;
-	}
-
-signals:
-	void syslogMsgReceived(uint32_t data);
-
-private:
-	QTableWidget* tableRpdo1_ = nullptr; 
-	QTableWidget* tableRpdo2_ = nullptr;
-	QTableWidget* tableRpdo3_ = nullptr;
-	QTableWidget* tableRpdo4_ = nullptr;
-/* ========================================================================== */
-/* =================== APPLICATION-SPECIFIC PART END   ====================== */
-/* ========================================================================== */
-};
-
-
-
-
-
 
 } // namespace microcanopen
 

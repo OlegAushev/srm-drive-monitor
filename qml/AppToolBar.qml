@@ -11,7 +11,7 @@ ToolBar {
 			icon.name: "qrc:/images/desktop-classic.png"
 			ToolTip.visible: hovered
 			ToolTip.text: qsTr("TLC Emulation On/Off")
-			onClicked: checked ? mcoClient.startTpdoService() : mcoClient.stopTpdoService()
+			onClicked: checked ? mcoClient.startTpdoSending() : mcoClient.stopTpdoSending()
 		}
 
 		ToolButton {

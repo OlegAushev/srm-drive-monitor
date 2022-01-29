@@ -27,20 +27,20 @@ signals:
 	void messageTpdo2Ready(microcanopen::CobTpdo2 message);
 
 public slots:
-	void powerUpDrive() { m_mcoClient->sdoService.sendWriteRequest("POWER UP DRIVE"); }
-	void powerDownDrive() { m_mcoClient->sdoService.sendWriteRequest("POWER DOWN DRIVE"); }
+	void powerUpDrive() { m_mcoClient->sendOdWriteRequest("POWER UP DRIVE"); }
+	void powerDownDrive() { m_mcoClient->sendOdWriteRequest("POWER DOWN DRIVE"); }
 	void startMotor() { m_runFlag = true; }
 	void stopMotor() { m_runFlag = false; }
 	void setEmergencyOn() { m_emergencyFlag = true; }
 	void setEmergencyOff() { m_emergencyFlag = false; }
 
-	void resetFaults() { m_mcoClient->sdoService.sendWriteRequest("RESET FAULTS"); }
-	void calibratePositionSensor() { m_mcoClient->sdoService.sendWriteRequest("BEGIN POSITION SENSOR CALIBRATION"); }
-	void invertRotationDirection() { m_mcoClient->sdoService.sendWriteRequest("INVERT ROTATION"); }
+	void resetFaults() { m_mcoClient->sendOdWriteRequest("RESET FAULTS"); }
+	void calibratePositionSensor() { m_mcoClient->sendOdWriteRequest("BEGIN POSITION SENSOR CALIBRATION"); }
+	void invertRotationDirection() { m_mcoClient->sendOdWriteRequest("INVERT ROTATION"); }
 
-	void getDeviceName() { m_mcoClient->sdoService.sendReadRequest("DEVICE NAME"); }
-	void getSoftwareVersion() { m_mcoClient->sdoService.sendReadRequest("SOFTWARE VERSION"); }
-	void getBuildConfiguration() { m_mcoClient->sdoService.sendReadRequest("BUILD CONFIGURATION"); }
+	void getDeviceName() { m_mcoClient->sendOdReadRequest("DEVICE NAME"); }
+	void getSoftwareVersion() { m_mcoClient->sendOdReadRequest("SOFTWARE VERSION"); }
+	void getBuildConfiguration() { m_mcoClient->sendOdReadRequest("BUILD CONFIGURATION"); }
 
 	void setTorque(double valPercentages)
 	{
@@ -49,17 +49,17 @@ public slots:
 	void setSpeed(double val)
 	{
 		m_speedRef = val;
-		m_mcoClient->sdoService.sendWriteRequest("SPEED_RPM", m_speedRef);	
+		m_mcoClient->sendOdWriteRequest("SPEED_RPM", m_speedRef);	
 	}
 	void setFieldCurrent(double val)
 	{
 		m_fieldCurrentRef = val;
-		m_mcoClient->sdoService.sendWriteRequest("FIELD_CURRENT", m_fieldCurrentRef);		
+		m_mcoClient->sendOdWriteRequest("FIELD_CURRENT", m_fieldCurrentRef);		
 	}
 	void setGammaCorrection(double val)
 	{
 		m_gammaCorrectionRef = val;
-		m_mcoClient->sdoService.sendWriteRequest("GAMMA_ANGLE_DEG", m_gammaCorrectionRef);		
+		m_mcoClient->sendOdWriteRequest("GAMMA_ANGLE_DEG", m_gammaCorrectionRef);		
 	}
 
 private slots:

@@ -1,14 +1,7 @@
 #pragma once
 
 
-#include "../mcodef.h"
-#include "canbusdevice/canbusdevice.h"
-#include <array>
-#include <QCanBusDevice>
-#include <QTimer>
-
-#include <QAction>
-#include <QDoubleSpinBox>
+#include "mcodef.h"
 
 
 namespace microcanopen {
@@ -71,49 +64,5 @@ struct CobTpdo4
 /* ========================================================================== */
 /* =================== APPLICATION-SPECIFIC PART END ======================== */
 /* ========================================================================== */
-
-class TpdoService : public QObject
-{
-	Q_OBJECT
-public:
-	TpdoService(NodeId nodeId);
-	void setPeriod(TpdoNum tpdoNum, int msec) { m_timers[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
-	void start()
-	{
-		for (auto& timer : m_timers)
-		{
-			if (timer->interval() != 0)
-			{
-				timer->start();
-			}
-		}
-	}
-	void stop()
-	{
-		for (auto& timer : m_timers)
-		{
-			timer->stop();
-		}
-	}
-private:
-	const unsigned int m_nodeId;
-	std::array<QTimer*, 4> m_timers;
-
-signals:
-	void messageTpdo1Required();
-	void messageTpdo2Required();
-	void messageTpdo3Required();
-	void messageTpdo4Required();
-	void frameReady(const QCanBusFrame& frame);
-
-public slots:
-	void sendMessageTpdo1(CobTpdo1 message);
-	void sendMessageTpdo2(CobTpdo2 message);
-	void sendMessageTpdo3(CobTpdo3 message);
-	void sendMessageTpdo4(CobTpdo4 message);
-};
-
-
-
 
 }

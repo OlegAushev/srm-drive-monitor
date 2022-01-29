@@ -10,19 +10,22 @@ namespace microcanopen {
 McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 	: m_clientNodeId(clientNodeId.value)
 	, m_serverNodeId(serverNodeId.value)
-	, tpdoService(clientNodeId)
-	, rpdoService(serverNodeId)
-	, sdoService(serverNodeId)
 	, m_statusTimer(new QTimer(this))
 {
-	connect(&tpdoService, &TpdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
+	for (auto& timer : m_tpdoTimers)
+	{
+		timer = new QTimer(this);
+	}
+	
 	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
-	connect(&sdoService, &SdoService::frameReady, &m_canDevice, &CanBusDevice::sendFrame);
+	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::onInfoMessageMustBeSent);
+	
+	connect(m_tpdoTimers[0], &QTimer::timeout, this, &McoClient::messageTpdo1Required);
+	connect(m_tpdoTimers[1], &QTimer::timeout, this, &McoClient::messageTpdo2Required);
+	connect(m_tpdoTimers[2], &QTimer::timeout, this, &McoClient::messageTpdo3Required);
+	connect(m_tpdoTimers[3], &QTimer::timeout, this, &McoClient::messageTpdo4Required);
 
-	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::onInfoMessageReady);
-	connect(&sdoService, &SdoService::infoMessageAvailable, this, &McoClient::onInfoMessageReady);
-
-	connect(m_statusTimer, &QTimer::timeout, [this](){ onInfoMessageReady(this->m_canDevice.busStatus()); });
+	connect(m_statusTimer, &QTimer::timeout, [this]() { emit infoMessageAvailable(m_canDevice.busStatus()); });
 	m_statusTimer->setInterval(2000);
 	m_statusTimer->start();
 }
@@ -46,34 +49,43 @@ void McoClient::disconnectCanDevice()
 ///
 ///
 ///
-void McoClient::startTpdoService()
+void McoClient::startTpdoSending()
 {
-	tpdoService.start();
+	for (auto& timer : m_tpdoTimers)
+	{
+		if (timer->interval() != 0)
+		{
+			timer->start();
+		}
+	}
+}
+	
+///
+///
+///
+void McoClient::stopTpdoSending()
+{
+	for (auto& timer : m_tpdoTimers)
+	{
+		timer->stop();
+	}
 }
 
 ///
 ///
 ///
-void McoClient::stopTpdoService()
-{
-	tpdoService.stop();
-}
-
-///
-///
-///
-void McoClient::onFrameReceived(QCanBusFrame frame)
+void McoClient::onFrameReceived(const QCanBusFrame& frame)
 {
 	if ((frame.frameId() == cobId(CobType::TPDO1, m_serverNodeId))
 			|| (frame.frameId() == cobId(CobType::TPDO2, 1))
 			|| (frame.frameId() == cobId(CobType::TPDO3, 1))
 			|| (frame.frameId() == cobId(CobType::TPDO4, 1)))
 	{
-		rpdoService.processFrame(frame);
+		emit messageRpdoReceived(frame);
 	}
 	else if (frame.frameId() == cobId(CobType::TSDO, m_serverNodeId))
 	{
-		sdoService.processResponse(frame);
+		emit messageSdoReceived(frame);
 	}
 
 
@@ -82,11 +94,96 @@ void McoClient::onFrameReceived(QCanBusFrame frame)
 ///
 ///
 ///
-void McoClient::onInfoMessageReady(QString message)
+void McoClient::onInfoMessageMustBeSent(const QString& message)
 {
 	emit infoMessageAvailable(message);
 	m_statusTimer->start();
 }
+
+///
+///
+///
+void McoClient::sendMessageTpdo1(CobTpdo1 message)
+{
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobTpdo1>(cobId(CobType::TPDO1, m_clientNodeId), message));
+}
+
+///
+///
+///
+void McoClient::sendMessageTpdo2(CobTpdo2 message)
+{
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobTpdo2>(cobId(CobType::TPDO2, m_clientNodeId), message));
+}
+
+///
+///
+///
+void McoClient::sendMessageTpdo3(CobTpdo3 message)
+{
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobTpdo3>(cobId(CobType::TPDO3, m_clientNodeId), message));
+}
+
+///
+///
+///
+void McoClient::sendMessageTpdo4(CobTpdo4 message)
+{
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobTpdo4>(cobId(CobType::TPDO4, m_clientNodeId), message));
+}
+
+///
+///
+///
+void McoClient::sendOdReadRequest(const QString& odEntryName)
+{
+	ODEntryKey key = findODEntry(odEntryName);
+	if (OBJECT_DICTIONARY.at(key).readAccess == false)
+	{
+		emit onInfoMessageMustBeSent(QString("Object dictionary bad read request: ") + odEntryName);
+		m_statusTimer->start();
+		return;
+	}
+
+	CobSdo message;
+	message.index = key.index;
+	message.subindex = key.subindex;
+	message.cs = SDO_CCS_READ;
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
+}
+
+///
+///
+///
+void McoClient::sendOdWriteRequest(const QString& odEntryName, CobSdoData data)
+{
+	ODEntryKey key = findODEntry(odEntryName);
+	if (OBJECT_DICTIONARY.at(key).writeAccess == false)
+	{
+		emit onInfoMessageMustBeSent(QString("Object dictionary bad write request: ") + odEntryName);
+		m_statusTimer->start();
+		return;
+	}
+
+	CobSdo message;
+	message.index = key.index;
+	message.subindex = key.subindex;
+	message.cs = SDO_CCS_WRITE;
+	message.data = data;
+	m_canDevice.sendFrame(CanBusDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

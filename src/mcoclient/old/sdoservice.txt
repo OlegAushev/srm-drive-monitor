@@ -16,48 +16,7 @@ SdoService::SdoService(NodeId serverNodeId)
 	//periodicSdoRequestTimer_->start();
 }
 
-/**
- * @brief 
- * 
- * @param odEntryName 
- */
-void SdoService::sendReadRequest(const QString& odEntryName)
-{
-	ODEntryKey key = findODEntry(odEntryName);
-	if (OBJECT_DICTIONARY.at(key).readAccess == false)
-	{
-		emit infoMessageAvailable(QString("Object dictioanry bad read request: ") + odEntryName);
-		return;
-	}
 
-	CobSdo msg;
-	msg.index = key.index;
-	msg.subindex = key.subindex;
-	msg.cs = SDO_CCS_READ;
-	emit frameReady(CanBusDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, serverNodeId_), msg));
-}
-
-/**
- * @brief 
- * 
- * @param odEntryName 
- */
-void SdoService::sendWriteRequest(const QString& odEntryName, CobSdoData data)
-{
-	ODEntryKey key = findODEntry(odEntryName);
-	if (OBJECT_DICTIONARY.at(key).writeAccess == false)
-	{
-		emit infoMessageAvailable(QString("Object dictioanry bad write request: ") + odEntryName);
-		return;
-	}
-
-	CobSdo msg;
-	msg.index = key.index;
-	msg.subindex = key.subindex;
-	msg.cs = SDO_CCS_WRITE;
-	msg.data = data;
-	emit frameReady(CanBusDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, serverNodeId_), msg));
-}
 
 /**
  * @brief 
@@ -168,7 +127,20 @@ void SdoService::makePeriodicRequest()
 	emit frameReady(CanBusDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, serverNodeId_), msg));
 }
 
-
+const std::vector<QString> DriveStates = {
+		"STANDBY",
+		"IDLE",
+		"POWERUP",
+		"READY",
+		"PREPARING",
+		"STARTING",
+		"IN_OPERATION",
+		"STOPPING",
+		"POWERDOWN",
+		"CALIBRATING_POS_SENSOR_POWERUP",
+		"CALIBRATING_POS_SENSOR",
+		"EVALUATING_MOTOR"
+	};
 
 
 

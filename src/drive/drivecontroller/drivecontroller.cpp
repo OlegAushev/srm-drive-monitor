@@ -10,10 +10,10 @@ namespace drive {
 DriveController::DriveController(microcanopen::McoClient* mcoClient)
 	: m_mcoClient(mcoClient)
 {
-	QObject::connect(&m_mcoClient->tpdoService, &microcanopen::TpdoService::messageTpdo1Required, this, &DriveController::onMessageTpdo1Request);
-	QObject::connect(&m_mcoClient->tpdoService, &microcanopen::TpdoService::messageTpdo2Required, this, &DriveController::onMessageTpdo2Request);
-	QObject::connect(this, &DriveController::messageTpdo1Ready, &m_mcoClient->tpdoService, &microcanopen::TpdoService::sendMessageTpdo1);
-	QObject::connect(this, &DriveController::messageTpdo2Ready, &m_mcoClient->tpdoService, &microcanopen::TpdoService::sendMessageTpdo2);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageTpdo1Required, this, &DriveController::onMessageTpdo1Request);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageTpdo2Required, this, &DriveController::onMessageTpdo2Request);
+	QObject::connect(this, &DriveController::messageTpdo1Ready, m_mcoClient, &microcanopen::McoClient::sendMessageTpdo1);
+	QObject::connect(this, &DriveController::messageTpdo2Ready, m_mcoClient, &microcanopen::McoClient::sendMessageTpdo2);
 }
 
 ///

@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 
 
 	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
-	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM1, 250);
-	mcoClient.tpdoService.setPeriod(microcanopen::TpdoNum::NUM2, 100);
+	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM1, 250);
+	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM2, 100);
 
 	drive::DriveController driveController(&mcoClient);
 

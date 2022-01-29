@@ -76,19 +76,31 @@ void McoClient::stopTpdoSending()
 ///
 void McoClient::onFrameReceived(const QCanBusFrame& frame)
 {
-	if ((frame.frameId() == cobId(CobType::TPDO1, m_serverNodeId))
-			|| (frame.frameId() == cobId(CobType::TPDO2, 1))
-			|| (frame.frameId() == cobId(CobType::TPDO3, 1))
-			|| (frame.frameId() == cobId(CobType::TPDO4, 1)))
+	if (frame.frameId() == cobId(CobType::TPDO1, m_serverNodeId))
 	{
-		emit messageRpdoReceived(frame);
+		CobRpdo1 message = CanBusDevice::mergeBytes<CobRpdo1>(frame.payload());
+		emit messageRpdo1Received(message);
+	}
+	else if (frame.frameId() == cobId(CobType::TPDO2, m_serverNodeId))
+	{
+		CobRpdo2 message = CanBusDevice::mergeBytes<CobRpdo2>(frame.payload());
+		emit messageRpdo2Received(message);
+	}
+	else if (frame.frameId() == cobId(CobType::TPDO3, m_serverNodeId))
+	{
+		CobRpdo3 message = CanBusDevice::mergeBytes<CobRpdo3>(frame.payload());
+		emit messageRpdo3Received(message);
+	}
+	else if (frame.frameId() == cobId(CobType::TPDO4, m_serverNodeId))
+	{
+		CobRpdo4 message = CanBusDevice::mergeBytes<CobRpdo4>(frame.payload());
+		emit messageRpdo4Received(message);
 	}
 	else if (frame.frameId() == cobId(CobType::TSDO, m_serverNodeId))
 	{
-		emit messageSdoReceived(frame);
+		CobSdo message = CanBusDevice::mergeBytes<CobSdo>(frame.payload());
+		emit messageSdoReceived(message);
 	}
-
-
 }
 
 ///

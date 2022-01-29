@@ -38,8 +38,11 @@ signals:
 	void messageTpdo3Required();
 	void messageTpdo4Required();
 
-	void messageRpdoReceived(const QCanBusFrame& frame);
-	void messageSdoReceived(const QCanBusFrame& frame);
+	void messageRpdo1Received(CobRpdo1 message);
+	void messageRpdo2Received(CobRpdo2 message);
+	void messageRpdo3Received(CobRpdo3 message);
+	void messageRpdo4Received(CobRpdo4 message);
+	void messageSdoReceived(CobSdo message);
 
 public slots:
 	void connectCanDevice(const QString& plugin, const QString& interface);

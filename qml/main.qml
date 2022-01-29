@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.15// as Layouts
 C2.ApplicationWindow {
 	id: appWindow
 	visible: true
-	minimumWidth: 1000
+	minimumWidth: 1200
 	minimumHeight: 550
 	title: qsTr("SRM Drive Monitor")
 	
@@ -46,7 +46,7 @@ C2.ApplicationWindow {
 		ControlTabView {
 			id: controlTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
-			Layout.preferredWidth: 350
+			Layout.preferredWidth: 332
 			Layout.preferredHeight: 400
 			Layout.fillWidth: false
 			Layout.fillHeight: true

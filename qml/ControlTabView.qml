@@ -17,6 +17,7 @@ C1.TabView {
 				valueTo: 8000
 				sliderStep: 1000
 				spinboxStep: 100
+				onValueChanged: driveController.setSpeed(value)
 			}
 
 			SpinboxAndSliderControl {
@@ -27,6 +28,7 @@ C1.TabView {
 				sliderStep: 20
 				spinboxStep: 1
 				spinboxDecimals: 2
+				onValueChanged: driveController.setTorque(value)
 			}
 
 			SpinboxAndSliderControl {
@@ -37,6 +39,7 @@ C1.TabView {
 				sliderStep: 5
 				spinboxStep: 1
 				spinboxDecimals: 1
+				onValueChanged: driveController.setFieldCurrent(value)
 			}
 
 			SpinboxAndSliderControl {
@@ -46,6 +49,7 @@ C1.TabView {
 				valueTo: 180
 				sliderStep: 30
 				spinboxStep: 1
+				onValueChanged: driveController.setGammaCorrection(value)
 			}
 		}
 		

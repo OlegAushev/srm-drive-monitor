@@ -33,7 +33,7 @@ void DriveController::onMessageTpdo1Request()
 void DriveController::onMessageTpdo2Request()
 {
 	microcanopen::CobTpdo2 message;
-
+	message.torque = ((m_torquePuRef > 0) ? m_torquePuRef * 32767 : m_torquePuRef * 32768);
 	emit messageTpdo2Ready(message);
 }
 

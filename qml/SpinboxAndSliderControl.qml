@@ -4,6 +4,8 @@ import QtQuick.Controls 1.4 as C1
 
 
 Rectangle {
+	id: root
+
 	property string name
 	property string unit
 	property real valueFrom
@@ -12,6 +14,7 @@ Rectangle {
 	property real spinboxStep
 	property int spinboxDecimals
 
+	signal valueChanged(real value)
 
 	width: 320
 	height: 80
@@ -37,7 +40,9 @@ Rectangle {
 		from: valueFrom
 		to: valueTo
 		stepSize: sliderStep
-		snapMode: Slider.NoSnap		
+		snapMode: Slider.NoSnap
+
+		onMoved: { root.valueChanged(value) }		
 	}
 
 	C1.SpinBox {
@@ -54,6 +59,6 @@ Rectangle {
 		suffix: unit
 
 		value: slider.value
-		onEditingFinished: slider.value = value
+		onEditingFinished: { slider.value = value; root.valueChanged(value) }
 	}
 }

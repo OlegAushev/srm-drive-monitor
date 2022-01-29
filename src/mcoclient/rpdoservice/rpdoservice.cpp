@@ -18,7 +18,7 @@ RpdoService::RpdoService(NodeId serverNodeId)
  * 
  * @param frame 
  */
-void RpdoService::processFrame(QCanBusFrame frame)
+void RpdoService::processFrame(const QCanBusFrame& frame)
 {
 	uint32_t frameId = frame.frameId();
 

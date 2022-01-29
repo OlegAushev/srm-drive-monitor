@@ -128,7 +128,7 @@ class RpdoService : public QObject
 	Q_OBJECT
 public:
 	RpdoService(NodeId serverNodeId);
-	void processFrame(QCanBusFrame frame);
+	void processFrame(const QCanBusFrame& frame);
 private:
 	const unsigned int serverNodeId_;
 /* ========================================================================== */

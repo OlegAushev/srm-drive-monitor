@@ -58,5 +58,11 @@ C1.TabView {
 	C1.Tab {
 		id: tabConfiguration
 		title: "Configuration"
+		Q2.Column {
+			padding : 4
+			DriveConfigControl {
+				
+			}
+		}
 	}
 }

@@ -8,6 +8,9 @@
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
 
+#include <QStringList>
+#include <QStringListModel>
+
 
 int main(int argc, char *argv[])
 {
@@ -29,12 +32,25 @@ int main(int argc, char *argv[])
 
 
 
+	QStringList list = { "q", "w", "e" };
+	list << "b" << "a" << "c";
+
+
+
+
+
 
 	/* START QML ENGINE */
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("table1", &table1);
+
+	engine.rootContext()->setContextProperty("listlist", list);
+
+
+
+
 	engine.load(QStringLiteral("qrc:/qml/main.qml"));
 
 	QObject::connect(&engine, &QQmlEngine::quit, &app, &QApplication::quit);

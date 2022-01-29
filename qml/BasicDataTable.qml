@@ -9,7 +9,7 @@ Rectangle {
 	property QtObject sourceTable
 
 	width: 308
-	height: 500
+	height: 200
 	border.color: "black"
 
 	Rectangle {

@@ -24,7 +24,7 @@ C2.ApplicationWindow {
 		id: statusBar
 	}
 
-	/*GridLayout {
+	GridLayout {
 		anchors.fill: parent
 		anchors.leftMargin: 2
 		anchors.topMargin: 2
@@ -32,10 +32,11 @@ C2.ApplicationWindow {
 		anchors.bottomMargin: 2
 		rows: 1
 		columns: 2
-		columnSpacing: 2*/
+		columnSpacing: 2
 
 		MainTabView {
 			id: mainTabView
+			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.minimumWidth: 850
 			Layout.minimumHeight: 550
 			Layout.fillWidth: true
@@ -44,14 +45,13 @@ C2.ApplicationWindow {
 		
 		ControlTabView {
 			id: controlTabView
-			anchors.right: parent.right
-			anchors.top: parent.top
+			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.preferredWidth: 350
 			Layout.preferredHeight: 400
 			Layout.fillWidth: false
 			Layout.fillHeight: true
 		}
-	//}
+	}
 
 	Q2.Connections {
 		target: mcoClient

@@ -18,7 +18,6 @@ Rectangle {
 			id: parameterCategory
 			anchors.horizontalCenter: parent.horizontalCenter
 			model: driveConfigEditor.parameterCategories()
-			//onActivated: parameterName.model = driveConfigEditor.parameterNames(currentText)
 		}
 
 		ComboBox {

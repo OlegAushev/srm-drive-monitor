@@ -1,7 +1,7 @@
 #include "configeditor.h"
 
 
-namespace drive {
+//namespace drive {
 
 ///
 ///
@@ -24,7 +24,7 @@ void ConfigEditor::parseObjectDictionary()
 			m_driveParameters[entry.second.subcategory].push_back({entry.second.name, entry.second.unit});
 		}
 	}
-}
+//}
 
 
 

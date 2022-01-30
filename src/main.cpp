@@ -5,11 +5,9 @@
 
 #include "mcoclient/mcoclient.h"
 #include "drive/drivecontroller/drivecontroller.h"
+#include "drive/configeditor/configeditor.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
-
-#include <QStringList>
-#include <QStringListModel>
 
 
 int main(int argc, char *argv[])
@@ -28,13 +26,7 @@ int main(int argc, char *argv[])
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM2, 100);
 
 	drive::DriveController driveController(&mcoClient);
-
-
-
-
-	QStringList list = { "q", "w", "e" };
-	list << "b" << "a" << "c";
-
+	ConfigEditor driveConfigEditor(&mcoClient);
 
 
 
@@ -44,9 +36,11 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);
-	engine.rootContext()->setContextProperty("table1", &table1);
+	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);
 
-	engine.rootContext()->setContextProperty("listlist", list);
+
+
+	engine.rootContext()->setContextProperty("table1", &table1);
 
 
 

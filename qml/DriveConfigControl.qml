@@ -17,13 +17,14 @@ Rectangle {
 		ComboBox {
 			id: parameterCategory
 			anchors.horizontalCenter: parent.horizontalCenter
-			model: ["First", "Second", "Third"]
+			model: driveConfigEditor.parameterCategories()
+			//onActivated: parameterName.model = driveConfigEditor.parameterNames(currentText)
 		}
 
 		ComboBox {
 			id: parameterName
 			anchors.horizontalCenter: parent.horizontalCenter
-			model: listlist
+			model: driveConfigEditor.parameterNames(parameterCategory.currentText)
 		}
 
 		Row {

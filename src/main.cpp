@@ -6,6 +6,7 @@
 #include "mcoclient/mcoclient.h"
 #include "drive/drivecontroller/drivecontroller.h"
 #include "drive/configeditor/configeditor.h"
+#include "drive/candataprinter/candataprinter.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
 
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
 
 	drive::DriveController driveController(&mcoClient);
 	drive::ConfigEditor driveConfigEditor(&mcoClient);
-
+	drive::CanDataPrinter driveCanDataPrinter(&mcoClient);
 
 
 
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);
+	engine.rootContext()->setContextProperty("driveCanDataPrinter", &driveCanDataPrinter);
 
 
 

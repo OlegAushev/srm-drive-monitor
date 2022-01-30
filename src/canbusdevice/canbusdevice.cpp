@@ -74,7 +74,7 @@ void CanBusDevice::connectDevice(const QString& plugin, const QString& interface
 	else
 	{
 		statusString = QString("Plugin: %1, connected to %2").arg(plugin).arg(interface);
-		connect(m_device.get(), &QCanBusDevice::framesReceived, this, &CanBusDevice::onFrameReceived);
+		QObject::connect(m_device.get(), &QCanBusDevice::framesReceived, this, &CanBusDevice::onFrameReceived);
 		connectionStatus = Status::CONNECTED;
 	}
 

@@ -17,15 +17,15 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 		timer = new QTimer(this);
 	}
 	
-	connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
-	connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::onInfoMessageMustBeSent);
+	QObject::connect(&m_canDevice, &CanBusDevice::frameAvailable, this, &McoClient::onFrameReceived);
+	QObject::connect(&m_canDevice, &CanBusDevice::statusMessageAvailable, this, &McoClient::onInfoMessageMustBeSent);
 	
-	connect(m_tpdoTimers[0], &QTimer::timeout, this, &McoClient::messageTpdo1Required);
-	connect(m_tpdoTimers[1], &QTimer::timeout, this, &McoClient::messageTpdo2Required);
-	connect(m_tpdoTimers[2], &QTimer::timeout, this, &McoClient::messageTpdo3Required);
-	connect(m_tpdoTimers[3], &QTimer::timeout, this, &McoClient::messageTpdo4Required);
+	QObject::connect(m_tpdoTimers[0], &QTimer::timeout, this, &McoClient::messageTpdo1Required);
+	QObject::connect(m_tpdoTimers[1], &QTimer::timeout, this, &McoClient::messageTpdo2Required);
+	QObject::connect(m_tpdoTimers[2], &QTimer::timeout, this, &McoClient::messageTpdo3Required);
+	QObject::connect(m_tpdoTimers[3], &QTimer::timeout, this, &McoClient::messageTpdo4Required);
 
-	connect(m_statusTimer, &QTimer::timeout, [this]() { emit infoMessageAvailable(m_canDevice.busStatus()); });
+	QObject::connect(m_statusTimer, &QTimer::timeout, [this]() { emit infoMessageAvailable(m_canDevice.busStatus()); });
 	m_statusTimer->setInterval(2000);
 	m_statusTimer->start();
 }

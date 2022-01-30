@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM2, 100);
 
 	drive::DriveController driveController(&mcoClient);
-	ConfigEditor driveConfigEditor(&mcoClient);
+	drive::ConfigEditor driveConfigEditor(&mcoClient);
 
 
 

@@ -8,7 +8,7 @@
 #include <QStringList>
 
 
-//namespace drive {
+namespace drive {
 
 class ConfigEditor : public QObject
 {
@@ -29,28 +29,14 @@ private:
 public:
 	ConfigEditor(microcanopen::McoClient* mcoClient);
 
-	Q_INVOKABLE QStringList parameterCategories()
-	{
-		QStringList list;
-		for (const auto& category : m_driveParameters)
-		{
-			list.append(category.first);
-		}
-		return list;
-	}
+	Q_INVOKABLE QStringList parameterCategories();
+	Q_INVOKABLE QStringList parameterNames(QString category);
 
-	Q_INVOKABLE QStringList parameterNames(QString category)
-	{
-		QStringList list;
-		if (m_driveParameters.count(category))
-		{
-			for (const auto& parameter : m_driveParameters.at(category))
-			{
-				list.append(parameter.name);
-			}
-		}
-		return list;
-	}	
+	Q_INVOKABLE void readParameter(const QString& name);
+	Q_INVOKABLE void writeParameter(const QString& name, const QString& value);
+	Q_INVOKABLE void applyParameters();
+	Q_INVOKABLE void resetParameters();
+
 
 signals:
 	void parameterCategoriesChanged();
@@ -60,14 +46,6 @@ signals:
 
 
 
-//} // namespace drive
+} // namespace drive
 
 
-/*
-class TestTest : public QObject
-{
-	Q_OBJECT
-	Q_PROPERTY(QStringList list1 READ list1 NOTIFY list1Changed)
-public:
-
-};*/

@@ -39,7 +39,7 @@ int BasicDataTableModel::columnCount(const QModelIndex &parent) const
 ///
 QVariant BasicDataTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	if (role != Qt::DisplayRole)
+	if (!m_table || (role != Qt::DisplayRole))
 	{
 		return QVariant();
 	}

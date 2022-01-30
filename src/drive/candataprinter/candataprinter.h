@@ -7,6 +7,8 @@
 
 namespace drive {
 
+static BasicDataTable* testTable;
+
 
 class CanDataPrinter : public QObject
 {
@@ -14,13 +16,19 @@ class CanDataPrinter : public QObject
 public:
 	CanDataPrinter(microcanopen::McoClient* mcoClient);
 
+	Q_INVOKABLE BasicDataTable* watchTable() { return m_watchTable; }
+	Q_INVOKABLE BasicDataTable* tpdo1Table() { return m_tpdo1Table; }
+	Q_INVOKABLE BasicDataTable* tpdo2Table() { return m_tpdo2Table; }
+	Q_INVOKABLE BasicDataTable* tpdo3Table() { return m_tpdo3Table; }
+	Q_INVOKABLE BasicDataTable* tpdo4Table() { return m_tpdo4Table; }
+
 private:
 	microcanopen::McoClient* m_mcoClient;
-	BasicDataTable m_watchTable;
-	BasicDataTable m_tpdo1Table;
-	BasicDataTable m_tpdo2Table;
-	BasicDataTable m_tpdo3Table;
-	BasicDataTable m_tpdo4Table;
+	static BasicDataTable* m_watchTable;
+	static BasicDataTable* m_tpdo1Table;
+	static BasicDataTable* m_tpdo2Table;
+	static BasicDataTable* m_tpdo3Table;
+	static BasicDataTable* m_tpdo4Table;
 
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);
@@ -30,11 +38,11 @@ private slots:
 	void processAndDisplayRpdo4(microcanopen::CobRpdo4 message);
 
 private:
-	const std::vector<std::pair<std::string, std::string>>& m_watchNamesAndUnits = {{"Time", "s"}};
-	const std::vector<std::pair<std::string, std::string>>& m_tpdo1NamesAndUnits = {{"Run", "bool"}};
-	const std::vector<std::pair<std::string, std::string>>& m_tpdo2NamesAndUnits = {{"Tmot", "s"}};
-	const std::vector<std::pair<std::string, std::string>>& m_tpdo3NamesAndUnits = {{"Vpc", "V"}, {"Vnc", "V"}};
-	const std::vector<std::pair<std::string, std::string>>& m_tpdo4NamesAndUnits = {{"Fault", "hex"}, {"Warning", "hex"}, {"WarnCnt", ""}};
+	const std::vector<std::pair<std::string, std::string>> m_watchNamesAndUnits = {{"Time", "s"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo1NamesAndUnits = {{"Run", "bool"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo2NamesAndUnits = {{"Tmot", "s"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo3NamesAndUnits = {{"Vpc", "V"}, {"Vnc", "V"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo4NamesAndUnits = {{"Fault", "hex"}, {"Warning", "hex"}, {"WarnCnt", ""}};
 	 
 
 };

@@ -22,7 +22,7 @@ C1.TabView {
 			BasicDataTable {
 				id: watchDataTable
 				name: "Watch Data"
-				sourceTable: table1
+				sourceTable: driveCanDataPrinter.watchTable()
 				//Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			}
 
@@ -31,14 +31,14 @@ C1.TabView {
 					BasicDataTable {
 						id: tpdo1DataTable
 						name: "TPDO1 Data"
-						sourceTable: table1
+						sourceTable: driveCanDataPrinter.tpdo1Table()
 						//Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 					}
 					
 					BasicDataTable {
 						id: tpdo2DataTable
 						name: "TPDO2 Data"
-						sourceTable: table1
+						sourceTable: driveCanDataPrinter.tpdo2Table()
 						//Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 					}
 
@@ -46,14 +46,14 @@ C1.TabView {
 						BasicDataTable {
 						id: tpdo3DataTable
 						name: "TPDO3 Data"
-						sourceTable: table1
+						sourceTable: driveCanDataPrinter.tpdo3Table()
 						//Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 						}
 
 						BasicDataTable {
 						id: tpdo4DataTable
 						name: "TPDO4 Data"
-						sourceTable: table1
+						sourceTable: driveCanDataPrinter.tpdo4Table()
 						//Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 						}
 					}
@@ -62,7 +62,7 @@ C1.TabView {
 				BasicDataTable {
 				id: test
 				name: "test Data"
-				sourceTable: table1
+				//sourceTable: table1
 				//Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 				}
 			}

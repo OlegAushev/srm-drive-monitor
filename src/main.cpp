@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
 
 
-	engine.rootContext()->setContextProperty("table1", &table1);
+	//engine.rootContext()->setContextProperty("table1", drive::CanDataPrinter::testTable);
 
 
 

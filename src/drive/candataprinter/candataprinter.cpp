@@ -3,18 +3,27 @@
 
 namespace drive {
 
+///
+///
+///
+BasicDataTable* CanDataPrinter::m_watchTable = nullptr;
+BasicDataTable* CanDataPrinter::m_tpdo1Table = nullptr;
+BasicDataTable* CanDataPrinter::m_tpdo2Table = nullptr;
+BasicDataTable* CanDataPrinter::m_tpdo3Table = nullptr;
+BasicDataTable* CanDataPrinter::m_tpdo4Table = nullptr;
 
 ///
 ///
 ///
 CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient)
 	: m_mcoClient(mcoClient)
-	, m_watchTable(m_watchNamesAndUnits, this)
-	, m_tpdo1Table(m_tpdo1NamesAndUnits, this)
-	, m_tpdo2Table(m_tpdo2NamesAndUnits, this)
-	, m_tpdo3Table(m_tpdo3NamesAndUnits, this)
-	, m_tpdo4Table(m_tpdo4NamesAndUnits, this)
 {
+	m_watchTable = new BasicDataTable(m_watchNamesAndUnits, this);
+	m_tpdo1Table = new BasicDataTable(m_tpdo1NamesAndUnits, this);
+	m_tpdo2Table = new BasicDataTable(m_tpdo2NamesAndUnits, this);
+	m_tpdo3Table = new BasicDataTable(m_tpdo3NamesAndUnits, this);
+	m_tpdo4Table = new BasicDataTable(m_tpdo4NamesAndUnits, this);
+
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageSdoReceived, this, &CanDataPrinter::processAndDisplaySdo);
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo1Received, this, &CanDataPrinter::processAndDisplayRpdo1);
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo2Received, this, &CanDataPrinter::processAndDisplayRpdo2);

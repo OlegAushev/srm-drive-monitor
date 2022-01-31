@@ -53,10 +53,6 @@ C2.ApplicationWindow {
 		}
 	}
 
-	Q2.Connections {
-		target: mcoClient
-		onInfoMessageAvailable: {
-			statusBar.printMessage(message);
-		}
-	}
+	
+
 } 

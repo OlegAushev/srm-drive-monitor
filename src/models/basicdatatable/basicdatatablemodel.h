@@ -9,7 +9,7 @@ class BasicDataTable;
 class BasicDataTableModel : public QAbstractTableModel
 {
 	Q_OBJECT
-	Q_PROPERTY(BasicDataTable *table READ table WRITE setTable)
+	Q_PROPERTY(BasicDataTable *table READ table WRITE setTable NOTIFY tableChanged)
 public:
 	BasicDataTableModel(QObject* parent = nullptr);
 	
@@ -33,7 +33,7 @@ private:
 	BasicDataTable* m_table;
 
 signals:
-
+	void tableChanged();
 public slots:
 
 private slots:

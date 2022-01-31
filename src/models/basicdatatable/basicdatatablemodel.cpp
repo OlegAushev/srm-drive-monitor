@@ -118,6 +118,10 @@ void BasicDataTableModel::setTable(BasicDataTable* table)
 
 	if (m_table)
 	{
-		// TODO connect
+		QObject::connect(m_table, &BasicDataTable::tableChanged, 
+			[this]()
+			{
+				emit dataChanged({createIndex(0, 1)}, {createIndex(rowCount()-1, 1)}, {Qt::DisplayRole});
+			});
 	}
 }

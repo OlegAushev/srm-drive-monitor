@@ -22,6 +22,20 @@ public:
 	size_t rowCount() const { return m_rowCount; }
 	size_t columnCount() const { return m_columnCount; }
 
+	void setValue(size_t row, QString value)
+	{
+		if (row >= rowCount())
+		{
+			return;
+		}
+		else
+		{
+			m_values[row] = value;
+		}
+	}
+
+	void updateView() { emit tableChanged(); }
+
 private:
 	const size_t m_rowCount;
 	const size_t m_columnCount;
@@ -30,6 +44,8 @@ private:
 	QVector<QString> m_values;
 	QVector<QString> m_units; 
 	
+signals:
+	void tableChanged();
 
 
 };

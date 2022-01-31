@@ -23,12 +23,16 @@ public:
 	Q_INVOKABLE BasicDataTable* tpdo4Table() { return m_tpdo4Table; }
 
 private:
-	microcanopen::McoClient* m_mcoClient;
+	microcanopen::McoClient* m_mcoClient = nullptr;
 	static BasicDataTable* m_watchTable;
 	static BasicDataTable* m_tpdo1Table;
 	static BasicDataTable* m_tpdo2Table;
 	static BasicDataTable* m_tpdo3Table;
 	static BasicDataTable* m_tpdo4Table;
+	QTimer* m_watchTimer = nullptr;
+
+signals:
+	void textMessageAvailable(QString message);
 
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);
@@ -36,6 +40,8 @@ private slots:
 	void processAndDisplayRpdo2(microcanopen::CobRpdo2 message);
 	void processAndDisplayRpdo3(microcanopen::CobRpdo3 message);
 	void processAndDisplayRpdo4(microcanopen::CobRpdo4 message);
+
+	void sendWatchRequest();
 
 private:
 	const std::vector<std::pair<std::string, std::string>> m_watchNamesAndUnits = {
@@ -57,7 +63,7 @@ private:
 		{"Tair", 	"°C"},
 		{"Ts", 		"°C"},
 		{"Tfw",		"°C"},
-		{"Gamma",	"rad"},
+		{"Gamma",	"°"},
 		{"Speed",	"rpm"},
 		{"Torque",	"Nm"},
 		{"Pm",		"W"},
@@ -89,7 +95,21 @@ private:
 		{"Fault", "hex"},
 		{"Warning", "hex"},
 		{"WarnCnt", ""}};
-	 
+
+	const std::vector<QString> DriveStates = {
+		"STANDBY",
+		"IDLE",
+		"POWERUP",
+		"READY",
+		"PREPARING",
+		"STARTING",
+		"IN_OPERATION",
+		"STOPPING",
+		"POWERDOWN",
+		"CALIBRATING_POS_SENSOR_POWERUP",
+		"CALIBRATING_POS_SENSOR",
+		"EVALUATING_MOTOR"
+	};
 
 };
 

@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 	engine.rootContext()->setContextProperty("driveCanDataPrinter", &driveCanDataPrinter);
 
 
-
 	//engine.rootContext()->setContextProperty("table1", drive::CanDataPrinter::testTable);
 
 

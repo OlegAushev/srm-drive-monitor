@@ -59,10 +59,21 @@ C1.TabView {
 				}
 
 				Q2.Rectangle {
-					id: canTextArea
+					id: canTextAreaRect
 					width: columnTableText.width
 					height: watchDataTable.height - tpdo1DataTable.height - 8
-					border.color: "lightgrey"					
+					border.color: "lightgrey"
+					Q2.Text {
+						id: canTextArea
+						anchors.fill: parent
+
+						Q2.Connections {
+							target: driveCanDataPrinter
+							function onTextMessageAvailable(message) {
+								canTextArea.text = canTextArea.text + message;
+							}
+						}
+					}
 				}
 			}
 		}

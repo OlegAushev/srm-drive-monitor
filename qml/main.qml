@@ -6,8 +6,8 @@ import QtQuick.Layouts 1.15// as Layouts
 C2.ApplicationWindow {
 	id: appWindow
 	visible: true
-	minimumWidth: 1200
-	minimumHeight: 550
+	minimumWidth: 1250
+	minimumHeight: 600
 	title: qsTr("SRM Drive Monitor")
 	
 	menuBar: AppMenuBar {
@@ -37,8 +37,8 @@ C2.ApplicationWindow {
 		MainTabView {
 			id: mainTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
-			Layout.minimumWidth: 850
-			Layout.minimumHeight: 550
+			Layout.minimumWidth: 800
+			Layout.minimumHeight: 500
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 		}
@@ -57,19 +57,6 @@ C2.ApplicationWindow {
 		target: mcoClient
 		onInfoMessageAvailable: {
 			statusBar.printMessage(message);
-		}
-	}
-
-
-
-
-
-
-	C2.Button {
-		text: "Click!"
-		anchors.centerIn: parent
-		onClicked: {
-			appWindow.color = Qt.rgba(Math.random(), Math.random(), Math.random(), Math.random());
 		}
 	}
 } 

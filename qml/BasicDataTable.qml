@@ -7,15 +7,19 @@ import BasicDataTableModel 1.0
 Rectangle {
 	property string name
 	property QtObject sourceTable
+	property real tableWidth
+	property real cellSpacing: 1
 
-	width: 308
-	height: 200
-	border.color: "black"
+	width: tableWidth
+	height: tableName.height + header.height + cellSpacing + table.contentHeight
+
+	border.color: "lightgrey"
+	color: "lightgrey"
 
 	Rectangle {
 		id: tableName
 		width: parent.width
-		height: 30
+		height: 20
 		color: "#268bd2"
 
 		Text {
@@ -29,17 +33,17 @@ Rectangle {
 	
 	Row {
 		id: header
-		width: 300
+		width: tableWidth
 		height: 20
 		anchors.top: tableName.bottom
-		anchors.topMargin: 4
-		spacing: 4
+		anchors.topMargin: 0
+		spacing: cellSpacing
 
 		Repeater {
 			model: 3
 
 			Rectangle {
-				width: 100
+				width: (tableWidth - 2*cellSpacing)/3
 				height: header.height
 				color: "#cb4b16"
 
@@ -57,17 +61,18 @@ Rectangle {
 	TableView {
 		id: table
 		anchors.fill: parent
-		anchors.topMargin: tableName.height + header.height + 4 + 4
-		columnSpacing: 4
-		rowSpacing: 4
+		anchors.topMargin: tableName.height + header.height + cellSpacing
+		columnSpacing: cellSpacing
+		rowSpacing: cellSpacing
+		interactive: false
 
 		model : BasicDataTableModel {
 			table: sourceTable
 		}
 		
 		delegate: Rectangle {
-			color: "#EEE"
-			implicitWidth: 100
+			color: model.row % 2 == 0 ? "white" : "lightgrey"
+			implicitWidth: (tableWidth - 2*cellSpacing)/3
 			implicitHeight: text.implicitHeight
 
 			Text{

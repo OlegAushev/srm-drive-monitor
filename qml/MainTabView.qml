@@ -59,18 +59,30 @@ C1.TabView {
 				}
 
 				Q2.Rectangle {
-					id: canTextAreaRect
+					id: canMsgTextRect
 					width: columnTableText.width
 					height: watchDataTable.height - tpdo1DataTable.height - 8
 					border.color: "lightgrey"
-					Q2.Text {
-						id: canTextArea
-						anchors.fill: parent
 
-						Q2.Connections {
-							target: driveCanDataPrinter
-							function onTextMessageAvailable(message) {
-								canTextArea.text = canTextArea.text + message;
+					C2.ScrollView {
+						anchors.fill: parent
+						C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
+
+						Q2.ListView {
+							id: canMsgListView
+							anchors.fill: parent
+							model: driveCanDataPrinter.textMessages
+
+							delegate: Q2.Rectangle {
+								width: canMsgListView.width
+								height: msg.height
+								
+								Q2.Text {
+									id: msg
+									text: modelData
+									horizontalAlignment: Qt.AlignLeft
+									leftPadding: 2
+								}
 							}
 						}
 					}

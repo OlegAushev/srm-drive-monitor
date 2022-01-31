@@ -125,7 +125,8 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 			return;	
 		}
 		
-		emit textMessageAvailable(str);
+		m_textMessages.append(str);
+		emit textMessagesChanged();
 	}
 }
 
@@ -175,7 +176,8 @@ void CanDataPrinter::processAndDisplayRpdo3(microcanopen::CobRpdo3 message)
 	uint32_t syslogMsg = message.syslogInfo;
 	if ((syslogMsg > 0) && (syslogMsg < SYSLOG_MESSAGES.size()))
 	{
-		emit textMessageAvailable(SYSLOG_MESSAGES.at(syslogMsg));
+		m_textMessages.append(SYSLOG_MESSAGES.at(syslogMsg));
+		emit textMessagesChanged();
 	}
 	
 	m_tpdo3Table->updateView();

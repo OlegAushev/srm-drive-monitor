@@ -13,6 +13,7 @@ static BasicDataTable* testTable;
 class CanDataPrinter : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(QStringList textMessages MEMBER m_textMessages NOTIFY textMessagesChanged)
 public:
 	CanDataPrinter(microcanopen::McoClient* mcoClient);
 
@@ -30,9 +31,10 @@ private:
 	static BasicDataTable* m_tpdo3Table;
 	static BasicDataTable* m_tpdo4Table;
 	QTimer* m_watchTimer = nullptr;
+	QStringList m_textMessages;
 
 signals:
-	void textMessageAvailable(QString message);
+	void textMessagesChanged();
 
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);

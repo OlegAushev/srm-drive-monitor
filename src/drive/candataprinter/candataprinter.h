@@ -44,7 +44,7 @@ private slots:
 	void sendWatchRequest();
 
 private:
-	const std::vector<std::pair<std::string, std::string>> m_watchNamesAndUnits = {
+	const std::vector<std::pair<std::string, std::string>> WATCH_NAMES_AND_UNITS = {
 		{"Time",	"s"},
 		{"State",	""},
 		{"Fault",	""},
@@ -68,7 +68,7 @@ private:
 		{"Torque",	"Nm"},
 		{"Pm",		"W"},
 		{"Pel",		"W"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo1NamesAndUnits = {
+	const std::vector<std::pair<std::string, std::string>> TPDO1_NAMES_AND_UNITS = {
 		{"Run",		"bool"},
 		{"Fault",	"bool"},
 		{"Warning",	"bool"},
@@ -79,24 +79,24 @@ private:
 		{"Power",	"W"},
 		{"Vdc",		"V"},
 		{"If",		"A"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo2NamesAndUnits = {
+	const std::vector<std::pair<std::string, std::string>> TPDO2_NAMES_AND_UNITS = {
 		{"Tmot",	"°C"},
 		{"Vout",	"%"},
 		{"TorqLim",	"bool"},
 		{"Tfw",		"°C"},
 		{"Ths",		"°C"},
 		{"Tair",	"°C"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo3NamesAndUnits = {
+	const std::vector<std::pair<std::string, std::string>> TPDO3_NAMES_AND_UNITS = {
 		{"Vpc",		"V"}, 
 		{"Vnc",		"V"},
 		{"Status",	""},
 		{"Idc",		"A"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo4NamesAndUnits = {
+	const std::vector<std::pair<std::string, std::string>> TPDO4_NAMES_AND_UNITS = {
 		{"Fault", "hex"},
 		{"Warning", "hex"},
 		{"WarnCnt", ""}};
 
-	const std::vector<QString> DriveStates = {
+	const std::vector<QString> DRIVE_STATES = {
 		"STANDBY",
 		"IDLE",
 		"POWERUP",
@@ -109,6 +109,23 @@ private:
 		"CALIBRATING_POS_SENSOR_POWERUP",
 		"CALIBRATING_POS_SENSOR",
 		"EVALUATING_MOTOR"
+	};
+
+	const std::vector<QString> SYSLOG_MESSAGES = {
+	"No message",
+	"[ INFO ] Device boot - success",
+	"[ INFO ] Device is busy",
+	"[ INFO ] Device is resetting...",
+	"[ INFO ] Read configs from EEPROM - success",
+	"[ FAIL ] Read configs from EEPROM - fail",
+	"[ INFO ] Reset configs - success",
+	"[ FAIL ] Reset configs - fail",
+	"[ INFO ] Apply configs - success",
+	"[ FAIL ] Apply configs - fail",
+	"[ INFO ] Position sensor calibration - success",
+	"[ FAIL ] Position sensor calibration - fail",
+	"[ INFO ] Write calibration data to EEPROM - success",
+	"[ FAIL ] Write calibration data to EEPROM - fail",
 	};
 
 };

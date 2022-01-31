@@ -19,11 +19,11 @@ CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient)
 	: m_mcoClient(mcoClient)
 	, m_watchTimer(new QTimer(this))
 {
-	m_watchTable = new BasicDataTable(m_watchNamesAndUnits, this);
-	m_tpdo1Table = new BasicDataTable(m_tpdo1NamesAndUnits, this);
-	m_tpdo2Table = new BasicDataTable(m_tpdo2NamesAndUnits, this);
-	m_tpdo3Table = new BasicDataTable(m_tpdo3NamesAndUnits, this);
-	m_tpdo4Table = new BasicDataTable(m_tpdo4NamesAndUnits, this);
+	m_watchTable = new BasicDataTable(WATCH_NAMES_AND_UNITS, this);
+	m_tpdo1Table = new BasicDataTable(TPDO1_NAMES_AND_UNITS, this);
+	m_tpdo2Table = new BasicDataTable(TPDO2_NAMES_AND_UNITS, this);
+	m_tpdo3Table = new BasicDataTable(TPDO3_NAMES_AND_UNITS, this);
+	m_tpdo4Table = new BasicDataTable(TPDO4_NAMES_AND_UNITS, this);
 
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageSdoReceived, this, &CanDataPrinter::processAndDisplaySdo);
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo1Received, this, &CanDataPrinter::processAndDisplayRpdo1);
@@ -59,7 +59,7 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 		switch (message.subindex)
 		{
 		case 0x01:
-			m_watchTable->setValue(message.subindex, QString(DriveStates[message.data.u32()]));
+			m_watchTable->setValue(message.subindex, QString(DRIVE_STATES[message.data.u32()]));
 			break;
 				
 		case 0x02:
@@ -172,6 +172,11 @@ void CanDataPrinter::processAndDisplayRpdo3(microcanopen::CobRpdo3 message)
 	m_tpdo3Table->setValue(1, QString::number(message.voltageNegHousing/255.0 * 1620.0));
 	m_tpdo3Table->setValue(2, QString::number(message.statusInsulationLow));
 	m_tpdo3Table->setValue(3, QString::number(message.currentDC/127.0 * 200.0));
+	uint32_t syslogMsg = message.syslogInfo;
+	if ((syslogMsg > 0) && (syslogMsg < SYSLOG_MESSAGES.size()))
+	{
+		emit textMessageAvailable(SYSLOG_MESSAGES.at(syslogMsg));
+	}
 	
 	m_tpdo3Table->updateView();
 }

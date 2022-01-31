@@ -38,11 +38,57 @@ private slots:
 	void processAndDisplayRpdo4(microcanopen::CobRpdo4 message);
 
 private:
-	const std::vector<std::pair<std::string, std::string>> m_watchNamesAndUnits = {{"Time", "s"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo1NamesAndUnits = {{"Run", "bool"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo2NamesAndUnits = {{"Tmot", "s"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo3NamesAndUnits = {{"Vpc", "V"}, {"Vnc", "V"}};
-	const std::vector<std::pair<std::string, std::string>> m_tpdo4NamesAndUnits = {{"Fault", "hex"}, {"Warning", "hex"}, {"WarnCnt", ""}};
+	const std::vector<std::pair<std::string, std::string>> m_watchNamesAndUnits = {
+		{"Time",	"s"},
+		{"State",	""},
+		{"Fault",	""},
+		{"Vdc",		"V"},
+		{"Idc",		"A"},
+		{"If", 		"A"},
+		{"Is", 		"A"},
+		{"Ipha", 	"A"},
+		{"Iphb", 	"A"},
+		{"Iphc", 	"A"},
+		{"Id", 		"A"},
+		{"Iq", 		"A"},
+		{"Tpha", 	"°C"},
+		{"Tphb", 	"°C"},
+		{"Tphc", 	"°C"},
+		{"Tair", 	"°C"},
+		{"Ts", 		"°C"},
+		{"Tfw",		"°C"},
+		{"Gamma",	"rad"},
+		{"Speed",	"rpm"},
+		{"Torque",	"Nm"},
+		{"Pm",		"W"},
+		{"Pel",		"W"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo1NamesAndUnits = {
+		{"Run",		"bool"},
+		{"Fault",	"bool"},
+		{"Warning",	"bool"},
+		{"Overheat",	"bool"},
+		{"Torque",	"%"},
+		{"Speed",	"rpm"},
+		{"Is",		"A"},
+		{"Power",	"W"},
+		{"Vdc",		"V"},
+		{"If",		"A"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo2NamesAndUnits = {
+		{"Tmot",	"°C"},
+		{"Vout",	"%"},
+		{"TorqLim",	"bool"},
+		{"Tfw",		"°C"},
+		{"Ths",		"°C"},
+		{"Tair",	"°C"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo3NamesAndUnits = {
+		{"Vpc",		"V"}, 
+		{"Vnc",		"V"},
+		{"Status",	""},
+		{"Idc",		"A"}};
+	const std::vector<std::pair<std::string, std::string>> m_tpdo4NamesAndUnits = {
+		{"Fault", "hex"},
+		{"Warning", "hex"},
+		{"WarnCnt", ""}};
 	 
 
 };

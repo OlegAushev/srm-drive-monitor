@@ -10,15 +10,18 @@ Rectangle {
 	property real tableWidth
 	property real cellSpacing: 1
 
-	width: tableWidth
-	height: tableName.height + header.height + cellSpacing + table.contentHeight
+	width: tableWidth + 2*cellSpacing
+	height: tableName.height + header.height + 4*cellSpacing + table.contentHeight
 
 	border.color: "lightgrey"
 	color: "lightgrey"
 
 	Rectangle {
 		id: tableName
-		width: parent.width
+		width: tableWidth
+		anchors.top: parent.top
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.topMargin: cellSpacing
 		height: 20
 		color: "#268bd2"
 
@@ -36,7 +39,8 @@ Rectangle {
 		width: tableWidth
 		height: 20
 		anchors.top: tableName.bottom
-		anchors.topMargin: 0
+		anchors.horizontalCenter: parent.horizontalCenter
+		anchors.topMargin: cellSpacing
 		spacing: cellSpacing
 
 		Repeater {
@@ -60,8 +64,12 @@ Rectangle {
 
 	TableView {
 		id: table
-		anchors.fill: parent
-		anchors.topMargin: tableName.height + header.height + cellSpacing
+		width: tableWidth
+		//anchors.fill: parent
+		anchors.top: header.bottom
+		anchors.topMargin: cellSpacing
+		anchors.bottom: parent.bottom
+		anchors.horizontalCenter: parent.horizontalCenter
 		columnSpacing: cellSpacing
 		rowSpacing: cellSpacing
 		interactive: false
@@ -71,7 +79,7 @@ Rectangle {
 		}
 		
 		delegate: Rectangle {
-			color: model.row % 2 == 0 ? "white" : "lightgrey"
+			color: model.row % 2 == 0 ? "white" : "#eff0f1"
 			implicitWidth: (tableWidth - 2*cellSpacing)/3
 			implicitHeight: text.implicitHeight
 

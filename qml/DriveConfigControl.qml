@@ -8,7 +8,7 @@ Rectangle {
 
 	width: 320
 	height: 400
-	border.color: "black"
+	border.color: "lightgrey"
 
 	Column {
 		anchors.fill: root

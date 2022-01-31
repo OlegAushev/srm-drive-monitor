@@ -18,7 +18,7 @@ Rectangle {
 
 	width: 320
 	height: 80
-	border.color: "black"
+	border.color: "lightgrey"
 
 	Text {
 		id: label

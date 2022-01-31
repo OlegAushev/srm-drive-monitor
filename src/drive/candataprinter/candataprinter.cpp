@@ -124,7 +124,7 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 		default:
 			return;	
 		}
-		tstream << '\n';
+		
 		emit textMessageAvailable(str);
 	}
 }

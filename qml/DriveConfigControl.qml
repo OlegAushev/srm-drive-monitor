@@ -30,15 +30,16 @@ Rectangle {
 		}
 
 		Rectangle {
-			border.color: "black"
+			//border.color: "black"
 			width: 200
 			height: 32
 			anchors.horizontalCenter: parent.horizontalCenter
-			TextInput {
+			TextField {
 				id: valueInput
 				anchors.fill: parent
 				horizontalAlignment: Qt.AlignHCenter
 				verticalAlignment: Qt.AlignVCenter
+				placeholderText: qsTr("Enter value")
 				validator: DoubleValidator {}
 			}
 		}
@@ -50,14 +51,20 @@ Rectangle {
 				id: readButton
 				width: 92
 				text: "Read"
-				onClicked: driveConfigEditor.readParameter(parameterName.currentText) 
+				onClicked: {
+					valueInput.clear();
+					driveConfigEditor.readParameter(parameterName.currentText);
+				}
 			}
 
 			Button {
 				id: writeButton
 				width: 92
 				text: "Write"
-				onClicked: driveConfigEditor.writeParameter(parameterName.currentText, valueInput.displayText)
+				onClicked: {
+					valueInput.clear();
+					driveConfigEditor.writeParameter(parameterName.currentText, valueInput.displayText);
+				}
 			}
 		}
 
@@ -66,7 +73,10 @@ Rectangle {
 			text: "Apply"
 			width: 200
 			anchors.horizontalCenter: parent.horizontalCenter
-			onClicked: driveConfigEditor.applyParameters()
+			onClicked: {
+				valueInput.clear();
+				driveConfigEditor.applyParameters();
+			}
 		}
 
 		Button {
@@ -74,7 +84,10 @@ Rectangle {
 			text: "Reset To Default"
 			width: 200
 			anchors.horizontalCenter: parent.horizontalCenter
-			onClicked: driveConfigEditor.resetParameters()
+			onClicked: {
+				valueInput.clear();
+				driveConfigEditor.resetParameters();
+			}
 		}
 	}
 }

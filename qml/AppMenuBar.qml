@@ -1,8 +1,9 @@
+import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 
 MenuBar {
-	width: parent.width
+	//width: parent.width
 	Menu {
 		title: qsTr("App")
 
@@ -31,7 +32,7 @@ MenuBar {
 
 	Menu {
 		title: qsTr("Network")
-
+		
 		Menu {
 			title: qsTr("Connect CAN Device")
 			
@@ -49,6 +50,12 @@ MenuBar {
 			text: qsTr("Disconnect CAN Device")
 			onTriggered: mcoClient.disconnectCanDevice();
 		}
+
+		//MenuItem {
+			//CheckBox {
+			//text: qsTr("Watch Requests")
+			//}
+		//}
 	}
 
 	Menu {

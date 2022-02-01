@@ -8,6 +8,7 @@ C1.TabView {
 	C1.Tab {
 		id: tabCanData
 		title: "CAN Data"
+
 		Q2.Row {
 			padding: 2
 			spacing: 8
@@ -16,7 +17,7 @@ C1.TabView {
 				id: watchDataTable
 				name: "Watch Data"
 				sourceTable: driveCanDataPrinter.watchTable()
-				tableWidth: 220
+				tableWidth: 250
 			}
 
 			Q2.Column {
@@ -29,14 +30,14 @@ C1.TabView {
 						id: tpdo1DataTable
 						name: "TPDO1 Data"
 						sourceTable: driveCanDataPrinter.tpdo1Table()
-						tableWidth: 220
+						tableWidth: 250
 					}
 					
 					BasicDataTable {
 						id: tpdo2DataTable
 						name: "TPDO2 Data"
 						sourceTable: driveCanDataPrinter.tpdo2Table()
-						tableWidth: 220
+						tableWidth: 250
 					}
 
 					Q2.Column {
@@ -46,14 +47,14 @@ C1.TabView {
 							id: tpdo3DataTable
 							name: "TPDO3 Data"
 							sourceTable: driveCanDataPrinter.tpdo3Table()
-							tableWidth: 220
+							tableWidth: 250
 						}
 
 						BasicDataTable {
 							id: tpdo4DataTable
 							name: "TPDO4 Data"
 							sourceTable: driveCanDataPrinter.tpdo4Table()
-							tableWidth: 220
+							tableWidth: 250
 						}
 					}
 				}
@@ -76,7 +77,7 @@ C1.TabView {
 							delegate: Q2.Rectangle {
 								width: canMsgListView.width
 								height: msg.height
-								
+
 								Q2.Text {
 									id: msg
 									text: modelData

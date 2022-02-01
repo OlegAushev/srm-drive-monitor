@@ -6,8 +6,8 @@ import QtQuick.Layouts 1.15// as Layouts
 C2.ApplicationWindow {
 	id: appWindow
 	visible: true
-	minimumWidth: 1250
-	minimumHeight: 600
+	minimumWidth: 1390
+	minimumHeight: 620
 	title: qsTr("SRM Drive Monitor")
 	
 	menuBar: AppMenuBar {

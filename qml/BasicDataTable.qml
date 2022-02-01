@@ -10,6 +10,22 @@ Rectangle {
 	property real tableWidth
 	property real cellSpacing: 1
 
+	property var defaultColumnWidth: (tableWidth - 2*cellSpacing)/3;
+
+	function getColumnWidth(col)
+	{
+		switch (col) {
+		case 0:
+			return defaultColumnWidth;
+		case 1:
+			return defaultColumnWidth*1.2;
+		case 2:
+			return defaultColumnWidth/1.2;
+		default:
+			return 0;
+		}
+	}
+
 	width: tableWidth + 2*cellSpacing
 	height: tableName.height + header.height + 4*cellSpacing + table.contentHeight
 
@@ -23,7 +39,7 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.topMargin: cellSpacing
 		height: 20
-		color: "#268bd2"
+		color: "#3daee9"
 
 		Text {
 			anchors.fill: parent			
@@ -47,9 +63,9 @@ Rectangle {
 			model: 3
 
 			Rectangle {
-				width: (tableWidth - 2*cellSpacing)/3
+				width: defaultColumnWidth
 				height: header.height
-				color: "#cb4b16"
+				color: "#93cee9"
 
 				Text {
 					width: parent.width
@@ -65,7 +81,6 @@ Rectangle {
 	TableView {
 		id: table
 		width: tableWidth
-		//anchors.fill: parent
 		anchors.top: header.bottom
 		anchors.topMargin: cellSpacing
 		anchors.bottom: parent.bottom
@@ -80,14 +95,15 @@ Rectangle {
 		
 		delegate: Rectangle {
 			color: model.row % 2 == 0 ? "white" : "#eff0f1"
-			implicitWidth: (tableWidth - 2*cellSpacing)/3
+			implicitWidth: defaultColumnWidth
 			implicitHeight: text.implicitHeight
 
 			Text{
 				id: text
 				text: model.display
 				width: parent.width
-				horizontalAlignment: Text.AlignHCenter
+				horizontalAlignment: model.column == 0 ? Text.AlignLeft : Text.AlignHCenter
+				leftPadding: 8
 			}
 		}
 	}

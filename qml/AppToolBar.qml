@@ -10,7 +10,7 @@ ToolBar {
 			checkable: true
 			icon.name: "qrc:/images/desktop-classic.png"
 			ToolTip.visible: hovered
-			ToolTip.text: qsTr("TLC Emulation On/Off")
+			ToolTip.text: "TLC Emulation On/Off"
 			onClicked: checked ? mcoClient.startTpdoSending() : mcoClient.stopTpdoSending()
 		}
 
@@ -19,7 +19,7 @@ ToolBar {
 			checkable: true
 			icon.name: "qrc:/images/car-electric-outline.png"
 			ToolTip.visible: hovered
-			ToolTip.text: qsTr("Power On/Off")
+			ToolTip.text: "Power On/Off"
 			onClicked: checked ? driveController.powerUpDrive() : driveController.powerDownDrive()
 		}
 
@@ -28,7 +28,7 @@ ToolBar {
 			checkable: true
 			icon.name: "qrc:/images/power.png"
 			ToolTip.visible: hovered
-			ToolTip.text: qsTr("Motor Run On/Off")
+			ToolTip.text: "Motor Run On/Off"
 			onClicked: checked ? driveController.startMotor() : driveController.stopMotor()
 		}
 
@@ -37,7 +37,7 @@ ToolBar {
 			checkable: true
 			icon.name: "qrc:/images/alert-octagon-outline.png"
 			ToolTip.visible: hovered
-			ToolTip.text: qsTr("Emergency On/Off")
+			ToolTip.text: "Emergency On/Off"
 			onClicked: checked? driveController.setEmergencyOn() : driveController.setEmergencyOff() 
 		}
 	}

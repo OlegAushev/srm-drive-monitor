@@ -36,6 +36,10 @@ private:
 signals:
 	void textMessagesChanged();
 
+public slots:
+	void startWatch() { m_watchTimer->start(); }
+	void stopWatch() { m_watchTimer->stop(); }
+
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);
 	void processAndDisplayRpdo1(microcanopen::CobRpdo1 message);

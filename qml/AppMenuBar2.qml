@@ -1,13 +1,13 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls 1.4
 
-
+Item{
 MenuBar {
 	//width: parent.width
 	Menu {
 		title: "App"
 
-		MenuItem { 
+		/*MenuItem { 
 			text: "Device Name"
 			onTriggered: driveController.getDeviceName() 
 		}
@@ -27,13 +27,13 @@ MenuBar {
 		MenuItem {
 			text: "Quit"
 			onTriggered: Qt.quit();
-		}
+		}*/
 	}
 
 	Menu {
 		title: "Network"
 		
-		Menu {
+		/*Menu {
 			title: "Connect CAN Device"
 			
 			MenuItem {
@@ -49,25 +49,19 @@ MenuBar {
 		MenuItem {
 			text: "Disconnect CAN Device"
 			onTriggered: mcoClient.disconnectCanDevice();
-		}
+		}*/
 
-		Menu {
-			title: "Watch Requests"
-
-			MenuItem {
-				text: "Enable"
-				checked: true
-				checkable: true
-				onTriggered: checked ? driveCanDataPrinter.startWatch() : driveCanDataPrinter.stopWatch()
-			}
-		}
-
+		//MenuItem {
+			//CheckBox {
+			//text: qsTr("Watch Requests")
+			//}
+		//}
 	}
 
 	Menu {
 		title: "Drive Control"
 
-		MenuItem {
+		/*MenuItem {
 			text: "Reset Faults"
 			onTriggered: driveController.resetFaults() 
 		}
@@ -80,6 +74,20 @@ MenuBar {
 		MenuItem {
 			text: "Invert Rotation Direction"
 			onTriggered: driveController.invertRotationDirection() 
-		}
+		}*/
 	}
+
+	Menu {
+		title: "Test"
+
+		/*CheckBox {
+			text: "aaa"
+		}*/
+		/*MenuItem {
+			text: "Test menu"
+			checkable: true
+		}*/
+		
+	}
+}
 }

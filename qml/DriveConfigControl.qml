@@ -30,7 +30,6 @@ Rectangle {
 		}
 
 		Rectangle {
-			//border.color: "black"
 			width: 200
 			height: 32
 			anchors.horizontalCenter: parent.horizontalCenter
@@ -39,7 +38,7 @@ Rectangle {
 				anchors.fill: parent
 				horizontalAlignment: Qt.AlignHCenter
 				verticalAlignment: Qt.AlignVCenter
-				placeholderText: qsTr("Enter value")
+				placeholderText: "Enter value"
 				validator: DoubleValidator {}
 			}
 		}

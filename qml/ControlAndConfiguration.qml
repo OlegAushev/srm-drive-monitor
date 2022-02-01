@@ -15,7 +15,7 @@ C1.TabView {
 				unit: " rpm"
 				valueFrom: -8000
 				valueTo: 8000
-				sliderStep: 1000
+				sliderStep: 100
 				spinboxStep: 100
 				onValueChanged: driveController.setSpeed(value)
 			}
@@ -25,7 +25,7 @@ C1.TabView {
 				unit: " %"
 				valueFrom: -100
 				valueTo: 100
-				sliderStep: 20
+				sliderStep: 1
 				spinboxStep: 1
 				spinboxDecimals: 2
 				onValueChanged: driveController.setTorque(value)
@@ -36,7 +36,7 @@ C1.TabView {
 				unit: " A"
 				valueFrom: 0
 				valueTo: 35
-				sliderStep: 5
+				sliderStep: 1
 				spinboxStep: 1
 				spinboxDecimals: 1
 				onValueChanged: driveController.setFieldCurrent(value)
@@ -47,7 +47,7 @@ C1.TabView {
 				unit: " °"
 				valueFrom: -180
 				valueTo: 180
-				sliderStep: 30
+				sliderStep: 1
 				spinboxStep: 1
 				onValueChanged: driveController.setGammaCorrection(value)
 			}
@@ -60,7 +60,7 @@ C1.TabView {
 		title: "Configuration"
 		Q2.Column {
 			padding : 4
-			DriveConfigControl {
+			DriveConfigurationTool {
 				
 			}
 		}

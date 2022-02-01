@@ -34,8 +34,8 @@ C2.ApplicationWindow {
 		columns: 2
 		columnSpacing: 2
 
-		MainTabView {
-			id: mainTabView
+		DataAndCharts {
+			id: dataTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.minimumWidth: 800
 			Layout.minimumHeight: 500
@@ -43,7 +43,7 @@ C2.ApplicationWindow {
 			Layout.fillHeight: true
 		}
 		
-		ControlTabView {
+		ControlAndConfiguration {
 			id: controlTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.preferredWidth: 332

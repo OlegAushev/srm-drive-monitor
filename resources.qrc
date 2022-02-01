@@ -4,11 +4,11 @@
 		<file>qml/AppMenuBar.qml</file>
 		<file>qml/AppToolBar.qml</file>
 		<file>qml/AppStatusBar.qml</file>
-		<file>qml/MainTabView.qml</file>
-		<file>qml/ControlTabView.qml</file>
+		<file>qml/DataAndCharts.qml</file>
+		<file>qml/ControlAndConfiguration.qml</file>
 		<file>qml/BasicDataTable.qml</file>
 		<file>qml/SpinboxAndSliderControl.qml</file>
-		<file>qml/DriveConfigControl.qml</file>
+		<file>qml/DriveConfigurationTool.qml</file>
 
 		<file>images/desktop-classic.png</file>
 		<file>images/power.png</file>

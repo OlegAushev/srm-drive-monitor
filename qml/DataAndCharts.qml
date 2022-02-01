@@ -95,9 +95,11 @@ C1.TabView {
 
 					C2.Button {
 						text: "Clear"
-						anchors.top: parent.top
+						width: 50
+						height: 24
+						anchors.bottom: parent.bottom
 						anchors.right: parent.right
-						anchors.topMargin: 4
+						anchors.bottomMargin: 4
 						anchors.rightMargin: 20
 						onClicked: driveCanDataPrinter.clearTextMessages()
 					}

@@ -39,6 +39,11 @@ signals:
 public slots:
 	void startWatch() { m_watchTimer->start(); }
 	void stopWatch() { m_watchTimer->stop(); }
+	void clearTextMessages()
+	{ 
+		m_textMessages.clear(); 
+		emit textMessagesChanged();
+	}
 
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);

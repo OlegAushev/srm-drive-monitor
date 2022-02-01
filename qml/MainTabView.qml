@@ -85,7 +85,21 @@ C1.TabView {
 									leftPadding: 2
 								}
 							}
+
+							onCountChanged: {
+								Qt.callLater( canMsgListView.positionViewAtEnd )
+								
+							}
 						}
+					}
+
+					C2.Button {
+						text: "Clear"
+						anchors.top: parent.top
+						anchors.right: parent.right
+						anchors.topMargin: 4
+						anchors.rightMargin: 20
+						onClicked: driveCanDataPrinter.clearTextMessages()
 					}
 				}
 			}

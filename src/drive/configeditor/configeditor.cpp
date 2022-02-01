@@ -70,8 +70,8 @@ void ConfigEditor::writeParameter(const QString& name, const QString& value)
 {
 	auto key = microcanopen::findODEntry(name);
 	float valueF32 = value.toFloat();
-	uint32_t valueU32 = value.toUInt();
-	qWarning() << value << valueF32 << "  " << valueU32;
+	uint32_t valueU32 = valueF32;
+
 	if (name == "REFERENCE")
 	{
 		if (valueU32 != 0)

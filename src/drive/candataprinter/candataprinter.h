@@ -3,7 +3,7 @@
 
 #include "mcoclient/mcoclient.h"
 #include "models/basicdatatable/basicdatatable.h"
-
+#include <QDebug>
 
 namespace drive {
 
@@ -44,6 +44,21 @@ public slots:
 		m_textMessages.clear(); 
 		emit textMessagesChanged();
 	}
+
+	void setWatchPeriod(int period)
+	{
+		if (period <= 0)
+		{
+			m_watchTimer->stop();
+		}
+		else
+		{
+			m_watchTimer->start(period);
+		}
+		qWarning() << period;
+	}
+
+	int watchPeriod() const { return m_watchTimer->interval(); }
 
 private slots:
 	void processAndDisplaySdo(microcanopen::CobSdo message);

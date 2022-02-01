@@ -64,7 +64,9 @@ MenuBar {
 
 			MenuItem {
 				text: "Set Period"
-				//onTriggered: 
+				onTriggered: {
+					watchSettingsWindow.show()
+				}
 			}
 		}
 	}
@@ -93,5 +95,11 @@ MenuBar {
 			text: "Reset Device"
 			onTriggered: driveController.resetDevice()
 		}
+	}
+
+	WatchSettingsWindow {
+		id: watchSettingsWindow
+		width: 300;
+		height: 300;
 	}
 }

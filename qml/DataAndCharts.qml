@@ -66,7 +66,9 @@ C1.TabView {
 					border.color: "lightgrey"
 
 					C2.ScrollView {
-						anchors.fill: parent
+						width: canMsgTextRect.width - 1
+						height: canMsgTextRect.height - 1
+						anchors.centerIn: parent
 						C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
 
 						Q2.ListView {

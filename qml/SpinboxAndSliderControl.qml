@@ -25,8 +25,8 @@ Rectangle {
 		width: parent.width
 		height: 20
 		anchors.top: parent.top
+		anchors.topMargin: 2
 		horizontalAlignment: Text.AlignHCenter
-		verticalAlignment: Text.AlignVCenter
 		text: name
 	}
 

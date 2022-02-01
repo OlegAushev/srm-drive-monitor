@@ -27,6 +27,7 @@ signals:
 	void messageTpdo2Ready(microcanopen::CobTpdo2 message);
 
 public slots:
+	void resetDevice() { m_mcoClient->sendOdWriteRequest("RESET DEVICE"); }
 	void powerUpDrive() { m_mcoClient->sendOdWriteRequest("POWER UP DRIVE"); }
 	void powerDownDrive() { m_mcoClient->sendOdWriteRequest("POWER DOWN DRIVE"); }
 	void startMotor() { m_runFlag = true; }

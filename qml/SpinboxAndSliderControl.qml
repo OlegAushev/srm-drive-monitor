@@ -57,6 +57,7 @@ Rectangle {
 		stepSize: spinboxStep
 		decimals: spinboxDecimals
 		suffix: unit
+		//validator: DoubleValidator { locale: "en_EN" }
 
 		value: slider.value
 		onEditingFinished: { slider.value = value; root.valueChanged(value) }

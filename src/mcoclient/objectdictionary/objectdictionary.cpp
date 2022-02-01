@@ -11,7 +11,7 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2000, 0x00}, {"WATCH",	"NULL", "SYS_TIME",		"s",	OD_FLOAT32,	true,	false}},
 {{0x2000, 0x01}, {"WATCH",	"NULL", "DRIVE_STATE",		"",	OD_ENUM,	true,	false}},
 {{0x2000, 0x02}, {"WATCH",	"NULL", "FAULTS",		"",	OD_UINT32, 	true,	false}},
-{{0x2000, 0x03}, {"WATCH",	"NULL", "DC_VOLAGE",		"V",	OD_FLOAT32, 	true,	false}},
+{{0x2000, 0x03}, {"WATCH",	"NULL", "DC_VOLTAGE",		"V",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x04}, {"WATCH",	"NULL", "DC_CURRENT",		"A",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x05}, {"WATCH",	"NULL", "FIELD_CURRENT",	"A",	OD_FLOAT32, 	true,	true}},
 {{0x2000, 0x06}, {"WATCH",	"NULL", "STATOR_CURRENT",	"A",	OD_FLOAT32, 	true,	false}},

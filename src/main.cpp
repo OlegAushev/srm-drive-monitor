@@ -32,7 +32,6 @@ int main(int argc, char *argv[])
 
 
 
-
 	/* START QML ENGINE */
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);

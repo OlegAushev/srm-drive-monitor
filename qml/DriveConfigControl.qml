@@ -39,7 +39,7 @@ Rectangle {
 				horizontalAlignment: Qt.AlignHCenter
 				verticalAlignment: Qt.AlignVCenter
 				placeholderText: "Enter value"
-				validator: DoubleValidator {}
+				validator: DoubleValidator { locale: "en_EN"}
 			}
 		}
 
@@ -61,8 +61,8 @@ Rectangle {
 				width: 92
 				text: "Write"
 				onClicked: {
-					valueInput.clear();
 					driveConfigEditor.writeParameter(parameterName.currentText, valueInput.displayText);
+					valueInput.clear();
 				}
 			}
 		}

@@ -67,7 +67,6 @@ MenuBar {
 				//onTriggered: 
 			}
 		}
-
 	}
 
 	Menu {
@@ -86,6 +85,13 @@ MenuBar {
 		MenuItem {
 			text: "Invert Rotation Direction"
 			onTriggered: driveController.invertRotationDirection() 
+		}
+
+		MenuSeparator { }
+
+		MenuItem {
+			text: "Reset Device"
+			onTriggered: driveController.resetDevice()
 		}
 	}
 }

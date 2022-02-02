@@ -129,7 +129,7 @@ void CanSocketDevice::recvFrame()
 ///
 ///
 ///
-/*
+
 QString CanSocketDevice::busStatus()
 {
 	int error = 0;
@@ -139,13 +139,15 @@ QString CanSocketDevice::busStatus()
 	if (retval != 0) 
 	{
 		// there was a problem getting the error code
-		return QString("error getting socket error code: %1").arg(retval);
+		return QString("CAN bus status: unknown");
 	}
 
 	if (error != 0) 
 	{
 		// socket has a non zero error status
-		return QString("socket error: %1").arg(error);
+		return QString("CAN bus status: error %1").arg(error);
 	}
-}*/
+
+	return QString("CAN bus status: OK");
+}
 

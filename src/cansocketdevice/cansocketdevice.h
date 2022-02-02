@@ -64,7 +64,7 @@ class CanSocketDevice : public QObject
 public:
 	CanSocketDevice();
 	~CanSocketDevice();
-	QString busStatus() { return {}; };
+	QString busStatus();
 
 private:
 	QString m_interface;

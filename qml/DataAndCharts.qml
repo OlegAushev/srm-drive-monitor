@@ -66,8 +66,8 @@ C1.TabView {
 					border.color: "lightgrey"
 
 					C2.ScrollView {
-						width: canMsgTextRect.width - 1
-						height: canMsgTextRect.height - 1
+						width: canMsgTextRect.width - 2
+						height: canMsgTextRect.height - 2
 						anchors.centerIn: parent
 						C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
 
@@ -102,7 +102,7 @@ C1.TabView {
 						anchors.bottom: parent.bottom
 						anchors.right: parent.right
 						anchors.bottomMargin: 4
-						anchors.rightMargin: 20
+						anchors.rightMargin: 24
 						onClicked: driveCanDataPrinter.clearTextMessages()
 					}
 				}

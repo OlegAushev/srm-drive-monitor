@@ -16,15 +16,6 @@ class CanBusDevice : public QObject
 {
 	Q_OBJECT
 public:
-	enum class Status
-	{
-		DISCONNECTED,
-		CONNECTED,
-		DISCONNECTION_ERROR,
-		CONNECTION_ERROR,
-		SCRIPT_NOT_FOUND
-	};
-
 	CanBusDevice();
 	~CanBusDevice();
 	QString busStatus() const;

@@ -78,7 +78,8 @@
 		"qchartview": "cpp",
 		"qvector": "cpp",
 		"qabstracttablemodel": "cpp",
-		"qabstractlistmodel": "cpp"
+		"qabstractlistmodel": "cpp",
+		"qstring": "cpp"
 	},
 	"[Log]": {
 		"editor.fontSize": 10,

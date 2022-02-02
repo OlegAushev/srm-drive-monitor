@@ -9,7 +9,7 @@ add_executable(${CMAKE_PROJECT_NAME}
 		${SOURCES}
 		${RESOURCES})
 
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE canbusdevice/canbusdevice.cpp)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE cansocketdevice/cansocketdevice.cpp)
 
 #target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE		
 #		canbusdevice)

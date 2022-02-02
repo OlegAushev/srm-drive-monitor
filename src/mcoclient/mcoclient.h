@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "canbusdevice/canbusdevice.h"
+#include "cansocketdevice/cansocketdevice.h"
 #include "mcodef.h"
 #include "tpdodef.h"
 #include "rpdodef.h"
@@ -9,6 +9,7 @@
 #include <array>
 
 #include <QTimer>
+#include <QThread>
 
 
 namespace microcanopen {
@@ -18,12 +19,14 @@ class McoClient : public QObject
 	Q_OBJECT
 public:
 	McoClient(NodeId clientNodeId, NodeId serverNodeId);
+	~McoClient();
 
 	void setTpdoPeriod(TpdoNum tpdoNum, int msec) { m_tpdoTimers[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
 	void sendOdReadRequest(const QString& odEntryName);
 	void sendOdWriteRequest(const QString& odEntryName, CobSdoData data = {});
 private:
-	CanBusDevice m_canDevice;
+	QThread m_canDeviceThread;
+	CanSocketDevice m_canDevice;
 	const unsigned int m_clientNodeId = 0;
 	const unsigned int m_serverNodeId = 0;
 	QTimer* m_statusTimer;
@@ -57,7 +60,7 @@ public slots:
 	void sendMessageTpdo4(CobTpdo4 message);
 
 private slots:
-	void onFrameReceived(const QCanBusFrame& frame);
+	void onFrameReceived(const CanBusFrame& frame);
 	void onInfoMessageMustBeSent(const QString& message);
 };
 

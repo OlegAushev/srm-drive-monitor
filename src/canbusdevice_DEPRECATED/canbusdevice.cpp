@@ -54,7 +54,6 @@ void CanBusDevice::connectDevice(const QString& plugin, const QString& interface
 	}
 
 	QString errorString, statusString;
-	Status connectionStatus;
 
 	if (QCanBus::instance()->plugins().contains(plugin))
 	{
@@ -64,18 +63,15 @@ void CanBusDevice::connectDevice(const QString& plugin, const QString& interface
 	if (!m_device) 
 	{
 		statusString = QString("Error creating device %1, reason: %2").arg(plugin).arg(errorString);
-		connectionStatus = Status::CONNECTION_ERROR;
 	}
 	else if (!m_device->connectDevice())
 	{
 		statusString = QString("Connection error %1: %2").arg(interface).arg(m_device->errorString());
-		connectionStatus = Status::CONNECTION_ERROR;
 	}
 	else
 	{
 		statusString = QString("Plugin: %1, connected to %2").arg(plugin).arg(interface);
 		QObject::connect(m_device.get(), &QCanBusDevice::framesReceived, this, &CanBusDevice::onFrameReceived);
-		connectionStatus = Status::CONNECTED;
 	}
 
 	emit statusMessageAvailable(statusString);

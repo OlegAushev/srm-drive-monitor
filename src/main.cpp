@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	app.setWindowIcon(QIcon(":/images/app.png"));
-		
+
+	qRegisterMetaType<CanBusFrame>("CanBusFrame");
+
 	qmlRegisterType<BasicDataTableModel>("BasicDataTableModel", 1, 0, "BasicDataTableModel");
 	qmlRegisterUncreatableType<BasicDataTable>("BasicDataTable", 1, 0, "BasicDataTable", QStringLiteral("BasicDataTable"));
 	
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
 
 
 
-	/* START QML ENGINE */
+	// START QML ENGINE
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);

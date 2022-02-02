@@ -93,6 +93,7 @@ void CanSocketDevice::disconnectDevice()
 	{
 		emit statusMessageAvailable("CAN device disconnected");
 	}
+	m_socket = -1;
 }
 
 ///
@@ -100,6 +101,11 @@ void CanSocketDevice::disconnectDevice()
 ///
 void CanSocketDevice::recvFrame()
 {
+	if (m_socket < 0)
+	{
+		return;
+	}
+
 	can_filter filter[1];
 	filter[0].can_id = 0;
 	filter[0].can_mask = 0x000;
@@ -116,7 +122,7 @@ void CanSocketDevice::recvFrame()
 	}
 
 	CanBusFrame frame(socketCanFrame.can_id,
-			QByteArray((char*)socketCanFrame.data, (int)socketCanFrame.len));
+			QByteArray((char*)socketCanFrame.data, (int)socketCanFrame.can_dlc));
 	emit frameAvailable(frame);
 }
 

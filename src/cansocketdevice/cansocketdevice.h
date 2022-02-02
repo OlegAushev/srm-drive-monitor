@@ -68,7 +68,7 @@ public:
 
 private:
 	QString m_interface;
-	int m_socket;
+	int m_socket = -1;
 	ifreq m_ifr;
 	sockaddr_can m_addr;
 
@@ -88,9 +88,14 @@ public slots:
 
 	void sendFrame(const CanBusFrame& frame)
 	{
+		if (m_socket < 0)
+		{
+			return;
+		}
+		
 		can_frame socketCanFrame;
 		socketCanFrame.can_id = frame.frameId();
-		socketCanFrame.len = frame.payload().size();
+		socketCanFrame.can_dlc = frame.payload().size();
 		memcpy(socketCanFrame.data, frame.payload().data(), frame.payload().size());
 
 		if (write(m_socket, &socketCanFrame, sizeof(can_frame)) != sizeof(can_frame))

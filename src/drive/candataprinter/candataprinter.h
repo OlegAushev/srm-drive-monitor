@@ -55,7 +55,6 @@ public slots:
 		{
 			m_watchTimer->start(period);
 		}
-		qWarning() << period;
 	}
 
 	int watchPeriod() const { return m_watchTimer->interval(); }

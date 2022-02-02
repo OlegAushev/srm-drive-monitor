@@ -22,7 +22,7 @@ endif()
 
 
 message("Looking for Qt...")
-find_package(Qt5 COMPONENTS Quick Core Widgets SerialBus Charts REQUIRED)
+find_package(Qt5 COMPONENTS Quick Core Widgets Charts REQUIRED)
 find_package(Qt5QuickCompiler REQUIRED)
 if (${Qt5_FOUND})
     message("Found Qt " ${Qt5_VERSION})

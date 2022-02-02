@@ -86,13 +86,13 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 			case microcanopen::OD_FUNC:
 				return;
 			case microcanopen::OD_UINT32:
-				tstream << "[ READ ] " << entryIt->second.category << ":" << entryIt->second.subcategory << ":" << entryIt->second.name << " = " << message.data.u32();
+				tstream << "[ READ ] " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name << " = " << message.data.u32();
 				break;
 			case microcanopen::OD_FLOAT32:
-				tstream << "[ READ ] " << entryIt->second.category << ":" << entryIt->second.subcategory << ":" << entryIt->second.name << " = " << message.data.f32();
+				tstream << "[ READ ] " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name << " = " << message.data.f32();
 				break;
 			case microcanopen::OD_ENUM:
-				tstream << "[ READ ] " << entryIt->second.category << ":" << entryIt->second.subcategory << ":" << entryIt->second.name << " = " << message.data.u32();
+				tstream << "[ READ ] " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name << " = " << message.data.u32();
 				break;
 			case microcanopen::OD_STRING:
 				{
@@ -101,7 +101,7 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 					memcpy(cstr, &strRaw, 4);
 					cstr[4] = '\0';
 					QString str(cstr);
-					tstream << "[ READ ] " << entryIt->second.category << ":" << entryIt->second.subcategory << ":" << entryIt->second.name << " = " << str;
+					tstream << "[ READ ] " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name << " = " << str;
 				}
 				break;
 			default:
@@ -116,7 +116,7 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 				tstream << "[ DONE ] " << entryIt->second.name;
 				break;
 			default:
-				tstream << "[ DONE ] Write new value to " << entryIt->second.category << ":" << entryIt->second.subcategory << ":" << entryIt->second.name; 
+				tstream << "[ DONE ] Write new value to " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name; 
 				break;
 			}
 			break;

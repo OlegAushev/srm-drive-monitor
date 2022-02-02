@@ -17,7 +17,6 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE cansocketdevice/cansocketdevice.cpp
 target_link_libraries(${CMAKE_PROJECT_NAME} 
 		Qt5::Quick 
 		Qt5::Widgets 
-		Qt5::SerialBus 
 		Qt5::Charts)
 
 

@@ -8,27 +8,28 @@ namespace microcanopen {
 ///
 ///
 McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
-	: m_clientNodeId(clientNodeId.value)
+	: m_canDevice(new CanSocketDevice)
+	, m_clientNodeId(clientNodeId.value)
 	, m_serverNodeId(serverNodeId.value)
 	, m_statusTimer(new QTimer(this))
 {
-	m_canDevice.moveToThread(&m_canDeviceThread);
-	connect(&m_canDeviceThread, &QThread::finished, &m_canDevice, &QObject::deleteLater);
+	m_canDevice->moveToThread(&m_canDeviceThread);
+	connect(&m_canDeviceThread, &QThread::finished, m_canDevice, &QObject::deleteLater);
 
 	for (auto& timer : m_tpdoTimers)
 	{
 		timer = new QTimer(this);
 	}
 	
-	QObject::connect(&m_canDevice, &CanSocketDevice::frameAvailable, this, &McoClient::onFrameReceived);
-	QObject::connect(&m_canDevice, &CanSocketDevice::statusMessageAvailable, this, &McoClient::onInfoMessageMustBeSent);
+	QObject::connect(m_canDevice, &CanSocketDevice::frameAvailable, this, &McoClient::onFrameReceived);
+	QObject::connect(m_canDevice, &CanSocketDevice::statusMessageAvailable, this, &McoClient::onInfoMessageMustBeSent);
 	
 	QObject::connect(m_tpdoTimers[0], &QTimer::timeout, this, &McoClient::messageTpdo1Required);
 	QObject::connect(m_tpdoTimers[1], &QTimer::timeout, this, &McoClient::messageTpdo2Required);
 	QObject::connect(m_tpdoTimers[2], &QTimer::timeout, this, &McoClient::messageTpdo3Required);
 	QObject::connect(m_tpdoTimers[3], &QTimer::timeout, this, &McoClient::messageTpdo4Required);
 
-	QObject::connect(m_statusTimer, &QTimer::timeout, [this]() { emit infoMessageAvailable(m_canDevice.busStatus()); });
+	QObject::connect(m_statusTimer, &QTimer::timeout, [this]() { emit infoMessageAvailable(m_canDevice->busStatus()); });
 
 	m_canDeviceThread.start();
 
@@ -50,7 +51,7 @@ McoClient::~McoClient()
 ///
 void McoClient::connectCanDevice(const QString& plugin, const QString& interface)
 {
-	m_canDevice.connectDevice(interface);
+	m_canDevice->connectDevice(interface);
 }
 
 ///
@@ -58,7 +59,7 @@ void McoClient::connectCanDevice(const QString& plugin, const QString& interface
 ///
 void McoClient::disconnectCanDevice()
 {
-	m_canDevice.disconnectDevice();
+	m_canDevice->disconnectDevice();
 }
 
 ///
@@ -132,7 +133,7 @@ void McoClient::onInfoMessageMustBeSent(const QString& message)
 ///
 void McoClient::sendMessageTpdo1(CobTpdo1 message)
 {
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobTpdo1>(cobId(CobType::TPDO1, m_clientNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobTpdo1>(cobId(CobType::TPDO1, m_clientNodeId), message));
 }
 
 ///
@@ -140,7 +141,7 @@ void McoClient::sendMessageTpdo1(CobTpdo1 message)
 ///
 void McoClient::sendMessageTpdo2(CobTpdo2 message)
 {
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobTpdo2>(cobId(CobType::TPDO2, m_clientNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobTpdo2>(cobId(CobType::TPDO2, m_clientNodeId), message));
 }
 
 ///
@@ -148,7 +149,7 @@ void McoClient::sendMessageTpdo2(CobTpdo2 message)
 ///
 void McoClient::sendMessageTpdo3(CobTpdo3 message)
 {
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobTpdo3>(cobId(CobType::TPDO3, m_clientNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobTpdo3>(cobId(CobType::TPDO3, m_clientNodeId), message));
 }
 
 ///
@@ -156,7 +157,7 @@ void McoClient::sendMessageTpdo3(CobTpdo3 message)
 ///
 void McoClient::sendMessageTpdo4(CobTpdo4 message)
 {
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobTpdo4>(cobId(CobType::TPDO4, m_clientNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobTpdo4>(cobId(CobType::TPDO4, m_clientNodeId), message));
 }
 
 ///
@@ -176,7 +177,7 @@ void McoClient::sendOdReadRequest(const QString& odEntryName)
 	message.index = key.index;
 	message.subindex = key.subindex;
 	message.cs = SDO_CCS_READ;
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
 }
 
 ///
@@ -197,7 +198,7 @@ void McoClient::sendOdWriteRequest(const QString& odEntryName, CobSdoData data)
 	message.subindex = key.subindex;
 	message.cs = SDO_CCS_WRITE;
 	message.data = data;
-	m_canDevice.sendFrame(CanSocketDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
+	m_canDevice->sendFrame(CanSocketDevice::makeFrame<CobSdo>(cobId(CobType::RSDO, m_serverNodeId), message));
 }
 
 

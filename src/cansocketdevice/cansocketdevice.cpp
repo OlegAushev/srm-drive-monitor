@@ -5,7 +5,7 @@
 ///
 ///
 CanSocketDevice::CanSocketDevice()
-	: m_recvTimer(new QTimer)
+	: m_recvTimer(new QTimer(this))
 {
 	QObject::connect(m_recvTimer, &QTimer::timeout, this, &CanSocketDevice::recvFrame);
 	m_recvTimer->setInterval(RECV_PERIOD);
@@ -16,7 +16,7 @@ CanSocketDevice::CanSocketDevice()
 ///
 CanSocketDevice::~CanSocketDevice()
 {
-
+	disconnectDevice();
 }
 
 ///
@@ -126,5 +126,26 @@ void CanSocketDevice::recvFrame()
 	emit frameAvailable(frame);
 }
 
+///
+///
+///
+/*
+QString CanSocketDevice::busStatus()
+{
+	int error = 0;
+	socklen_t len = sizeof (error);
+	int retval = getsockopt (m_socket, SOL_SOCKET, SO_ERROR, &error, &len);
 
+	if (retval != 0) 
+	{
+		// there was a problem getting the error code
+		return QString("error getting socket error code: %1").arg(retval);
+	}
+
+	if (error != 0) 
+	{
+		// socket has a non zero error status
+		return QString("socket error: %1").arg(error);
+	}
+}*/
 

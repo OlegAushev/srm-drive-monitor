@@ -64,7 +64,7 @@ class CanSocketDevice : public QObject
 public:
 	CanSocketDevice();
 	~CanSocketDevice();
-	QString busStatus() { return {}; }
+	QString busStatus() { return {}; };
 
 private:
 	QString m_interface;
@@ -92,7 +92,7 @@ public slots:
 		{
 			return;
 		}
-		
+
 		can_frame socketCanFrame;
 		socketCanFrame.can_id = frame.frameId();
 		socketCanFrame.can_dlc = frame.payload().size();

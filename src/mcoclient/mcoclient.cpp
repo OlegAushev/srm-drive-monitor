@@ -42,7 +42,7 @@ McoClient::McoClient(NodeId clientNodeId, NodeId serverNodeId)
 ///
 McoClient::~McoClient()
 {
-	//delete m_canDevice;
+	delete m_canDevice;
 	m_canDeviceThread.quit();
 	m_canDeviceThread.wait();
 	

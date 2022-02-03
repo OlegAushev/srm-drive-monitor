@@ -26,7 +26,7 @@ public:
 	void sendOdWriteRequest(const QString& odEntryName, CobSdoData data = {});
 private:
 	QThread m_canDeviceThread;
-	CanSocketDevice* m_canDevice;
+	CanSocketDevice* m_canDevice = nullptr;
 	const unsigned int m_clientNodeId = 0;
 	const unsigned int m_serverNodeId = 0;
 	QTimer* m_statusTimer;

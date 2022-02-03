@@ -86,9 +86,13 @@ void CanSocketDevice::connectDevice(const QString& interface)
 ///
 void CanSocketDevice::disconnectDevice()
 {
-	m_recvTimer->stop();
-	m_recvTimer->disconnect();
-	delete m_recvTimer;
+	if (m_recvTimer)
+	{
+		m_recvTimer->stop();
+		m_recvTimer->disconnect();
+		delete m_recvTimer;
+	}
+
 	if (close(m_socket) < 0)
 	{
 		emit statusMessageAvailable("CAN socket closing failed");

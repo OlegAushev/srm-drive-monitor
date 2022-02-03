@@ -72,7 +72,7 @@ private:
 	ifreq m_ifr;
 	sockaddr_can m_addr;
 
-	QTimer* m_recvTimer;
+	QTimer* m_recvTimer = nullptr;
 	const int RECV_PERIOD = 2;
 
 	QString findConnectionScript();

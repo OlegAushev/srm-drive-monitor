@@ -61,7 +61,7 @@ signals:
 	void messageSdoReceived(CobSdo message);
 
 public slots:
-	void connectCanDevice(const QString& plugin, const QString& interface);
+	void connectCanDevice(const QString& interface);
 	void disconnectCanDevice();
 
 	void startTpdoSending();

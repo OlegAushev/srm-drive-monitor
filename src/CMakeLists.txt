@@ -9,16 +9,19 @@ add_executable(${CMAKE_PROJECT_NAME}
 		${SOURCES}
 		${RESOURCES})
 
+
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE cansocketdevice/cansocketdevice.cpp)
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE chartplotter/chartplotter.cpp)
+#target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE canbusdevice)
 
-#target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE		
-#		canbusdevice)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} 
 		Qt5::Quick 
 		Qt5::Widgets 
 		Qt5::Charts)
 
+
+#target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 
 

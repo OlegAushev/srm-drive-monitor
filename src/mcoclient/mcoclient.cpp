@@ -51,7 +51,7 @@ McoClient::~McoClient()
 ///
 ///
 ///
-void McoClient::connectCanDevice(const QString& plugin, const QString& interface)
+void McoClient::connectCanDevice(const QString& interface)
 {
 	m_canDevice->connectDevice(interface);
 	m_sysTimer.start();

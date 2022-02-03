@@ -10,8 +10,6 @@
 
 namespace drive {
 
-static BasicDataTable* testTable;
-
 
 class CanDataPrinter : public QObject
 {

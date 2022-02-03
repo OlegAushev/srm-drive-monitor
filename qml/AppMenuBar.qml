@@ -39,11 +39,11 @@ MenuBar {
 			
 			MenuItem {
 				text: "can0"
-				onTriggered: mcoClient.connectCanDevice("socketcan", "can0");
+				onTriggered: mcoClient.connectCanDevice("can0");
 			}
 			MenuItem {
 				text: "vcan0"
-				onTriggered: mcoClient.connectCanDevice("socketcan", "vcan0");
+				onTriggered: mcoClient.connectCanDevice("vcan0");
 			}
 		}
 

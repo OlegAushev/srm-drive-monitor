@@ -15,9 +15,10 @@ BasicDataTable* CanDataPrinter::m_tpdo4Table = nullptr;
 ///
 ///
 ///
-CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient)
+CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter)
 	: m_mcoClient(mcoClient)
 	, m_watchTimer(new QTimer(this))
+	, m_chartPlotter(chartPlotter)
 {
 	m_watchTable = new BasicDataTable(WATCH_NAMES_AND_UNITS, this);
 	m_tpdo1Table = new BasicDataTable(TPDO1_NAMES_AND_UNITS, this);
@@ -72,6 +73,13 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 		}
 
 		m_watchTable->updateView();
+
+		if (entryIt->second.name == "AIR_TEMP")
+		{
+			double x = m_mcoClient->timeMs() / 1000.0;
+			double y = message.data.f32();
+			m_chartPlotter->addData(QPointF(x, y));
+		}
 	}
 	else
 	{

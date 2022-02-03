@@ -113,6 +113,8 @@ C1.TabView {
 	C1.Tab {
 		id: tabCharts
 		title: "Charts"
+
+		Charts {}
 	}
 }
 

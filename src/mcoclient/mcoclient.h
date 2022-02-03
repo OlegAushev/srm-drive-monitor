@@ -10,6 +10,7 @@
 
 #include <QTimer>
 #include <QThread>
+#include <QElapsedTimer>
 
 
 namespace microcanopen {
@@ -24,6 +25,16 @@ public:
 	void setTpdoPeriod(TpdoNum tpdoNum, int msec) { m_tpdoTimers[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
 	void sendOdReadRequest(const QString& odEntryName);
 	void sendOdWriteRequest(const QString& odEntryName, CobSdoData data = {});
+
+	int timeMs()
+	{
+		if (!m_sysTimer.isValid())
+		{
+			return 0;
+		}
+		return m_sysTimer.nsecsElapsed() / 1000'000; 
+	}
+
 private:
 	QThread m_canDeviceThread;
 	CanSocketDevice* m_canDevice = nullptr;
@@ -32,6 +43,8 @@ private:
 	QTimer* m_statusTimer;
 
 	std::array<QTimer*, 4> m_tpdoTimers;
+
+	QElapsedTimer m_sysTimer;
 
 signals:
 	void infoMessageAvailable(QString message);

@@ -10,6 +10,7 @@
 		<file>qml/SpinboxAndSliderControl.qml</file>
 		<file>qml/DriveConfigurationTool.qml</file>
 		<file>qml/WatchSettingsWindow.qml</file>
+		<file>qml/Charts.qml</file>
 
 		<file>images/desktop-classic.png</file>
 		<file>images/power.png</file>

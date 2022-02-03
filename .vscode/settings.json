@@ -79,7 +79,9 @@
 		"qvector": "cpp",
 		"qabstracttablemodel": "cpp",
 		"qabstractlistmodel": "cpp",
-		"qstring": "cpp"
+		"qstring": "cpp",
+		"qabstractseries": "cpp",
+		"qxyseries": "cpp"
 	},
 	"[Log]": {
 		"editor.fontSize": 10,

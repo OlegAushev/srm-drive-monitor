@@ -54,6 +54,7 @@ McoClient::~McoClient()
 void McoClient::connectCanDevice(const QString& plugin, const QString& interface)
 {
 	m_canDevice->connectDevice(interface);
+	m_sysTimer.start();
 }
 
 ///
@@ -62,6 +63,7 @@ void McoClient::connectCanDevice(const QString& plugin, const QString& interface
 void McoClient::disconnectCanDevice()
 {
 	m_canDevice->disconnectDevice();
+	m_sysTimer.invalidate();
 }
 
 ///

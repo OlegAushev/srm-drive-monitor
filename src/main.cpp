@@ -9,6 +9,8 @@
 #include "drive/candataprinter/candataprinter.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
+#include "chartplotter/chartplotter.h"
+
 
 
 int main(int argc, char *argv[])
@@ -17,22 +19,17 @@ int main(int argc, char *argv[])
 	app.setWindowIcon(QIcon(":/images/app.png"));
 
 	qRegisterMetaType<CanBusFrame>("CanBusFrame");
-
 	qmlRegisterType<BasicDataTableModel>("BasicDataTableModel", 1, 0, "BasicDataTableModel");
 	qmlRegisterUncreatableType<BasicDataTable>("BasicDataTable", 1, 0, "BasicDataTable", QStringLiteral("BasicDataTable"));
 	
-	BasicDataTable table1({{"A","B"},{"C","D"},{"E","F"},{"G","H"}});
-
-
 	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM1, 250);
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM2, 100);
 
 	drive::DriveController driveController(&mcoClient);
 	drive::ConfigEditor driveConfigEditor(&mcoClient);
-	drive::CanDataPrinter driveCanDataPrinter(&mcoClient);
-
-
+	ChartPlotter chartPlotter;
+	drive::CanDataPrinter driveCanDataPrinter(&mcoClient, &chartPlotter);
 
 	// START QML ENGINE
 	QQmlApplicationEngine engine;
@@ -40,6 +37,7 @@ int main(int argc, char *argv[])
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);
 	engine.rootContext()->setContextProperty("driveCanDataPrinter", &driveCanDataPrinter);
+	engine.rootContext()->setContextProperty("chartPlotter", &chartPlotter);
 
 
 	//engine.rootContext()->setContextProperty("table1", drive::CanDataPrinter::testTable);

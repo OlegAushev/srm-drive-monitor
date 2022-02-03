@@ -3,7 +3,10 @@
 
 #include "mcoclient/mcoclient.h"
 #include "models/basicdatatable/basicdatatable.h"
+#include "chartplotter/chartplotter.h"
 #include <QDebug>
+#include <QTime>
+
 
 namespace drive {
 
@@ -15,7 +18,7 @@ class CanDataPrinter : public QObject
 	Q_OBJECT
 	Q_PROPERTY(QStringList textMessages MEMBER m_textMessages NOTIFY textMessagesChanged)
 public:
-	CanDataPrinter(microcanopen::McoClient* mcoClient);
+	CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter);
 
 	Q_INVOKABLE BasicDataTable* watchTable() { return m_watchTable; }
 	Q_INVOKABLE BasicDataTable* tpdo1Table() { return m_tpdo1Table; }
@@ -32,6 +35,8 @@ private:
 	static BasicDataTable* m_tpdo4Table;
 	QTimer* m_watchTimer = nullptr;
 	QStringList m_textMessages;
+
+	ChartPlotter* m_chartPlotter = nullptr;
 
 signals:
 	void textMessagesChanged();

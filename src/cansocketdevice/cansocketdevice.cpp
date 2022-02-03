@@ -5,10 +5,8 @@
 ///
 ///
 CanSocketDevice::CanSocketDevice()
-	: m_recvTimer(new QTimer(this))
 {
-	QObject::connect(m_recvTimer, &QTimer::timeout, this, &CanSocketDevice::recvFrame);
-	m_recvTimer->setInterval(RECV_PERIOD);
+
 }
 
 ///
@@ -76,6 +74,10 @@ void CanSocketDevice::connectDevice(const QString& interface)
 	}
 
 	emit statusMessageAvailable(QString("CAN device connected to %1").arg(m_interface));
+
+	m_recvTimer = new QTimer();
+	QObject::connect(m_recvTimer, &QTimer::timeout, this, &CanSocketDevice::recvFrame);
+	m_recvTimer->setInterval(RECV_PERIOD);
 	m_recvTimer->start();
 }
 
@@ -85,6 +87,8 @@ void CanSocketDevice::connectDevice(const QString& interface)
 void CanSocketDevice::disconnectDevice()
 {
 	m_recvTimer->stop();
+	m_recvTimer->disconnect();
+	delete m_recvTimer;
 	if (close(m_socket) < 0)
 	{
 		emit statusMessageAvailable("CAN socket closing failed");

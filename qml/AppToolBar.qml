@@ -8,7 +8,7 @@ ToolBar {
 		ToolButton {
 			id: buttonTlcEmulation
 			checkable: true
-			icon.name: "qrc:/images/desktop-classic.png"
+			icon.source: "qrc:/images/desktop-classic.png"
 			ToolTip.visible: hovered
 			ToolTip.text: "TLC Emulation On/Off"
 			onClicked: checked ? mcoClient.startTpdoSending() : mcoClient.stopTpdoSending()
@@ -17,7 +17,7 @@ ToolBar {
 		ToolButton {
 			id: buttonPower
 			checkable: true
-			icon.name: "qrc:/images/car-electric-outline.png"
+			icon.source: "qrc:/images/car-electric-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: "Power On/Off"
 			onClicked: checked ? driveController.powerUpDrive() : driveController.powerDownDrive()
@@ -26,7 +26,7 @@ ToolBar {
 		ToolButton {
 			id: buttonMotorRun
 			checkable: true
-			icon.name: "qrc:/images/power.png"
+			icon.source: "qrc:/images/power.png"
 			ToolTip.visible: hovered
 			ToolTip.text: "Motor Run On/Off"
 			onClicked: checked ? driveController.startMotor() : driveController.stopMotor()
@@ -35,10 +35,10 @@ ToolBar {
 		ToolButton {
 			id: buttonEmergency
 			checkable: true
-			icon.name: "qrc:/images/alert-octagon-outline.png"
+			icon.source: "qrc:/images/alert-octagon-outline.png"
 			ToolTip.visible: hovered
 			ToolTip.text: "Emergency On/Off"
-			onClicked: checked? driveController.setEmergencyOn() : driveController.setEmergencyOff() 
+			onClicked: checked ? driveController.setEmergencyOn() : driveController.setEmergencyOff() 
 		}
 	}
 

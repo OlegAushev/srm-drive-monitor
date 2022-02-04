@@ -177,7 +177,7 @@ void McoClient::sendOdReadRequest(const QString& odEntryName)
 		return;
 	}
 
-	CobSdo message;
+	CobSdo message = {};
 	message.index = key.index;
 	message.subindex = key.subindex;
 	message.cs = SDO_CCS_READ;
@@ -197,7 +197,7 @@ void McoClient::sendOdWriteRequest(const QString& odEntryName, CobSdoData data)
 		return;
 	}
 
-	CobSdo message;
+	CobSdo message = {};
 	message.index = key.index;
 	message.subindex = key.subindex;
 	message.cs = SDO_CCS_WRITE;

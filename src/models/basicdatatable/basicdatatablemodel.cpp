@@ -15,6 +15,7 @@ BasicDataTableModel::BasicDataTableModel(QObject* parent)
 ///
 int BasicDataTableModel::rowCount(const QModelIndex &parent) const 
 {
+	Q_UNUSED(parent);
 	if (!m_table)
 	{
 		return 0;
@@ -27,6 +28,7 @@ int BasicDataTableModel::rowCount(const QModelIndex &parent) const
 ///
 int BasicDataTableModel::columnCount(const QModelIndex &parent) const 
 {
+	Q_UNUSED(parent);
 	if (!m_table)
 	{
 		return 0;

@@ -17,11 +17,7 @@ struct CobTpdo1
 	uint16_t reserved2 : 1;
 	uint16_t braking : 1;
 	uint32_t reserved3 : 29;
-	CobTpdo1()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobTpdo1));
-	}
+	CobTpdo1() = default;
 	CobTpdo1(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobTpdo1)); }
 	uint64_t all() const
 	{
@@ -37,11 +33,7 @@ struct CobTpdo2
 	uint8_t reserved1 : 8;
 	int16_t torque : 16;
 	uint32_t reserved2 : 32;
-	CobTpdo2()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobTpdo2));
-	}
+	CobTpdo2() = default;
 	CobTpdo2(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobTpdo2)); }
 	uint64_t all() const
 	{

@@ -21,7 +21,7 @@ DriveController::DriveController(microcanopen::McoClient* mcoClient)
 ///
 void DriveController::onMessageTpdo1Request()
 {
-	microcanopen::CobTpdo1 message;
+	microcanopen::CobTpdo1 message = {};
 	message.run = ((m_runFlag) ? 1 : 0);
 	message.emergencyStop = ((m_emergencyFlag) ? 1 : 0);
 	emit messageTpdo1Ready(message);
@@ -32,7 +32,7 @@ void DriveController::onMessageTpdo1Request()
 ///
 void DriveController::onMessageTpdo2Request()
 {
-	microcanopen::CobTpdo2 message;
+	microcanopen::CobTpdo2 message = {};
 	message.torque = ((m_torquePuRef > 0) ? m_torquePuRef * 32767 : m_torquePuRef * 32768);
 	emit messageTpdo2Ready(message);
 }

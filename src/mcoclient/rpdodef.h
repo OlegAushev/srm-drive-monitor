@@ -25,11 +25,7 @@ struct CobRpdo1
 	int8_t power : 8;
 	uint8_t voltageDC : 8;
 	uint8_t currentF : 8;
-	CobRpdo1()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobRpdo1));
-	}
+	CobRpdo1() = default;
 	CobRpdo1(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobRpdo1)); }
 	uint64_t all() const
 	{
@@ -53,11 +49,7 @@ struct CobRpdo2
 	uint8_t tempHeatsink : 8;
 	uint8_t tepmCaseAir : 8;
 	uint8_t reserved3 : 8;
-	CobRpdo2()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobRpdo2));
-	}
+	CobRpdo2() = default;
 	CobRpdo2(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobRpdo2)); }
 	uint64_t all() const
 	{
@@ -81,11 +73,7 @@ struct CobRpdo3
 	uint16_t reserved1 : 4;
 	int8_t currentDC : 8;
 	uint32_t syslogInfo : 32;
-	CobRpdo3()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobRpdo3));
-	}
+	CobRpdo3() = default;
 	CobRpdo3(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobRpdo3)); }
 	uint64_t all() const
 	{
@@ -103,11 +91,7 @@ struct CobRpdo4
 	uint32_t faultCode : 32;
 	uint16_t nWarnings : 16;
 	uint16_t warningCode : 16;
-	CobRpdo4()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobRpdo4));
-	}
+	CobRpdo4() = default;
 	CobRpdo4(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobRpdo4)); }
 	uint64_t all() const
 	{

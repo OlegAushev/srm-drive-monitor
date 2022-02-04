@@ -105,9 +105,9 @@ enum class RpdoNum {NUM1, NUM2, NUM3, NUM4};
 class CobSdoData
 {
 private:
-	uint32_t m_data;
+	uint32_t m_data = 0;
 public:
-	CobSdoData() { m_data = 0; }
+	CobSdoData() = default;
 	CobSdoData(uint32_t val) { memcpy(&m_data, &val, sizeof(uint32_t)); }
 	CobSdoData(float val) { memcpy(&m_data, &val, sizeof(uint32_t)); }
 
@@ -142,13 +142,8 @@ struct CobSdo
 	uint32_t cs : 3;
 	uint32_t index : 16;
 	uint32_t subindex : 8;
-	CobSdoData data;
-	CobSdo()
-	{
-		uint64_t rawMsg = 0;
-		memcpy(this, &rawMsg, sizeof(CobSdo));
-	}
-	CobSdo(uint64_t rawMsg) { memcpy(this, &rawMsg, sizeof(CobSdo)); }
+	CobSdoData data = {};
+	CobSdo() = default;
 	uint64_t all() const
 	{
 		uint64_t data = 0;

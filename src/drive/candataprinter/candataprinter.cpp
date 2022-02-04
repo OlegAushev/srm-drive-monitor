@@ -121,10 +121,12 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 			switch (entryIt->second.dataType)
 			{
 			case microcanopen::OD_FUNC:
-				tstream << "[ DONE ] " << entryIt->second.name;
+				tstream << "[ DONE ] Task " << entryIt->second.category << "::" 
+						<< entryIt->second.name << " is completed";
 				break;
 			default:
-				tstream << "[ DONE ] Write new value to " << entryIt->second.category << "::" << entryIt->second.subcategory << "::" << entryIt->second.name; 
+				tstream << "[ DONE ] Write new value to " << entryIt->second.category 
+						<< "::" << entryIt->second.subcategory << "::" << entryIt->second.name; 
 				break;
 			}
 			break;

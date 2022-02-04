@@ -21,7 +21,7 @@ CanBusDevice::~CanBusDevice()
 ///
 QString CanBusDevice::findConnectionScript(const QString& interface)
 {	
-	return QFileDialog::getOpenFileName(nullptr, tr("Open SocketCAN Script"), "../../", tr("Script Files (*.sh)"));
+	return QFileDialog::getOpenFileName(nullptr, tr("Open SocketCAN Script"), "../", tr("Script Files (*.sh)"));
 }
 
 ///

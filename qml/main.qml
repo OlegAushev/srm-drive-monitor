@@ -1,6 +1,6 @@
-import QtQuick 2.15 as Q2
-import QtQuick.Controls 2.15 as C2
-import QtQuick.Layouts 1.15// as Layouts
+import QtQuick 2.11 as Q2
+import QtQuick.Controls 2.4 as C2
+import QtQuick.Layouts 1.11
 
 
 C2.ApplicationWindow {

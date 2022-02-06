@@ -1,7 +1,6 @@
 import QtQuick.Controls 1.4 as C1
-import QtQuick 2.15  as Q2
-import QtQuick.Controls 2.15 as C2
-import QtQuick.Layouts 1.15
+import QtQuick 2.11  as Q2
+import QtQuick.Controls 2.4 as C2
 
 
 C1.TabView {

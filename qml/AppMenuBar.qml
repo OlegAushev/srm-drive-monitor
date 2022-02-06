@@ -1,10 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQml 2.15
+import QtQuick 2.11
+import QtQuick.Controls 2.4
 
 
 MenuBar {
-	//width: parent.width
+
 	Menu {
 		title: "App"
 
@@ -56,6 +55,7 @@ MenuBar {
 			title: "Watch Requests"
 
 			MenuItem {
+				implicitWidth: 100
 				text: "Enable"
 				checked: true
 				checkable: true
@@ -63,6 +63,7 @@ MenuBar {
 			}
 
 			MenuItem {
+				implicitWidth: 100
 				text: "Set Period"
 				onTriggered: {
 					watchSettingsWindow.show()

@@ -1,6 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
+import QtQuick 2.11
+import QtQuick.Controls 2.4
 
 
 ApplicationWindow {
@@ -19,7 +18,6 @@ ApplicationWindow {
 
 		Column{
 			id: column
-			anchors.fill: root
 			padding: 16
 			spacing: 16
 

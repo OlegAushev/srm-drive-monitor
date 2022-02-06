@@ -1,7 +1,7 @@
 #include <QtWidgets/QApplication>
-#include <QtQuick/QQuickView>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
+#include <QIcon>
 
 #include "mcoclient/mcoclient.h"
 #include "drive/drivecontroller/drivecontroller.h"

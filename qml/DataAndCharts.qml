@@ -12,7 +12,7 @@ C1.TabView {
 			padding: 2
 			spacing: 8
 			
-			BasicDataTable {
+			BasicDataTable_v11 {
 				id: watchDataTable
 				name: "Watch Data"
 				sourceTable: driveCanDataPrinter.watchTable()
@@ -25,14 +25,14 @@ C1.TabView {
 
 				Q2.Row {
 					spacing: 8
-					BasicDataTable {
+					BasicDataTable_v11 {
 						id: tpdo1DataTable
 						name: "TPDO1 Data"
 						sourceTable: driveCanDataPrinter.tpdo1Table()
 						tableWidth: 250
 					}
 					
-					BasicDataTable {
+					BasicDataTable_v11 {
 						id: tpdo2DataTable
 						name: "TPDO2 Data"
 						sourceTable: driveCanDataPrinter.tpdo2Table()
@@ -42,14 +42,14 @@ C1.TabView {
 					Q2.Column {
 						spacing: 8
 
-						BasicDataTable {
+						BasicDataTable_v11 {
 							id: tpdo3DataTable
 							name: "TPDO3 Data"
 							sourceTable: driveCanDataPrinter.tpdo3Table()
 							tableWidth: 250
 						}
 
-						BasicDataTable {
+						BasicDataTable_v11 {
 							id: tpdo4DataTable
 							name: "TPDO4 Data"
 							sourceTable: driveCanDataPrinter.tpdo4Table()

@@ -72,6 +72,21 @@ QVariant BasicDataTableModel::data(const QModelIndex &index, int role) const
 
 	switch (role)
 	{
+	case NAME:
+		return m_table->names().at(index.row());
+		break;
+	case VALUE:
+		return m_table->values().at(index.row());
+		break;
+	case UNIT:
+		return m_table->units().at(index.row());
+		break;
+	default:
+		break;
+	}
+
+	/*switch (role)
+	{
 	case Qt::DisplayRole:
 		switch (index.column())
 		{
@@ -89,7 +104,7 @@ QVariant BasicDataTableModel::data(const QModelIndex &index, int role) const
 		}
 	default:
 		break;
-	}
+	}*/  // Qt5.15
 	return QVariant();
 }
 
@@ -98,12 +113,12 @@ QVariant BasicDataTableModel::data(const QModelIndex &index, int role) const
 ///
 QHash<int, QByteArray> BasicDataTableModel::roleNames() const 
 {
-	/*QHash<int, QByteArray> names;
+	QHash<int, QByteArray> names;
 	names[NAME] = "name";
 	names[VALUE] = "value";
 	names[UNIT] = "unit";
-	return names;*/
-	return { {Qt::DisplayRole, "display"} };
+	return names;
+	//return { {Qt::DisplayRole, "display"} }; // Qt5.15
 }
 
 ///
@@ -123,7 +138,7 @@ void BasicDataTableModel::setTable(BasicDataTable* table)
 		QObject::connect(m_table, &BasicDataTable::tableChanged, 
 			[this]()
 			{
-				emit dataChanged({createIndex(0, 1)}, {createIndex(rowCount()-1, 1)}, {Qt::DisplayRole});
+				emit dataChanged({createIndex(0, 1)}, {createIndex(rowCount()-1, 1)}, {VALUE});	// Qt::DisplayRole  // Qt5.15
 			});
 	}
 }

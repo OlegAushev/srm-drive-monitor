@@ -7,7 +7,8 @@
 		<file>qml/AppStatusBar.qml</file>
 		<file>qml/DataAndCharts.qml</file>
 		<file>qml/ControlAndConfiguration.qml</file>
-		<file>qml/BasicDataTable.qml</file>
+		<file>qml/BasicDataTable_v11.qml</file>
+		<file>qml/BasicDataTable_v15.qml</file>
 		<file>qml/SpinboxAndSliderControl.qml</file>
 		<file>qml/DriveConfigurationTool.qml</file>
 		<file>qml/WatchSettingsWindow.qml</file>

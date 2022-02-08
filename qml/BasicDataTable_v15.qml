@@ -10,7 +10,7 @@ Rectangle {
 	property real tableWidth
 	property real cellSpacing: 1
 
-	property var defaultColumnWidth: (tableWidth - 2*cellSpacing)/3;
+	property real defaultColumnWidth: (tableWidth - 2*cellSpacing)/3;
 
 	function getColumnWidth(col)
 	{

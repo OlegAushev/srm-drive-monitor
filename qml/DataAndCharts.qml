@@ -17,6 +17,7 @@ C1.TabView {
 				name: "Watch Data"
 				sourceTable: driveCanDataPrinter.watchTable()
 				tableWidth: 250
+				tableHeight: 620
 			}
 
 			Q2.Column {
@@ -30,6 +31,7 @@ C1.TabView {
 						name: "TPDO1 Data"
 						sourceTable: driveCanDataPrinter.tpdo1Table()
 						tableWidth: 250
+						tableHeight: 328
 					}
 					
 					BasicDataTable_v11 {
@@ -37,6 +39,7 @@ C1.TabView {
 						name: "TPDO2 Data"
 						sourceTable: driveCanDataPrinter.tpdo2Table()
 						tableWidth: 250
+						tableHeight: 328
 					}
 
 					Q2.Column {
@@ -47,6 +50,7 @@ C1.TabView {
 							name: "TPDO3 Data"
 							sourceTable: driveCanDataPrinter.tpdo3Table()
 							tableWidth: 250
+							tableHeight: 160
 						}
 
 						BasicDataTable_v11 {
@@ -54,6 +58,7 @@ C1.TabView {
 							name: "TPDO4 Data"
 							sourceTable: driveCanDataPrinter.tpdo4Table()
 							tableWidth: 250
+							tableHeight: 160
 						}
 					}
 				}
@@ -96,8 +101,8 @@ C1.TabView {
 
 					C2.Button {
 						text: "Clear"
-						width: 50
-						height: 24
+						width: text.implicitWidth
+						height: text.implicitHeight
 						anchors.bottom: parent.bottom
 						anchors.right: parent.right
 						anchors.bottomMargin: 4

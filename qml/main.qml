@@ -7,7 +7,9 @@ C2.ApplicationWindow {
 	id: appWindow
 	visible: true
 	minimumWidth: 1390
-	minimumHeight: 740
+	minimumHeight: 760
+	color: "#eff0f1"
+
 	title: "SRM Drive Monitor"
 	
 	menuBar: AppMenuBar {

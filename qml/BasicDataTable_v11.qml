@@ -11,12 +11,13 @@ Rectangle {
 	property string name
 	property QtObject sourceTable
 	property real tableWidth
+	property real tableHeight
 	property real cellSpacing: 1
 
-	property var defaultColumnWidth: (tableWidth-2)/3;
+	property real defaultColumnWidth: (tableWidth-2)/3;
 
 	width: tableWidth
-	height: tableName.height + table.height
+	height: tableHeight
 		
 	Rectangle {
 		id: tableName
@@ -39,7 +40,7 @@ Rectangle {
 	C1.TableView {
 		id: table
 		width: tableWidth
-		height: 30 + rowCount * 24
+		//height: 30 + rowCount * 24
 		anchors.top: tableName.bottom
 		anchors.bottom: parent.bottom
 		anchors.horizontalCenter: parent.horizontalCenter

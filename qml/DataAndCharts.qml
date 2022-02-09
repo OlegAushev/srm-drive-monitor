@@ -1,14 +1,17 @@
-import QtQuick.Controls 1.4 as C1
-import QtQuick 2.11  as Q2
+import QtQuick 2.11
 import QtQuick.Controls 2.4 as C2
+import QtQuick.Controls 1.4 as C1
 
 
 C1.TabView {
+
+	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
+
 	C1.Tab {
 		id: tabCanData
 		title: "CAN Data"
 
-		Q2.Row {
+		Row {
 			padding: 2
 			spacing: 8
 			
@@ -20,11 +23,11 @@ C1.TabView {
 				tableHeight: 620
 			}
 
-			Q2.Column {
+			Column {
 				id: columnTableText
 				spacing: 8
 
-				Q2.Row {
+				Row {
 					spacing: 8
 					BasicDataTable_v11 {
 						id: tpdo1DataTable
@@ -42,7 +45,7 @@ C1.TabView {
 						tableHeight: 328
 					}
 
-					Q2.Column {
+					Column {
 						spacing: 8
 
 						BasicDataTable_v11 {
@@ -63,32 +66,35 @@ C1.TabView {
 					}
 				}
 
-				Q2.Rectangle {
+				Rectangle {
 					id: canMsgTextRect
 					width: columnTableText.width
 					height: watchDataTable.height - tpdo1DataTable.height - 8
-					border.color: "lightgrey"
+					border.color: palette.mid
 
 					C2.ScrollView {
 						width: canMsgTextRect.width - 2
 						height: canMsgTextRect.height - 2
 						anchors.centerIn: parent
 						C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
+						background: Rectangle { color: palette.base }
 
-						Q2.ListView {
+						ListView {
 							id: canMsgListView
 							anchors.fill: parent
 							model: driveCanDataPrinter.textMessages
 
-							delegate: Q2.Rectangle {
+							delegate: Rectangle {
 								width: canMsgListView.width
 								height: msg.height
+								color: "transparent"
 
-								Q2.Text {
+								Text {
 									id: msg
 									text: modelData
 									horizontalAlignment: Qt.AlignLeft
-									leftPadding: 2
+									leftPadding: 4
+									color: palette.text
 								}
 							}
 

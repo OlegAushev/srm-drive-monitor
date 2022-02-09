@@ -16,9 +16,12 @@ Rectangle {
 
 	signal valueChanged(real value)
 
+	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
+
 	width: 320
 	height: 80
-	border.color: "lightgrey"
+	border.color: palette.mid 
+	color: palette.window
 
 	Text {
 		id: label
@@ -28,6 +31,7 @@ Rectangle {
 		anchors.topMargin: 2
 		horizontalAlignment: Text.AlignHCenter
 		text: name
+		color: palette.windowText
 	}
 
 	Slider {

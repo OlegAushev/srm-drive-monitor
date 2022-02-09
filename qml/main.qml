@@ -1,15 +1,17 @@
-import QtQuick 2.11 as Q2
-import QtQuick.Controls 2.4 as C2
+import QtQuick 2.11
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 
 
-C2.ApplicationWindow {
+ApplicationWindow {
 	id: appWindow
+	
+	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
+	
 	visible: true
 	minimumWidth: 1390
 	minimumHeight: 760
-	color: "#eff0f1"
-
+	color: palette.window
 	title: "SRM Drive Monitor"
 	
 	menuBar: AppMenuBar {

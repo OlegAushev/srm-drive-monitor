@@ -31,7 +31,7 @@ Rectangle {
 
 		Rectangle {
 			width: 200
-			height: 32
+			height: valueInput.implicitHeight
 			anchors.horizontalCenter: parent.horizontalCenter
 			color: "transparent"
 

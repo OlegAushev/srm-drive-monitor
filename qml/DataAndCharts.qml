@@ -64,54 +64,61 @@ C1.TabView {
 					}
 				}
 
-				Rectangle {
-					id: canMsgTextRect
-					width: columnTableText.width
-					height: watchDataTable.height - tpdo1DataTable.height - 8
-					border.color: palette.mid
+				C2.Frame {
+					padding: 0
+					implicitWidth: canMsgTextRect.width
+					implicitHeight: canMsgTextRect.height
 
-					C2.ScrollView {
-						width: canMsgTextRect.width - 2
-						height: canMsgTextRect.height - 2
-						anchors.centerIn: parent
-						C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
-						background: Rectangle { color: palette.base }
+					Rectangle {
+						id: canMsgTextRect
+						width: columnTableText.width
+						height: watchDataTable.height - tpdo1DataTable.height - 8
+						border.color: "transparent"
+						color: "transparent"
+						
+						C2.ScrollView {
+							width: canMsgTextRect.width - 2
+							height: canMsgTextRect.height - 2
+							anchors.centerIn: parent
+							C2.ScrollBar.vertical.policy: C2.ScrollBar.AlwaysOn
+							background: Rectangle { color: palette.base }
 
-						ListView {
-							id: canMsgListView
-							anchors.fill: parent
-							model: driveCanDataPrinter.textMessages
+							ListView {
+								id: canMsgListView
+								anchors.fill: parent
+								model: driveCanDataPrinter.textMessages
 
-							delegate: Rectangle {
-								width: canMsgListView.width
-								height: msg.height
-								color: "transparent"
+								delegate: Rectangle {
+									width: canMsgListView.width
+									height: msg.height
+									color: "transparent"
 
-								Text {
-									id: msg
-									text: modelData
-									horizontalAlignment: Qt.AlignLeft
-									leftPadding: 4
-									color: palette.text
+									Text {
+										id: msg
+										text: modelData
+										horizontalAlignment: Qt.AlignLeft
+										leftPadding: 4
+										color: palette.text
+									}
+								}
+
+								onCountChanged: {
+									Qt.callLater( canMsgListView.positionViewAtEnd )
+									
 								}
 							}
-
-							onCountChanged: {
-								Qt.callLater( canMsgListView.positionViewAtEnd )
-								
-							}
 						}
-					}
 
-					C2.Button {
-						text: "Clear"
-						width: text.implicitWidth
-						height: text.implicitHeight
-						anchors.bottom: parent.bottom
-						anchors.right: parent.right
-						anchors.bottomMargin: 4
-						anchors.rightMargin: 24
-						onClicked: driveCanDataPrinter.clearTextMessages()
+						C2.Button {
+							text: "Clear"
+							width: text.implicitWidth
+							height: text.implicitHeight
+							anchors.bottom: parent.bottom
+							anchors.right: parent.right
+							anchors.bottomMargin: 4
+							anchors.rightMargin: 24
+							onClicked: driveCanDataPrinter.clearTextMessages()
+						}
 					}
 				}
 			}

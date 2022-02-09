@@ -26,7 +26,7 @@ Rectangle {
 		anchors.top: parent.top
 		anchors.horizontalCenter: parent.horizontalCenter
 		height: 20
-		color: "#3daee9"
+		color: palette.highlight
 		border.color: palette.mid
 
 		Text {

@@ -3,7 +3,6 @@ import QtQuick.Controls 2.4
 
 
 ToolBar {
-	background: Rectangle { color: palette.window }
 
 	Row {
 		ToolButton {

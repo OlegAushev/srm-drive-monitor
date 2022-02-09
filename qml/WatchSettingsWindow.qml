@@ -13,8 +13,7 @@ ApplicationWindow {
 		width: root.width - 2
 		height: root.height - 2
 		anchors.centerIn: parent
-		color: "#eff0f1"
-		border.color: "lightgrey"
+		color: palette.window
 
 		Column{
 			id: column
@@ -27,12 +26,15 @@ ApplicationWindow {
 				height: 20
 				horizontalAlignment: Text.AlignHCenter
 				text: "Watch request period (0..999ms)"
+				color: palette.windowText
 			}
 
 			Rectangle {
 				width: 200
 				height: 32
 				anchors.horizontalCenter: parent.horizontalCenter
+				color: "transparent"
+
 				TextField {
 					id: valueInput
 					anchors.fill: parent

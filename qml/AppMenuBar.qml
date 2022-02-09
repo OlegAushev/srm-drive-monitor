@@ -3,7 +3,6 @@ import QtQuick.Controls 2.4
 
 
 MenuBar {
-	background: Rectangle { color: palette.window }
 
 	Menu {
 		title: "App"

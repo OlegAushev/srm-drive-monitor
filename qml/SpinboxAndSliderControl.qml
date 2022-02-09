@@ -3,7 +3,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Controls 1.4 as C1
 
 
-Rectangle {
+Frame {
 	id: root
 
 	property string name
@@ -16,51 +16,57 @@ Rectangle {
 
 	signal valueChanged(real value)
 
-	width: 320
-	height: 80
-	border.color: palette.mid 
-	color: palette.window
+	padding: 1
 
-	Text {
-		id: label
-		width: parent.width
-		height: 20
-		anchors.top: parent.top
-		anchors.topMargin: 2
-		horizontalAlignment: Text.AlignHCenter
-		text: name
-		color: palette.windowText
-	}
+	Rectangle {
+		implicitWidth: 320
+		implicitHeight: 80
+		width: 320
+		height: 80
+		border.color: palette.window 
+		color: palette.window
 
-	Slider {
-		id: slider
-		width: 200
-		anchors.right: parent.right
-		anchors.verticalCenter: parent.verticalCenter
-		anchors.rightMargin: 4
+		Text {
+			id: label
+			width: parent.width
+			height: 20
+			anchors.top: parent.top
+			anchors.topMargin: 2
+			horizontalAlignment: Text.AlignHCenter
+			text: name
+			color: palette.windowText
+		}
 
-		from: valueFrom
-		to: valueTo
-		stepSize: sliderStep
-		snapMode: Slider.NoSnap
+		Slider {
+			id: slider
+			width: 200
+			anchors.right: parent.right
+			anchors.verticalCenter: parent.verticalCenter
+			anchors.rightMargin: 4
 
-		onMoved: { root.valueChanged(value) }		
-	}
+			from: valueFrom
+			to: valueTo
+			stepSize: sliderStep
+			snapMode: Slider.NoSnap
 
-	C1.SpinBox {
-		id: spinbox
-		width: 100
-		anchors.left: parent.left
-		anchors.verticalCenter: parent.verticalCenter
-		anchors.leftMargin: 4
+			onMoved: { root.valueChanged(value) }		
+		}
 
-		minimumValue: valueFrom
-		maximumValue: valueTo
-		stepSize: spinboxStep
-		decimals: spinboxDecimals
-		suffix: unit
+		C1.SpinBox {
+			id: spinbox
+			width: 100
+			anchors.left: parent.left
+			anchors.verticalCenter: parent.verticalCenter
+			anchors.leftMargin: 4
 
-		value: slider.value
-		onEditingFinished: { slider.value = value; root.valueChanged(value) }
+			minimumValue: valueFrom
+			maximumValue: valueTo
+			stepSize: spinboxStep
+			decimals: spinboxDecimals
+			suffix: unit
+
+			value: slider.value
+			onEditingFinished: { slider.value = value; root.valueChanged(value) }
+		}
 	}
 }

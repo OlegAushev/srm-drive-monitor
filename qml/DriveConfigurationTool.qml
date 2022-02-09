@@ -2,19 +2,17 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 
 
-Rectangle {
+Frame {
 	id: root
 
 	width: 320
 	height: 400
-	border.color: palette.mid
-	color: palette.window
 
 	Column {
-		anchors.fill: root
-		anchors.topMargin: 16
+		anchors.horizontalCenter: parent.horizontalCenter
 		padding: 16
 		spacing: 16
+		
 		ComboBox {
 			id: parameterCategory
 			width: 200

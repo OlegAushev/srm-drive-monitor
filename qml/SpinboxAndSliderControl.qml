@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Controls 1.4 as C1
+import QtQuick.Controls.Styles 1.4
 
 
 Frame {
@@ -16,25 +17,30 @@ Frame {
 
 	signal valueChanged(real value)
 
-	padding: 1
+	
+	padding: 0
 
-	Rectangle {
-		implicitWidth: 320
-		implicitHeight: 80
+	Item {
 		width: 320
 		height: 80
-		border.color: palette.window 
-		color: palette.window
+		implicitWidth: 320
+		implicitHeight: 80
+		anchors.fill: parent
 
-		Text {
-			id: label
+		Item {
 			width: parent.width
-			height: 20
+			height: label.implicitHeight
+			anchors.horizontalCenter: parent.horizontalCenter
 			anchors.top: parent.top
-			anchors.topMargin: 2
-			horizontalAlignment: Text.AlignHCenter
-			text: name
-			color: palette.windowText
+			anchors.topMargin: 4
+
+			Label {
+				id: label
+				width: parent.width
+				height: 20
+				horizontalAlignment: Text.AlignHCenter
+				text: name
+			}
 		}
 
 		Slider {
@@ -54,6 +60,7 @@ Frame {
 
 		C1.SpinBox {
 			id: spinbox
+			//style: SpinBoxStyle {}
 			width: 100
 			anchors.left: parent.left
 			anchors.verticalCenter: parent.verticalCenter

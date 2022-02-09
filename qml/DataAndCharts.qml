@@ -5,8 +5,6 @@ import QtQuick.Controls 1.4 as C1
 
 C1.TabView {
 
-	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
-
 	C1.Tab {
 		id: tabCanData
 		title: "CAN Data"

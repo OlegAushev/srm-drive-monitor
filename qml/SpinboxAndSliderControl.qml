@@ -16,8 +16,6 @@ Rectangle {
 
 	signal valueChanged(real value)
 
-	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
-
 	width: 320
 	height: 80
 	border.color: palette.mid 

@@ -18,6 +18,7 @@ Rectangle {
 
 	width: tableWidth
 	height: tableHeight
+	color: "transparent"
 		
 	Rectangle {
 		id: tableName
@@ -26,7 +27,7 @@ Rectangle {
 		anchors.horizontalCenter: parent.horizontalCenter
 		height: 20
 		color: "#3daee9"
-		border.color: "lightgrey"
+		border.color: palette.mid
 
 		Text {
 			anchors.fill: parent			

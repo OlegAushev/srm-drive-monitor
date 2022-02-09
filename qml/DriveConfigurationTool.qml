@@ -7,7 +7,8 @@ Rectangle {
 
 	width: 320
 	height: 400
-	border.color: "lightgrey"
+	border.color: palette.mid
+	color: palette.window
 
 	Column {
 		anchors.fill: root
@@ -32,6 +33,8 @@ Rectangle {
 			width: 200
 			height: 32
 			anchors.horizontalCenter: parent.horizontalCenter
+			color: "transparent"
+
 			TextField {
 				id: valueInput
 				anchors.fill: parent

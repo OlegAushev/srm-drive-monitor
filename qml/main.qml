@@ -6,8 +6,6 @@ import QtQuick.Layouts 1.11
 ApplicationWindow {
 	id: appWindow
 	
-	SystemPalette { id: palette; colorGroup: SystemPalette.Active }
-	
 	visible: true
 	minimumWidth: 1390
 	minimumHeight: 760

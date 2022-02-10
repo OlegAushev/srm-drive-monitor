@@ -68,9 +68,7 @@ Item{
 			id: tabConfiguration
 			Column {
 				padding : 4
-				DriveConfigurationTool {
-					
-				}
+				DriveConfigurationTool {}
 			}
 		}
 	}

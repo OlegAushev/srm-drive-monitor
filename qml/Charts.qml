@@ -4,6 +4,7 @@ import QtCharts 2.2
 
 ChartView {
 	id: chartview
+	anchors.fill: parent
 	animationOptions: ChartView.NoAnimation
 	theme: ChartView.ChartThemeDark	
 

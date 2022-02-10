@@ -26,7 +26,7 @@ public:
 	void sendOdReadRequest(const QString& odEntryName);
 	void sendOdWriteRequest(const QString& odEntryName, CobSdoData data = {});
 
-	int timeMs()
+	int timeMsec()
 	{
 		if (!m_sysTimer.isValid())
 		{

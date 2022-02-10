@@ -25,7 +25,7 @@ public:
 	ChartPlotter();
 	~ChartPlotter();
 
-	int timeMs()
+	int timeMsec()
 	{
 		if (!m_sysTimer.isValid())
 		{
@@ -35,9 +35,10 @@ public:
 	}
 
 private:
-	QVector<QPointF> m_data1;
-	QVector<QPointF> m_data2;
-	QVector<QPointF> m_data3;
+	static const inline int CHANNEL_COUNT = 3;
+	static const inline int CHANNEL_BUF_LENGTH = 1000;
+
+	QVector<QList<QPointF>> m_data;
 
 	QTimer* m_timer;
 	QElapsedTimer m_sysTimer;
@@ -45,6 +46,8 @@ private:
 public slots:
 	void update(int channel, QtCharts::QAbstractSeries* series);
 	void addData(int channel, QPointF point);
+
+	double timeSec() { return timeMsec() / 1000.0; }
 
 private slots:
 	void generateData();

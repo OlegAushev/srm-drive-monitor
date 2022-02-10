@@ -7,6 +7,9 @@ Item {
 	id: root
 	anchors.fill: parent
 
+	property real timeWindow: 25
+	property real timeNow: 0
+
 	ColumnLayout {
 		anchors.fill: root
 		spacing:0
@@ -27,15 +30,15 @@ Item {
 				legend.visible: false
 
 				ValueAxis {
-					id: axisY1
-					min: -100
-					max: 100
+					id: axisX1
+					min: (timeNow > timeWindow) ? timeNow - timeWindow : 0
+					max: (timeNow > timeWindow) ? timeNow : timeWindow
 				}
 
 				ValueAxis {
-					id: axisX1
-					min: 0
-					max: 60
+					id: axisY1
+					min: -100
+					max: 100
 				}
 
 				LineSeries {
@@ -46,10 +49,6 @@ Item {
 				}
 			}
 		}
-
-
-
-
 
 		Item {
 			id: item2
@@ -67,15 +66,15 @@ Item {
 				legend.visible: false
 
 				ValueAxis {
-					id: axisY2
-					min: -100
-					max: 100
+					id: axisX2
+					min: (timeNow > timeWindow) ? timeNow - timeWindow : 0
+					max: (timeNow > timeWindow) ? timeNow : timeWindow
 				}
 
 				ValueAxis {
-					id: axisX2
-					min: 0
-					max: 60
+					id: axisY2
+					min: -100
+					max: 100
 				}
 
 				LineSeries {
@@ -86,8 +85,6 @@ Item {
 				}
 			}
 		}
-
-
 
 		Item {
 			id: item3
@@ -104,15 +101,15 @@ Item {
 				legend.visible: false
 
 				ValueAxis {
-					id: axisY3
-					min: -100
-					max: 100
+					id: axisX3
+					min: (timeNow > timeWindow) ? timeNow - timeWindow : 0
+					max: (timeNow > timeWindow) ? timeNow : timeWindow
 				}
 
 				ValueAxis {
-					id: axisX3
-					min: 0
-					max: 60
+					id: axisY3
+					min: -100
+					max: 100
 				}
 
 				LineSeries {
@@ -123,29 +120,24 @@ Item {
 				}
 			}
 		}
-
-
-
-		
-
-
-
 	}
 
 
 	Timer {
 		id: refreshTimer
 		interval: 1000 / 60 	// 60 Hz
+		property real timeSec: 0
 		running: true
 		repeat: true
 		onTriggered: {
+			timeSec += interval/1000;
 			chartPlotter.update(0, lineSeries1);
 			chartPlotter.update(1, lineSeries2);
 			chartPlotter.update(2, lineSeries3);
+			timeNow = chartPlotter.timeSec();
 		}
 	}
-
-
+	
 }
 
 

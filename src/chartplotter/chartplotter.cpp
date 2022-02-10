@@ -7,6 +7,7 @@
 ChartPlotter::ChartPlotter()
 	: m_timer(new QTimer(this))
 {
+	m_data.resize(CHANNEL_COUNT);
 	QObject::connect(m_timer, &QTimer::timeout, this, &ChartPlotter::generateData);
 	m_sysTimer.start();
 	m_timer->start(10);
@@ -25,25 +26,15 @@ ChartPlotter::~ChartPlotter()
 ///
 void ChartPlotter::update(int channel, QtCharts::QAbstractSeries* series)
 {
+	if (channel < 0 || channel >= CHANNEL_COUNT)
+	{
+		return;
+	}
+
 	if (series)
 	{
 		QtCharts::QXYSeries* xySeries = static_cast<QtCharts::QXYSeries*>(series);
-
-		switch (channel)
-		{
-		case CHANNEL_1:
-			xySeries->replace(m_data1);
-			break;
-		case CHANNEL_2:
-			xySeries->replace(m_data2);
-			break;
-		case CHANNEL_3:
-			xySeries->replace(m_data3);
-			break;
-		default:
-			break;
-		}
-		
+		xySeries->replace(m_data[channel]);		
 	}
 }
 
@@ -52,19 +43,15 @@ void ChartPlotter::update(int channel, QtCharts::QAbstractSeries* series)
 ///
 void ChartPlotter::addData(int channel, QPointF point)
 {
-	switch (channel)
+	if (channel < 0 || channel >= CHANNEL_COUNT)
 	{
-	case CHANNEL_1:
-		m_data1.append(point);
-		break;
-	case CHANNEL_2:
-		m_data2.append(point);
-		break;
-	case CHANNEL_3:
-		m_data3.append(point);
-		break;
-	default:
-		break;
+		return;
+	}
+	m_data[channel].append(point);
+
+	if (m_data[channel].size() > CHANNEL_BUF_LENGTH)
+	{
+		m_data[channel].removeFirst();
 	}
 }
 
@@ -73,7 +60,7 @@ void ChartPlotter::addData(int channel, QPointF point)
 ///
 void ChartPlotter::generateData()
 {
-	double x = timeMs() / 1000.0;
+	double x = timeMsec() / 1000.0;
 	double y1 = 25 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
 	double y2 = 50 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
 	double y3 = 75 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);

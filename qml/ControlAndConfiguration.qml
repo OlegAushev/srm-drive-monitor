@@ -24,45 +24,41 @@ Item{
 				padding : 4
 				spacing: 4
 
-				SpinboxAndSliderControl {
+				SliderAndTextInput {
 					name: "Speed"
-					unit: " rpm"
+					unit: "rpm"
 					valueFrom: -8000
 					valueTo: 8000
 					sliderStep: 100
-					spinboxStep: 100
 					onValueChanged: driveController.setSpeed(value)
 				}
 
-				SpinboxAndSliderControl {
+				SliderAndTextInput {
 					name: "Torque"
-					unit: " %"
+					unit: "%"
 					valueFrom: -100
 					valueTo: 100
 					sliderStep: 1
-					spinboxStep: 1
-					spinboxDecimals: 2
+					decimals: 2
 					onValueChanged: driveController.setTorque(value)
 				}
 
-				SpinboxAndSliderControl {
+				SliderAndTextInput {
 					name: "Field Current"
-					unit: " A"
+					unit: "A"
 					valueFrom: 0
 					valueTo: 35
-					sliderStep: 1
-					spinboxStep: 1
-					spinboxDecimals: 1
+					sliderStep: 0.1
+					decimals: 1
 					onValueChanged: driveController.setFieldCurrent(value)
 				}
 
-				SpinboxAndSliderControl {
+				SliderAndTextInput {
 					name: "Gamma Correction"
-					unit: " °"
+					unit: "°"
 					valueFrom: -180
 					valueTo: 180
 					sliderStep: 1
-					spinboxStep: 1
 					onValueChanged: driveController.setGammaCorrection(value)
 				}
 			}

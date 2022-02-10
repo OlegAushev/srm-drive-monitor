@@ -12,12 +12,10 @@ Frame {
 	property real valueFrom
 	property real valueTo
 	property real sliderStep
-	property real spinboxStep
-	property int spinboxDecimals
+	property int decimals
 
 	signal valueChanged(real value)
 
-	
 	padding: 0
 
 	Item {
@@ -39,7 +37,7 @@ Frame {
 				width: parent.width
 				height: 20
 				horizontalAlignment: Text.AlignHCenter
-				text: name
+				text: name + ", " + unit
 			}
 		}
 
@@ -58,22 +56,33 @@ Frame {
 			onMoved: { root.valueChanged(value) }		
 		}
 
-		C1.SpinBox {
-			id: spinbox
-			//style: SpinBoxStyle {}
+		Rectangle {
 			width: 100
+			height: valueInput.implicitHeight
 			anchors.left: parent.left
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.leftMargin: 4
+			color: "transparent"
 
-			minimumValue: valueFrom
-			maximumValue: valueTo
-			stepSize: spinboxStep
-			decimals: spinboxDecimals
-			suffix: unit
+			TextField {
+				id: valueInput
+				anchors.fill: parent
+				horizontalAlignment: Qt.AlignHCenter
+				verticalAlignment: Qt.AlignVCenter
+				placeholderText: "Enter value"
+				validator: DoubleValidator {
+					locale: "en_EN"
+					bottom: valueFrom
+					top: valueTo
+				}
 
-			value: slider.value
-			onEditingFinished: { slider.value = value; root.valueChanged(value) }
+				text: slider.value.toLocaleString(Qt.locale("en_EN"), 'f', decimals)
+
+				onEditingFinished: {
+        				slider.value =  parseFloat(text);
+					root.valueChanged(slider.value)
+                		}
+			}
 		}
 	}
 }

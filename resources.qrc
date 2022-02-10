@@ -9,7 +9,7 @@
 		<file>qml/ControlAndConfiguration.qml</file>
 		<file>qml/BasicDataTable_v11.qml</file>
 		<file>qml/BasicDataTable_v15.qml</file>
-		<file>qml/SpinboxAndSliderControl.qml</file>
+		<file>qml/SliderAndTextInput.qml</file>
 		<file>qml/DriveConfigurationTool.qml</file>
 		<file>qml/WatchSettingsWindow.qml</file>
 		<file>qml/Charts.qml</file>

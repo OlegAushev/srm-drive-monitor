@@ -8,10 +8,12 @@ Item{
 		id: tabbar
 		TabButton {
 			text: "Control"
+			width: implicitWidth
 		}
 
 		TabButton {
 			text: "Configuration"
+			width: implicitWidth
 		}
 	}
 

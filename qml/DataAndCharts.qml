@@ -10,10 +10,12 @@ Item {
 		id: tabbar
 		TabButton {
 			text: "CAN Data"
+			width: implicitWidth
 		}
 
 		TabButton {
 			text: "Charts"
+			width: implicitWidth
 		}
 	}
 

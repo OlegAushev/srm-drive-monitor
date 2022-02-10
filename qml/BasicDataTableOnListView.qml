@@ -16,6 +16,21 @@ Item {
 
 	property real defaultColumnWidth: tableWidth/3;
 
+	function getColumnWidth(col)
+	{
+		switch (col) {
+		case 0:
+			return defaultColumnWidth+1;
+		case 1:
+			return defaultColumnWidth+1+15;
+		case 2:
+			return defaultColumnWidth-15;
+		default:
+			return 0;
+		}
+	}
+
+
 	width: tableWidth
 	height: tableHeader.height + columnHeader.height + table.count * 24 - (table.count - 1)  
 
@@ -28,7 +43,7 @@ Item {
 		height: 20
 		color: Material.color(Material.DeepOrange)
 
-		Text {
+		Label {
 			anchors.fill: parent			
 			anchors.top: parent.top
 			horizontalAlignment: Text.AlignHCenter
@@ -44,17 +59,18 @@ Item {
 		anchors.top: tableHeader.bottom
 		anchors.horizontalCenter: root.horizontalCenter
 		anchors.topMargin: 0
-		spacing: 0
+		spacing: -1
 
 		Repeater {
 			model: 3
 
 			Rectangle {
-				width: defaultColumnWidth
+				width: getColumnWidth(index)
 				height: columnHeader.height
 				color: Material.color(Material.Blue)
+				border.color: Material.color(Material.Grey)
 
-				Text {
+				Label {
 					width: parent.width
 					height: parent.height
 					horizontalAlignment: Text.AlignHCenter
@@ -70,6 +86,7 @@ Item {
 		orientation: Qt.Vertical
 		anchors.top: columnHeader.bottom
 		anchors.bottom: root.bottom
+		anchors.topMargin: -1
 		
 		model: BasicDataTableModel {
 			table: sourceTable
@@ -83,8 +100,11 @@ Item {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
 				Layout.preferredHeight: 24
-				Layout.preferredWidth: defaultColumnWidth+1
-				background: Rectangle { color: "transparent"; border.color: Material.color(Material.Grey) }
+				Layout.preferredWidth: getColumnWidth(0)
+				background: Rectangle { 
+					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					border.color: Material.color(Material.Grey)
+				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				text: name
@@ -94,8 +114,11 @@ Item {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
 				Layout.preferredHeight: 24
-				Layout.preferredWidth: defaultColumnWidth+1
-				background: Rectangle { color: "transparent"; border.color: Material.color(Material.Grey) }
+				Layout.preferredWidth: getColumnWidth(1)
+				background: Rectangle {
+					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					border.color: Material.color(Material.Grey)
+				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				text: value
@@ -105,8 +128,11 @@ Item {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
 				Layout.preferredHeight: 24
-				Layout.preferredWidth: defaultColumnWidth
-				background: Rectangle { color: "transparent"; border.color: Material.color(Material.Grey) }
+				Layout.preferredWidth: getColumnWidth(2)
+				background: Rectangle {
+					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					border.color: Material.color(Material.Grey)
+				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				text: unit

@@ -31,7 +31,7 @@ Item {
 				padding: 2
 				spacing: 8
 				
-				BasicDataTable_v11 {
+				BasicDataTableOnListView {
 					id: watchDataTable
 					name: "Watch Data"
 					sourceTable: driveCanDataPrinter.watchTable()
@@ -45,7 +45,7 @@ Item {
 
 					Row {
 						spacing: 8
-						BasicDataTable_v11 {
+						BasicDataTableOnListView {
 							id: tpdo1DataTable
 							name: "TPDO1 Data"
 							sourceTable: driveCanDataPrinter.tpdo1Table()
@@ -53,7 +53,7 @@ Item {
 							tableHeight: 328
 						}
 						
-						BasicDataTable_v11 {
+						BasicDataTableOnListView {
 							id: tpdo2DataTable
 							name: "TPDO2 Data"
 							sourceTable: driveCanDataPrinter.tpdo2Table()
@@ -64,7 +64,7 @@ Item {
 						Column {
 							spacing: 8
 
-							BasicDataTable_v11 {
+							BasicDataTableOnListView {
 								id: tpdo3DataTable
 								name: "TPDO3 Data"
 								sourceTable: driveCanDataPrinter.tpdo3Table()
@@ -72,7 +72,7 @@ Item {
 								tableHeight: 160
 							}
 
-							BasicDataTable_v11 {
+							BasicDataTableOnListView {
 								id: tpdo4DataTable
 								name: "TPDO4 Data"
 								sourceTable: driveCanDataPrinter.tpdo4Table()

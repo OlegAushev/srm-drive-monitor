@@ -36,7 +36,6 @@ Item {
 					name: "Watch Data"
 					sourceTable: driveCanDataPrinter.watchTable()
 					tableWidth: 250
-					tableHeight: 620
 				}
 
 				Column {
@@ -50,7 +49,6 @@ Item {
 							name: "TPDO1 Data"
 							sourceTable: driveCanDataPrinter.tpdo1Table()
 							tableWidth: 250
-							tableHeight: 328
 						}
 						
 						BasicDataTableOnListView {
@@ -58,7 +56,6 @@ Item {
 							name: "TPDO2 Data"
 							sourceTable: driveCanDataPrinter.tpdo2Table()
 							tableWidth: 250
-							tableHeight: 328
 						}
 
 						Column {
@@ -69,7 +66,6 @@ Item {
 								name: "TPDO3 Data"
 								sourceTable: driveCanDataPrinter.tpdo3Table()
 								tableWidth: 250
-								tableHeight: 160
 							}
 
 							BasicDataTableOnListView {
@@ -77,7 +73,6 @@ Item {
 								name: "TPDO4 Data"
 								sourceTable: driveCanDataPrinter.tpdo4Table()
 								tableWidth: 250
-								tableHeight: 160
 							}
 						}
 					}

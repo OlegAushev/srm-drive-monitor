@@ -73,13 +73,6 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 		}
 
 		m_watchTable->updateView();
-
-		if (entryIt->second.name == "AIR_TEMP")
-		{
-			double x = m_mcoClient->timeMs() / 1000.0;
-			double y = message.data.f32();
-			m_chartPlotter->addData(QPointF(x, y));
-		}
 	}
 	else
 	{

@@ -81,7 +81,8 @@
 		"qabstractlistmodel": "cpp",
 		"qstring": "cpp",
 		"qabstractseries": "cpp",
-		"qxyseries": "cpp"
+		"qxyseries": "cpp",
+		"future": "cpp"
 	},
 	"[Log]": {
 		"editor.fontSize": 10,

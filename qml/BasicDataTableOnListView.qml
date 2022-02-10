@@ -17,7 +17,7 @@ Item {
 	property real defaultColumnWidth: tableWidth/3;
 
 	width: tableWidth
-	height: tableHeader.height + columnHeader.height + table.count * 24
+	height: tableHeader.height + columnHeader.height + table.count * 24 - (table.count - 1)  
 
 	Rectangle {
 		id: tableHeader

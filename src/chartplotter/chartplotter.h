@@ -16,15 +16,10 @@ class ChartPlotter : public QObject
 {
 	Q_OBJECT
 public:
-	enum Channel
-	{
-		CHANNEL_1,
-		CHANNEL_2,
-		CHANNEL_3,
-	};
-
 	ChartPlotter();
 	~ChartPlotter();
+
+	Q_INVOKABLE QStringList channelList() const { return m_channelList; };
 
 	int timeMsec()
 	{
@@ -37,15 +32,16 @@ public:
 
 	Q_INVOKABLE double timeSec() { return timeMsec() / 1000.0; }
 
-	Q_INVOKABLE double minValue(int channel) 
-	{ return (*std::min_element(m_data[channel].begin(), m_data[channel].end(),
+	Q_INVOKABLE double minValue(QString channel) 
+	{	
+		return (*std::min_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
 			{
 				return first.y() < second.y();
 			})).y();
 	}
 	
-	Q_INVOKABLE double maxValue(int channel)
+	Q_INVOKABLE double maxValue(QString channel)
 	{
 		return (*std::max_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
@@ -56,18 +52,19 @@ public:
 
 private:
 	static const inline int CHANNEL_COUNT = 3;
-	static const inline int CHANNEL_BUF_LENGTH = 1000;
+	static const inline int CHANNEL_BUF_LENGTH = 6000;
+	QStringList m_channelList = {"Channel1", "Channel2", "Channel3"};
 
-	QVector<QList<QPointF>> m_data;
-	QVector<double> m_minValues;
-	QVector<double> m_maxValues;
+	QMap<QString, QList<QPointF>> m_data;
+	QMap<QString, double> m_minValues;
+	QMap<QString, double> m_maxValues;
 
 	QTimer* m_timer;
 	QElapsedTimer m_sysTimer;
 
 public slots:
-	void update(int channel, QtCharts::QAbstractSeries* series);
-	void addData(int channel, QPointF point);
+	void update(QString channel, QtCharts::QAbstractSeries* series);
+	void addData(QString channel, QPointF point);
 
 private slots:
 	void generateData();

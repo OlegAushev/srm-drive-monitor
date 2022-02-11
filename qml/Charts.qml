@@ -1,13 +1,14 @@
 import QtQuick 2.11
 import QtCharts 2.2
 import QtQuick.Layouts 1.11
+import QtQuick.Controls 2.4
 
 
 Item {
 	id: root
 	anchors.fill: parent
 
-	property real timeWindow: 60
+	property real timeWindow: 20
 	property real timeNow: 0
 
 	ColumnLayout {
@@ -20,6 +21,18 @@ Item {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+
+			ComboBox {
+				id: chart0Selector
+				z: 1
+				width: 200
+				height: 30
+				anchors.top: chartview0.top
+				anchors.right: chartview0.right
+				anchors.topMargin: 4
+				anchors.rightMargin: 32
+				model: chartPlotter.channelList()
+			}
 
 			ChartView {
 				id: chartview0
@@ -42,6 +55,7 @@ Item {
 					id: axisY0
 					min: -100
 					max: 100
+					minorTickCount: 1
 				}
 
 				LineSeries {
@@ -60,6 +74,18 @@ Item {
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 			
+			ComboBox {
+				id: chart1Selector
+				z: 1
+				width: 200
+				height: 30
+				anchors.top: chartview1.top
+				anchors.right: chartview1.right
+				anchors.topMargin: 4
+				anchors.rightMargin: 32
+				model: chartPlotter.channelList()
+			}
+
 			ChartView {
 				id: chartview1
 				
@@ -81,6 +107,7 @@ Item {
 					id: axisY1
 					min: -100
 					max: 100
+					minorTickCount: 1
 				}
 
 				LineSeries {
@@ -98,6 +125,18 @@ Item {
 			Layout.fillHeight: true
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 			
+			ComboBox {
+				id: chart2Selector
+				z: 1
+				width: 200
+				height: 30
+				anchors.top: chartview2.top
+				anchors.right: chartview2.right
+				anchors.topMargin: 4
+				anchors.rightMargin: 32
+				model: chartPlotter.channelList()
+			}
+
 			ChartView {
 				id: chartview2
 				
@@ -119,6 +158,7 @@ Item {
 					id: axisY2
 					min: -100
 					max: 100
+					minorTickCount: 1
 				}
 
 				LineSeries {
@@ -134,24 +174,24 @@ Item {
 
 	Timer {
 		id: refreshTimer
-		interval: 1000 / 60
+		interval: 1000 / 10
 		running: true
 		repeat: true
 		onTriggered: {
-			chartPlotter.update(0, lineSeries0);
-			axisY0.min = chartPlotter.minValue(0) - 20;
-			axisY0.max = chartPlotter.maxValue(0) + 20;
+			chartPlotter.update(chart0Selector.currentText, lineSeries0);
+			axisY0.min = chartPlotter.minValue(chart0Selector.currentText) - 5;
+			axisY0.max = chartPlotter.maxValue(chart0Selector.currentText) + 5;
 			axisY0.applyNiceNumbers();
-
-			chartPlotter.update(1, lineSeries1);
-			axisY1.min = chartPlotter.minValue(1) - 20;
-			axisY1.max = chartPlotter.maxValue(1) + 20;
+			
+			chartPlotter.update(chart1Selector.currentText, lineSeries1);
+			axisY1.min = chartPlotter.minValue(chart1Selector.currentText) - 5;
+			axisY1.max = chartPlotter.maxValue(chart1Selector.currentText) + 5;
 			axisY1.applyNiceNumbers();
 
-			chartPlotter.update(2, lineSeries2);
-			axisY2.min = chartPlotter.minValue(2) - 20;
-			axisY2.max = chartPlotter.maxValue(2) + 20;
-			axisY2.applyNiceNumbers();			
+			chartPlotter.update(chart2Selector.currentText, lineSeries2);
+			axisY2.min = chartPlotter.minValue(chart2Selector.currentText) - 5;
+			axisY2.max = chartPlotter.maxValue(chart2Selector.currentText) + 5;
+			axisY2.applyNiceNumbers();	
 			
 			timeNow = chartPlotter.timeSec();
 		}

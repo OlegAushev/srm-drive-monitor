@@ -4,7 +4,7 @@ import QtQuick.Controls 2.4
 
 Label {
 	text: "No CAN bus connection"
-		Connections {
+	Connections {
 		target: mcoClient
 		function onInfoMessageAvailable(message) {
 			text = message;

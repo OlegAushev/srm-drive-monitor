@@ -8,6 +8,11 @@ ChartPlotter::ChartPlotter()
 	: m_timer(new QTimer(this))
 {
 	m_data.resize(CHANNEL_COUNT);
+	m_minValues.resize(CHANNEL_COUNT);
+	m_minValues.fill(0);
+	m_maxValues.resize(CHANNEL_COUNT);
+	m_maxValues.fill(0);
+
 	QObject::connect(m_timer, &QTimer::timeout, this, &ChartPlotter::generateData);
 	m_sysTimer.start();
 	m_timer->start(10);
@@ -61,9 +66,9 @@ void ChartPlotter::addData(int channel, QPointF point)
 void ChartPlotter::generateData()
 {
 	double x = timeMsec() / 1000.0;
-	double y1 = 25 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
-	double y2 = 50 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
-	double y3 = 75 * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
+	double y1 = 500 * std::sin(0.05*x) * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
+	double y2 = 1000 * std::sin(0.01*x);//QRandomGenerator::global()->bounded(-100, 100);
+	double y3 = 75 * std::sin(x) * std::sin(x);//QRandomGenerator::global()->bounded(-100, 100);
 	addData(CHANNEL_1, QPointF(x, y1));
 	addData(CHANNEL_2, QPointF(x, y2));
 	addData(CHANNEL_3, QPointF(x, y3));

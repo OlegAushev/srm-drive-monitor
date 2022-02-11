@@ -9,6 +9,7 @@
 #include <QElapsedTimer>
 #include <QtCore/QRandomGenerator>
 #include <cmath>
+#include <algorithm>
 
 
 class ChartPlotter : public QObject
@@ -34,11 +35,32 @@ public:
 		return m_sysTimer.nsecsElapsed() / 1000'000; 
 	}
 
+	Q_INVOKABLE double timeSec() { return timeMsec() / 1000.0; }
+
+	Q_INVOKABLE double minValue(int channel) 
+	{ return (*std::min_element(m_data[channel].begin(), m_data[channel].end(),
+			[](const QPointF& first, const QPointF& second)
+			{
+				return first.y() < second.y();
+			})).y();
+	}
+	
+	Q_INVOKABLE double maxValue(int channel)
+	{
+		return (*std::max_element(m_data[channel].begin(), m_data[channel].end(),
+			[](const QPointF& first, const QPointF& second)
+			{
+				return first.y() < second.y();
+			})).y();
+	}
+
 private:
 	static const inline int CHANNEL_COUNT = 3;
 	static const inline int CHANNEL_BUF_LENGTH = 1000;
 
 	QVector<QList<QPointF>> m_data;
+	QVector<double> m_minValues;
+	QVector<double> m_maxValues;
 
 	QTimer* m_timer;
 	QElapsedTimer m_sysTimer;
@@ -46,8 +68,6 @@ private:
 public slots:
 	void update(int channel, QtCharts::QAbstractSeries* series);
 	void addData(int channel, QPointF point);
-
-	double timeSec() { return timeMsec() / 1000.0; }
 
 private slots:
 	void generateData();

@@ -8,7 +8,9 @@ Item {
 	id: root
 	anchors.fill: parent
 
-	property real timeWindow: 20
+	property real updateFreq: 30
+	property real axisUpdateFreq: 4
+	property real timeWindow: 60
 	property real timeNow: 0
 
 	ColumnLayout {
@@ -96,8 +98,8 @@ Item {
 
 				ValueAxis {
 					id: axisX1
-					min: (timeNow > timeWindow) ? timeNow - timeWindow : 0
-					max: (timeNow > timeWindow) ? timeNow : timeWindow
+					min: axisX0.min
+					max: axisX0.max
 					labelFormat: "%d"
 					tickCount: timeWindow / 10 + 1
 					minorTickCount: 4
@@ -147,8 +149,8 @@ Item {
 
 				ValueAxis {
 					id: axisX2
-					min: (timeNow > timeWindow) ? timeNow - timeWindow : 0
-					max: (timeNow > timeWindow) ? timeNow : timeWindow
+					min: axisX0.min
+					max: axisX0.max
 					labelFormat: "%d"
 					tickCount: timeWindow / 10 + 1
 					minorTickCount: 4
@@ -173,27 +175,35 @@ Item {
 
 
 	Timer {
-		id: refreshTimer
-		interval: 1000 / 10
+		id: updateTimer
+		interval: 1000 / updateFreq
 		running: true
 		repeat: true
 		onTriggered: {
 			chartPlotter.update(chart0Selector.currentText, lineSeries0);
+			chartPlotter.update(chart1Selector.currentText, lineSeries1);
+			chartPlotter.update(chart2Selector.currentText, lineSeries2);
+			timeNow = chartPlotter.timeSec();
+		}
+	}
+
+	Timer {
+		id: axisUpdateTimer
+		interval: 1000 / axisUpdateFreq
+		running: true
+		repeat: true
+		onTriggered: {
 			axisY0.min = chartPlotter.minValue(chart0Selector.currentText) - 5;
 			axisY0.max = chartPlotter.maxValue(chart0Selector.currentText) + 5;
 			axisY0.applyNiceNumbers();
-			
-			chartPlotter.update(chart1Selector.currentText, lineSeries1);
+
 			axisY1.min = chartPlotter.minValue(chart1Selector.currentText) - 5;
 			axisY1.max = chartPlotter.maxValue(chart1Selector.currentText) + 5;
 			axisY1.applyNiceNumbers();
 
-			chartPlotter.update(chart2Selector.currentText, lineSeries2);
 			axisY2.min = chartPlotter.minValue(chart2Selector.currentText) - 5;
 			axisY2.max = chartPlotter.maxValue(chart2Selector.currentText) + 5;
-			axisY2.applyNiceNumbers();	
-			
-			timeNow = chartPlotter.timeSec();
+			axisY2.applyNiceNumbers();
 		}
 	}
 	

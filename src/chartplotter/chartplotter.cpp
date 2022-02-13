@@ -7,16 +7,17 @@
 ChartPlotter::ChartPlotter()
 	: m_timer(new QTimer(this))
 {
-	for (auto item : m_channelList)
+	for (auto channel : m_channelList)
 	{
-		m_data.insert(item, {});
-		m_minValues.insert(item, 0);
-		m_maxValues.insert(item, 0);
+		m_data.insert(channel, {});
+		m_data[channel].append({0, 0});
+		m_minValues.insert(channel, 0);
+		m_maxValues.insert(channel, 0);
 	} 
 
 	QObject::connect(m_timer, &QTimer::timeout, this, &ChartPlotter::generateData);
 	m_sysTimer.start();
-	m_timer->start(10);
+	m_timer->start(50);
 }
 
 ///
@@ -30,7 +31,7 @@ ChartPlotter::~ChartPlotter()
 ///
 ///
 ///
-void ChartPlotter::update(QString channel, QtCharts::QAbstractSeries* series)
+void ChartPlotter::update(const QString& channel, QtCharts::QAbstractSeries* series)
 {
 	if (series)
 	{
@@ -42,8 +43,13 @@ void ChartPlotter::update(QString channel, QtCharts::QAbstractSeries* series)
 ///
 ///
 ///
-void ChartPlotter::addData(QString channel, QPointF point)
+void ChartPlotter::addData(const QString& channel, QPointF point)
 {
+	if ((point.x() - m_data[channel].last().x()) < TIME_RESOLUTION)
+	{
+		return;
+	}
+
 	m_data[channel].append(point);
 
 	if (m_data[channel].size() > CHANNEL_BUF_LENGTH)

@@ -32,7 +32,7 @@ public:
 
 	Q_INVOKABLE double timeSec() { return timeMsec() / 1000.0; }
 
-	Q_INVOKABLE double minValue(QString channel) 
+	Q_INVOKABLE double minValue(const QString& channel) 
 	{	
 		return (*std::min_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
@@ -41,7 +41,7 @@ public:
 			})).y();
 	}
 	
-	Q_INVOKABLE double maxValue(QString channel)
+	Q_INVOKABLE double maxValue(const QString& channel)
 	{
 		return (*std::max_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
@@ -52,7 +52,8 @@ public:
 
 private:
 	static const inline int CHANNEL_COUNT = 3;
-	static const inline int CHANNEL_BUF_LENGTH = 6000;
+	static const inline int CHANNEL_BUF_LENGTH = 600;
+	static const inline double TIME_RESOLUTION = 0.1;
 	QStringList m_channelList = {"Channel1", "Channel2", "Channel3"};
 
 	QMap<QString, QList<QPointF>> m_data;
@@ -63,8 +64,8 @@ private:
 	QElapsedTimer m_sysTimer;
 
 public slots:
-	void update(QString channel, QtCharts::QAbstractSeries* series);
-	void addData(QString channel, QPointF point);
+	void update(const QString& channel, QtCharts::QAbstractSeries* series);
+	void addData(const QString& channel, QPointF point);
 
 private slots:
 	void generateData();

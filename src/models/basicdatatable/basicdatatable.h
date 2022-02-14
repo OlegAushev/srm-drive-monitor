@@ -34,8 +34,6 @@ public:
 		}
 	}
 
-	void updateView() { emit tableChanged(); }
-
 private:
 	const size_t m_rowCount;
 	const size_t m_columnCount;
@@ -45,7 +43,5 @@ private:
 	QVector<QString> m_units; 
 	
 signals:
-	void tableChanged();
-
-
+	void dataChanged(int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol);
 };

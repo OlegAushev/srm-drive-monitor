@@ -72,7 +72,7 @@ void CanDataPrinter::processAndDisplaySdo(microcanopen::CobSdo message)
 			break;
 		}
 
-		m_watchTable->updateView();
+		m_watchTable->dataChanged(message.subindex, 1, message.subindex, 1);
 	}
 	else
 	{
@@ -150,7 +150,7 @@ void CanDataPrinter::processAndDisplayRpdo1(microcanopen::CobRpdo1 message)
 	m_tpdo1Table->setValue(8, QString::number(message.voltageDC/255.0 * 1620.0, 'f', 0));
 	m_tpdo1Table->setValue(9, QString::number(message.currentF/255.0 * 35.0, 'f', 1));
 
-	m_tpdo1Table->updateView();
+	m_tpdo1Table->dataChanged(0, 1, 9, 1);
 }
 
 ///
@@ -165,7 +165,7 @@ void CanDataPrinter::processAndDisplayRpdo2(microcanopen::CobRpdo2 message)
 	m_tpdo2Table->setValue(4, QString::number(message.tempHeatsink - 40));
 	m_tpdo2Table->setValue(5, QString::number(message.tepmCaseAir - 40));
 
-	m_tpdo2Table->updateView();
+	m_tpdo2Table->dataChanged(0, 1, 5, 1);
 }
 ///
 ///
@@ -183,7 +183,7 @@ void CanDataPrinter::processAndDisplayRpdo3(microcanopen::CobRpdo3 message)
 		emit textMessagesChanged();
 	}
 	
-	m_tpdo3Table->updateView();
+	m_tpdo3Table->dataChanged(0, 1, 3, 1);
 }
 ///
 ///
@@ -194,7 +194,7 @@ void CanDataPrinter::processAndDisplayRpdo4(microcanopen::CobRpdo4 message)
 	m_tpdo4Table->setValue(1, QString::number(message.warningCode, 16).toUpper());
 	m_tpdo4Table->setValue(2, QString::number(message.nWarnings));
 
-	m_tpdo4Table->updateView();
+	m_tpdo4Table->dataChanged(0, 1, 2, 1);
 }
 
 ///

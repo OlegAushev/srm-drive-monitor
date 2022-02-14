@@ -20,10 +20,9 @@ ApplicationWindow {
 			padding: 16
 			spacing: 16
 
-			Text {
+			Label {
 				id: label
 				width: 200
-				height: 20
 				horizontalAlignment: Text.AlignHCenter
 				text: "Watch request period (0..999ms)"
 				color: palette.windowText
@@ -31,7 +30,7 @@ ApplicationWindow {
 
 			Rectangle {
 				width: 200
-				height: 32
+				height: valueInput.implicitHeight
 				anchors.horizontalCenter: parent.horizontalCenter
 				color: "transparent"
 

@@ -7,6 +7,7 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 #include <unistd.h>
+#include <errno.h>
 #include <cstring>
 
 #include <QObject>
@@ -73,7 +74,7 @@ private:
 	sockaddr_can m_addr;
 
 	QTimer* m_recvTimer = nullptr;
-	const int RECV_PERIOD = 2;
+	const int RECV_PERIOD = 10;
 
 	QString findConnectionScript();
 	int executeConnectionScript(const QString& scriptPath);

@@ -112,6 +112,7 @@ void CanSocketDevice::disconnectDevice()
 ///
 ///
 ///
+#include <QDebug>
 void CanSocketDevice::recvFrame()
 {
 	if (m_socket < 0)
@@ -122,16 +123,29 @@ void CanSocketDevice::recvFrame()
 	int nBytes;
 	can_frame socketCanFrame;
 
-	nBytes = read(m_socket, &socketCanFrame, sizeof(can_frame));
-	if (nBytes < 0)
-	{
-		emit statusMessageAvailable("CAN receiving error");
-		return;
-	}
+	do
+	{	
+		nBytes = recv(m_socket, &socketCanFrame, sizeof(can_frame), MSG_PEEK | MSG_DONTWAIT);	// non-blocking read
+													// check if there is available CAN frame
+		if (nBytes == sizeof(can_frame))
+		{
+			nBytes = read(m_socket, &socketCanFrame, sizeof(can_frame));			// blocking read
+			if (nBytes < 0)
+			{
+				emit statusMessageAvailable("CAN receiving error");
+				return;
+			}
 
-	CanBusFrame frame(socketCanFrame.can_id,
-			QByteArray((char*)socketCanFrame.data, (int)socketCanFrame.can_dlc));
-	emit frameAvailable(frame);
+			CanBusFrame frame(socketCanFrame.can_id,
+					QByteArray((char*)socketCanFrame.data, (int)socketCanFrame.can_dlc));
+			emit frameAvailable(frame);
+		}
+		else if (nBytes < 0 && errno != EAGAIN)	// error was caused not by absence of CAN frame
+		{
+			emit statusMessageAvailable("CAN receiving error");
+			return;
+		}
+	} while (nBytes == sizeof(can_frame));
 }
 
 ///

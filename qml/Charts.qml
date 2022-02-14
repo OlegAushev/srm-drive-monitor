@@ -13,6 +13,8 @@ Item {
 	property real timeWindow: 60
 	property real timeNow: 0
 
+	property bool openGL: true 
+
 	ColumnLayout {
 		anchors.fill: root
 		spacing:0
@@ -65,6 +67,7 @@ Item {
 					name: "signal 1"
 					axisX: axisX0
 					axisY: axisY0
+					useOpenGL: root.openGL
 				}
 			}
 		}
@@ -117,6 +120,7 @@ Item {
 					name: "signal 2"
 					axisX: axisX1
 					axisY: axisY1
+					useOpenGL: root.openGL
 				}
 			}
 		}
@@ -168,6 +172,7 @@ Item {
 					name: "signal 3"
 					axisX: axisX2
 					axisY: axisY2
+					useOpenGL: root.openGL
 				}
 			}
 		}

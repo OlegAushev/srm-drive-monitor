@@ -75,6 +75,11 @@ void CanSocketDevice::connectDevice(const QString& interface)
 
 	emit statusMessageAvailable(QString("CAN device connected to %1").arg(m_interface));
 
+	can_filter filter[1];
+	filter[0].can_id = 0;
+	filter[0].can_mask = 0x000;
+	setsockopt(m_socket, SOL_CAN_RAW, CAN_RAW_FILTER, filter, sizeof(can_filter));
+
 	m_recvTimer = new QTimer();
 	QObject::connect(m_recvTimer, &QTimer::timeout, this, &CanSocketDevice::recvFrame);
 	m_recvTimer->setInterval(RECV_PERIOD);
@@ -113,11 +118,6 @@ void CanSocketDevice::recvFrame()
 	{
 		return;
 	}
-
-	can_filter filter[1];
-	filter[0].can_id = 0;
-	filter[0].can_mask = 0x000;
-	setsockopt(m_socket, SOL_CAN_RAW, CAN_RAW_FILTER, filter, sizeof(can_filter));
 	
 	int nBytes;
 	can_frame socketCanFrame;

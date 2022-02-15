@@ -2,7 +2,13 @@ add_subdirectory(models)
 add_subdirectory(mcoclient)
 add_subdirectory(drive)
 
-qtquick_compiler_add_resources(RESOURCES ./../resources.qrc)
+
+if (NOT EDGE_BUILD)
+	qtquick_compiler_add_resources(RESOURCES ./../resources.qrc)
+else()
+	set(RESOURCES ./../resources.qrc)
+endif()
+
 
 add_executable(${CMAKE_PROJECT_NAME}
 		main.cpp	
@@ -15,17 +21,21 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE chartplotter/chartplotter.cpp)
 #target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE canbusdevice)
 
 
+if(EDGE_BUILD)
+	target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE /usr/local/Qt-5.11.3/lib)
+endif()
+
 target_link_libraries(${CMAKE_PROJECT_NAME} 
-		Qt5::Quick 
-		Qt5::Widgets 
-		Qt5::Charts)
+		Qt5::Quick  
+		Qt5::Charts
+		)
 
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 
 
-#Print compile options at cmake run and after build
+# -- Print compile options at cmake run and after build
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(cxx_flags ${CMAKE_CXX_FLAGS_DEBUG})
 elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -38,10 +48,10 @@ endif()
 message(STATUS "CMake CXX flags: ${cxx_flags}")
 
 get_target_property(target_options ${CMAKE_PROJECT_NAME} COMPILE_OPTIONS)
-message(STATUS "Target compiler options are: ${target_options}")
+message(STATUS "Target compiler options: ${target_options}")
 
 get_target_property(target_features ${CMAKE_PROJECT_NAME} COMPILE_FEATURES)
-message(STATUS "Target compiler features are: ${target_features}")
+message(STATUS "Target compiler features: ${target_features}")
 
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
 COMMAND echo Built with flags: ${cxx_flags})

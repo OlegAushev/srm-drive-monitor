@@ -27,8 +27,7 @@ endif()
 
 target_link_libraries(${CMAKE_PROJECT_NAME} 
 		Qt5::Quick  
-		Qt5::Charts
-		)
+		Qt5::Charts)
 
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)

@@ -28,7 +28,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 # -- Searching for Qt libraries
 message(STATUS "Searching for Qt...")
-find_package(Qt5 COMPONENTS Quick Core Charts REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Charts REQUIRED)
 find_package(Qt5QuickCompiler REQUIRED)
 if (${Qt5_FOUND})
     message(STATUS "Found Qt " ${Qt5_VERSION})
@@ -46,6 +46,9 @@ cmake_policy(SET CMP0071 NEW)
 
 include_directories(src)
 add_subdirectory(src)
+
+
+
 
 
 #######################################################################

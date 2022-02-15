@@ -14,6 +14,8 @@ endif()
 option(EDGE_BUILD "Build for EDGE-board" OFF)
 if(EDGE_BUILD)
 	message(STATUS "EDGE-board build configuration is ON")
+else()
+	message(STATUS "EDGE-board build configuration is OFF")
 endif()
 
 

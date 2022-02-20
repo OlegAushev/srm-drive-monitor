@@ -31,7 +31,11 @@ QString CanSocketDevice::findConnectionScript()
 int CanSocketDevice::executeConnectionScript(const QString& scriptPath)
 {
 	QProcess *process = new QProcess();
+#ifdef EDGE_COMPUTER
+	QString exec = "sh";
+#else
 	QString exec = "pkexec";
+#endif
 	QStringList params{scriptPath};
 	process->start(exec, params);
 	process->waitForFinished();

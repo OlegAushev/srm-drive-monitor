@@ -21,8 +21,12 @@ CanSocketDevice::~CanSocketDevice()
 ///
 ///
 QString CanSocketDevice::findConnectionScript()
-{	
+{
+#ifdef EDGE_COMPUTER
+	return {};
+#else
 	return QFileDialog::getOpenFileName(nullptr, tr("Open SocketCAN Script"), "../", tr("Script Files (*.sh)"));
+#endif
 }
 
 ///
@@ -30,16 +34,17 @@ QString CanSocketDevice::findConnectionScript()
 ///
 int CanSocketDevice::executeConnectionScript(const QString& scriptPath)
 {
-	QProcess *process = new QProcess();
 #ifdef EDGE_COMPUTER
-	QString exec = "sh";
+	Q_UNUSED(scriptPath);
+	return 0;
 #else
+	QProcess *process = new QProcess();
 	QString exec = "pkexec";
-#endif
 	QStringList params{scriptPath};
 	process->start(exec, params);
 	process->waitForFinished();
 	return process->exitCode();
+#endif
 }
 
 ///

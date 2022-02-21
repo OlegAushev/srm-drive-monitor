@@ -15,6 +15,10 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef EDGE_COMPUTER
+	system("sh ../scripts/connect_can_edge.sh");
+#endif
+
 	QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 	QApplication app(argc, argv);
 	app.setWindowIcon(QIcon(":/images/app.png"));

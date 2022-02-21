@@ -15,7 +15,7 @@
 class ChartPlotter : public QObject
 {
 	Q_OBJECT
-public:
+/*public:
 	ChartPlotter();
 	~ChartPlotter();
 
@@ -72,7 +72,7 @@ private slots:
 
 private:
 
-
+*/
 };
 
 

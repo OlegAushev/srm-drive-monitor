@@ -1,6 +1,6 @@
 #include "chartplotter.h"
 
-
+/*
 ///
 ///
 ///
@@ -71,7 +71,7 @@ void ChartPlotter::generateData()
 	addData("Channel2", QPointF(x, y2));
 	addData("Channel3", QPointF(x, y3));
 }
-
+*/
 
 
 

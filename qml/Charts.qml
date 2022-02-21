@@ -5,7 +5,7 @@ import QtQuick.Controls 2.4
 
 
 Item {
-/*	id: root
+	id: root
 	anchors.fill: parent
 
 	property real updateFreq: 30
@@ -211,7 +211,7 @@ Item {
 			axisY2.applyNiceNumbers();
 		}
 	}
-*/	
+	
 }
 
 

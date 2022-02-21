@@ -43,7 +43,9 @@ int CanSocketDevice::executeConnectionScript(const QString& scriptPath)
 	QStringList params{scriptPath};
 	process->start(exec, params);
 	process->waitForFinished();
-	return process->exitCode();
+	int exitCode = process->exitCode();
+	delete process;
+	return exitCode;
 #endif
 }
 

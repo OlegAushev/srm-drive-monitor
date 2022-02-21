@@ -116,7 +116,6 @@ void CanSocketDevice::disconnectDevice()
 ///
 ///
 ///
-#include <QDebug>
 void CanSocketDevice::recvFrame()
 {
 	if (m_socket < 0)
@@ -155,7 +154,6 @@ void CanSocketDevice::recvFrame()
 ///
 ///
 ///
-
 QString CanSocketDevice::busStatus()
 {
 	int error = 0;

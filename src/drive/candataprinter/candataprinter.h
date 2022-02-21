@@ -32,9 +32,12 @@ private:
 	static BasicDataTable* m_tpdo3Table;
 	static BasicDataTable* m_tpdo4Table;
 	QTimer* m_watchTimer = nullptr;
+	QTimer* m_refreshTimer = nullptr;
 	QStringList m_textMessages;
 
 	ChartPlotter* m_chartPlotter = nullptr;
+
+	void sendRefreshSignals();
 
 signals:
 	void textMessagesChanged();
@@ -63,11 +66,11 @@ public slots:
 	int watchPeriod() const { return m_watchTimer->interval(); }
 
 private slots:
-	void processAndDisplaySdo(microcanopen::CobSdo message);
-	void processAndDisplayRpdo1(microcanopen::CobRpdo1 message);
-	void processAndDisplayRpdo2(microcanopen::CobRpdo2 message);
-	void processAndDisplayRpdo3(microcanopen::CobRpdo3 message);
-	void processAndDisplayRpdo4(microcanopen::CobRpdo4 message);
+	void processSdo(microcanopen::CobSdo message);
+	void processRpdo1(microcanopen::CobRpdo1 message);
+	void processRpdo2(microcanopen::CobRpdo2 message);
+	void processRpdo3(microcanopen::CobRpdo3 message);
+	void processRpdo4(microcanopen::CobRpdo4 message);
 
 	void sendWatchRequest();
 

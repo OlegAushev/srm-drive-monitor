@@ -139,7 +139,7 @@ void CanSocketDevice::recvFrame()
 													// check if there is available CAN frame
 		if (nBytes == sizeof(can_frame))
 		{
-			nBytes = read(m_socket, &socketCanFrame, sizeof(can_frame));			// blocking read
+			nBytes = recv(m_socket, &socketCanFrame, sizeof(can_frame), MSG_DONTWAIT);	// non-blocking read
 			if (nBytes < 0)
 			{
 				emit statusMessageAvailable("CAN receiving error");

@@ -99,7 +99,7 @@ public slots:
 		socketCanFrame.can_dlc = frame.payload().size();
 		memcpy(socketCanFrame.data, frame.payload().data(), frame.payload().size());
 
-		if (write(m_socket, &socketCanFrame, sizeof(can_frame)) != sizeof(can_frame))
+		if (send(m_socket, &socketCanFrame, sizeof(can_frame), MSG_DONTWAIT) != sizeof(can_frame))
 		{
 			emit statusMessageAvailable("CAN sending error");
 		}

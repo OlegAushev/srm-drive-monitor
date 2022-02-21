@@ -24,6 +24,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE chartplotter/chartplotter.cpp)
 ### -- Libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
 		PRIVATE
+		Threads::Threads
 		Qt5::Quick  
 		Qt5::Charts)
 

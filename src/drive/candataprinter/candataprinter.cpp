@@ -37,7 +37,7 @@ CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter*
 	m_watchTimer->start(10);
 
 	QObject::connect(m_refreshTimer, &QTimer::timeout, this, &CanDataPrinter::sendRefreshSignals);
-	m_refreshTimer->start(250);
+	m_refreshTimer->start(100);
 }
 
 ///
@@ -131,7 +131,6 @@ void CanDataPrinter::processSdo(microcanopen::CobSdo message)
 		}
 		
 		m_textMessages.append(str);
-		emit textMessagesChanged();
 	}
 }
 

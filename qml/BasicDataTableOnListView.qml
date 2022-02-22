@@ -16,6 +16,9 @@ Item {
 
 	property real defaultColumnWidth: tableWidth/3;
 
+	property color tableHeaderColor: Material.color(Material.DeepOrange) //"#009663"
+	property color columnHeaderColor: Material.color(Material.Blue) //Material.color(Material.LightBlue)
+
 	function getColumnWidth(col)
 	{
 		switch (col) {
@@ -41,7 +44,7 @@ Item {
 		anchors.horizontalCenter: root.horizontalCenter
 		anchors.topMargin: 0
 		height: 20
-		color: Material.color(Material.DeepOrange)
+		color: tableHeaderColor
 
 		Label {
 			anchors.fill: parent			
@@ -67,7 +70,7 @@ Item {
 			Rectangle {
 				width: getColumnWidth(index)
 				height: columnHeader.height
-				color: Material.color(Material.Blue)
+				color: columnHeaderColor
 				border.color: Material.color(Material.Grey)
 
 				Label {

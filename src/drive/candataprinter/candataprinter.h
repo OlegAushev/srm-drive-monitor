@@ -76,7 +76,7 @@ private slots:
 
 private:
 	const std::vector<std::pair<std::string, std::string>> WATCH_NAMES_AND_UNITS = {
-		{"Time",	"s"},
+		{"Uptime",	"s"},
 		{"State",	""},
 		{"Fault",	""},
 		{"Vdc",		"V"},

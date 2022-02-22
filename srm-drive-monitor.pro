@@ -1,5 +1,9 @@
 QT += qml quick charts widgets
 
+QMAKE_CXXFLAGS += -std=c++17
+
+DEFINES += EDGE_COMPUTER
+
 SOURCES += \
 	src/main.cpp							\
 	src/cansocketdevice/cansocketdevice.cpp				\
@@ -32,5 +36,7 @@ RESOURCES += \
 	resources.qrc
 
 TARGET = srm-drive-monitor
+
+DESTDIR = bin
 
 

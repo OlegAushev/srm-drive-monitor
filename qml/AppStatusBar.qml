@@ -6,8 +6,11 @@ Label {
 	text: "No CAN bus connection"
 	Connections {
 		target: mcoClient
-		function onInfoMessageAvailable(message) {
-			text = message;
+		/*function onInfoMessageAvailable(message) {
+			text = message;		// new syntax
+		}*/
+		onInfoMessageAvailable: {
+			text = message;		// deprecated syntax for 5.11 compatibility
 		}
 	}
 }

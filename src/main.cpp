@@ -45,14 +45,7 @@ int main(int argc, char *argv[])
 	engine.rootContext()->setContextProperty("chartPlotter", &chartPlotter);
 
 
-	//engine.rootContext()->setContextProperty("table1", drive::CanDataPrinter::testTable);
-
-
-
-
 	engine.load(QStringLiteral("qrc:/qml/main.qml"));
-
-	QObject::connect(&engine, &QQmlEngine::quit, &app, &QApplication::quit);
 	return app.exec();
 }
 

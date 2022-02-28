@@ -95,7 +95,7 @@ Item {
 								ListView {
 									id: canMsgListView
 									anchors.fill: parent
-									anchors.margins: 4
+									anchors.margins: 8
 									model: driveCanDataPrinter.textMessages
 
 									delegate: Rectangle {

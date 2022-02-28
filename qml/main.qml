@@ -7,8 +7,8 @@ ApplicationWindow {
 	id: appWindow
 	
 	visible: true
-	minimumWidth: 1390
-	minimumHeight: 760
+	minimumWidth: 1340
+	minimumHeight: 700
 	title: "SRM Drive Monitor"
 	
 	menuBar: AppMenuBar {

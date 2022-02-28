@@ -13,10 +13,10 @@ Item {
 			width: implicitWidth
 		}
 
-		TabButton {
+		/*TabButton {
 			text: "Charts"
 			width: implicitWidth
-		}
+		}*/
 	}
 
 	StackLayout {
@@ -37,7 +37,7 @@ Item {
 					id: watchDataTable
 					name: "Watch Data"
 					sourceTable: driveCanDataPrinter.watchTable()
-					tableWidth: 250
+					tableWidth: 240
 				}
 
 				Column {
@@ -50,14 +50,14 @@ Item {
 							id: tpdo1DataTable
 							name: "TPDO1 Data"
 							sourceTable: driveCanDataPrinter.tpdo1Table()
-							tableWidth: 250
+							tableWidth: 240
 						}
 						
 						BasicDataTableOnListView {
 							id: tpdo2DataTable
 							name: "TPDO2 Data"
 							sourceTable: driveCanDataPrinter.tpdo2Table()
-							tableWidth: 250
+							tableWidth: 240
 						}
 
 						Column {
@@ -67,14 +67,14 @@ Item {
 								id: tpdo3DataTable
 								name: "TPDO3 Data"
 								sourceTable: driveCanDataPrinter.tpdo3Table()
-								tableWidth: 250
+								tableWidth: 240
 							}
 
 							BasicDataTableOnListView {
 								id: tpdo4DataTable
 								name: "TPDO4 Data"
 								sourceTable: driveCanDataPrinter.tpdo4Table()
-								tableWidth: 250
+								tableWidth: 240
 							}
 						}
 					}
@@ -133,11 +133,11 @@ Item {
 			}
 		}
 
-		Item {
+		/*Item {
 			id: tabCharts
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop | Qt.AlignRight | Qt.AlignBottom
 			Charts {}
-		}
+		}*/
 
 
 	}

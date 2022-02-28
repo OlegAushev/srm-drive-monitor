@@ -13,6 +13,7 @@ Item {
 	property QtObject sourceTable
 	property real tableWidth
 	property real cellSpacing: 1
+	property real rowHeight: 22
 
 	property real defaultColumnWidth: tableWidth/3;
 
@@ -25,9 +26,9 @@ Item {
 		case 0:
 			return defaultColumnWidth+1;
 		case 1:
-			return defaultColumnWidth+1+15;
+			return defaultColumnWidth+1+20;
 		case 2:
-			return defaultColumnWidth-15;
+			return defaultColumnWidth-20;
 		default:
 			return 0;
 		}
@@ -35,7 +36,7 @@ Item {
 
 
 	width: tableWidth
-	height: tableHeader.height + columnHeader.height + table.count * 24 - (table.count - 1)  
+	height: tableHeader.height + columnHeader.height + table.count * rowHeight - (table.count - 1)  
 
 	Rectangle {
 		id: tableHeader
@@ -43,7 +44,7 @@ Item {
 		anchors.top: root.top
 		anchors.horizontalCenter: root.horizontalCenter
 		anchors.topMargin: 0
-		height: 20
+		height: rowHeight
 		color: tableHeaderColor
 
 		Label {
@@ -58,7 +59,7 @@ Item {
 	Row {
 		id: columnHeader
 		width: tableWidth
-		height: 20
+		height: rowHeight
 		anchors.top: tableHeader.bottom
 		anchors.horizontalCenter: root.horizontalCenter
 		anchors.topMargin: 0
@@ -102,7 +103,7 @@ Item {
 			Label {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
-				Layout.preferredHeight: 24
+				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(0)
 				background: Rectangle { 
 					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
@@ -116,7 +117,7 @@ Item {
 			Label {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
-				Layout.preferredHeight: 24
+				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(1)
 				background: Rectangle {
 					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
@@ -130,7 +131,7 @@ Item {
 			Label {
 				Layout.fillHeight: true
 				Layout.fillWidth: true
-				Layout.preferredHeight: 24
+				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(2)
 				background: Rectangle {
 					color: index % 2 == 0 ? "transparent" : "#EEEEEE"

@@ -16,8 +16,8 @@ ChartPlotter::ChartPlotter()
 	} 
 
 	QObject::connect(m_timer, &QTimer::timeout, this, &ChartPlotter::generateData);
-	m_sysTimer.start();
-	m_timer->start(50);
+	//m_sysTimer.start();
+	//m_timer->start(50);
 }
 
 ///

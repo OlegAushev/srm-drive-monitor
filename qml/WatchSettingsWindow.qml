@@ -13,7 +13,6 @@ ApplicationWindow {
 		width: root.width - 2
 		height: root.height - 2
 		anchors.centerIn: parent
-		color: palette.window
 
 		Column{
 			id: column
@@ -25,7 +24,6 @@ ApplicationWindow {
 				width: 200
 				horizontalAlignment: Text.AlignHCenter
 				text: "Watch request period (0..999ms)"
-				color: palette.windowText
 			}
 
 			Rectangle {

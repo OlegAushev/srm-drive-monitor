@@ -5,13 +5,19 @@
 		<file>qml/AppMenuBar.qml</file>
 		<file>qml/AppToolBar.qml</file>
 		<file>qml/AppStatusBar.qml</file>
-		<file>qml/DataAndCharts.qml</file>
-		<file>qml/ControlAndConfiguration.qml</file>
-		<file>qml/BasicDataTableOnListView.qml</file>
-		<file>qml/SliderAndTextInput.qml</file>
-		<file>qml/DriveConfigurationTool.qml</file>
+
+		<file>qml/MainWidget.qml</file>
+		<file>qml/CanDataWidget.qml</file>
+		<file>qml/InfoWidget.qml</file>
+		<file>qml/ChartsWidget.qml</file>
+
+		<file>qml/ControlAndConfigurationWidget.qml</file>
+		<file>qml/DriveConfigurationWidget.qml</file>
+
+		<file>qml/components/BasicDataTableOnListView.qml</file>
+		<file>qml/components/SliderAndTextInput.qml</file>
 		<file>qml/WatchSettingsWindow.qml</file>
-		<file>qml/Charts.qml</file>
+
 
 		<file>images/desktop-classic.png</file>
 		<file>images/power.png</file>

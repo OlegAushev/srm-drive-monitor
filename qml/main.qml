@@ -35,7 +35,7 @@ ApplicationWindow {
 		columns: 2
 		columnSpacing: 2
 
-		DataAndCharts {
+		MainWidget {
 			id: dataTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.minimumWidth: 800
@@ -44,7 +44,7 @@ ApplicationWindow {
 			Layout.fillHeight: true
 		}
 		
-		ControlAndConfiguration {
+		ControlAndConfigurationWidget {
 			id: controlTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
 			Layout.preferredWidth: 332

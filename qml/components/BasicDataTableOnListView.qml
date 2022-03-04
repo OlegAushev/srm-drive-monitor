@@ -17,8 +17,11 @@ Item {
 
 	property real defaultColumnWidth: tableWidth/3;
 
-	property color tableHeaderColor: Material.color(Material.DeepOrange) //"#009663"
-	property color columnHeaderColor: Material.color(Material.Blue) //Material.color(Material.LightBlue)
+	property color tableHeaderColor: Material.accent
+	property color columnHeaderColor: Material.primary
+	property color rowAlternateColor: { Material.theme == Material.Light ? 
+			Material.color(Material.Grey, Material.Shade300) : Material.color(Material.Grey, Material.Shade800) }
+	
 
 	function getColumnWidth(col)
 	{
@@ -106,7 +109,7 @@ Item {
 				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(0)
 				background: Rectangle { 
-					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					color: index % 2 == 0 ? "transparent" : rowAlternateColor
 					border.color: Material.color(Material.Grey)
 				}
 				horizontalAlignment: Text.AlignHCenter
@@ -120,7 +123,7 @@ Item {
 				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(1)
 				background: Rectangle {
-					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					color: index % 2 == 0 ? "transparent" : rowAlternateColor
 					border.color: Material.color(Material.Grey)
 				}
 				horizontalAlignment: Text.AlignHCenter
@@ -134,7 +137,7 @@ Item {
 				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(2)
 				background: Rectangle {
-					color: index % 2 == 0 ? "transparent" : "#EEEEEE"
+					color: index % 2 == 0 ? "transparent" : rowAlternateColor
 					border.color: Material.color(Material.Grey)
 				}
 				horizontalAlignment: Text.AlignHCenter

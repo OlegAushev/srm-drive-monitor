@@ -6,8 +6,9 @@ MenuBar {
 
 	Menu {
 		title: "App"
+		width: menu1LongItem.width
 
-		MenuItem { 
+		MenuItem {
 			text: "Device Name"
 			onTriggered: driveController.getDeviceName() 
 		}
@@ -17,7 +18,8 @@ MenuBar {
 			onTriggered: driveController.getSoftwareVersion() 
 		}
 
-		MenuItem { 
+		MenuItem {
+			id: menu1LongItem
 			text: "Software Build Configuration"
 			onTriggered: driveController.getBuildConfiguration() 
 		}
@@ -32,6 +34,7 @@ MenuBar {
 
 	Menu {
 		title: "Network"
+		width: menu2LongItem.width
 		
 		Menu {
 			title: "Connect CAN Device"
@@ -47,6 +50,7 @@ MenuBar {
 		}
 
 		MenuItem {
+			id: menu2LongItem
 			text: "Disconnect CAN Device"
 			onTriggered: mcoClient.disconnectCanDevice();
 		}
@@ -74,6 +78,7 @@ MenuBar {
 
 	Menu {
 		title: "Drive Control"
+		width: menu3LongItem.width
 
 		MenuItem {
 			text: "Reset Faults"
@@ -81,6 +86,7 @@ MenuBar {
 		}
 
 		MenuItem {
+			id: menu3LongItem
 			text: "Calibrate Position Sensor"
 			onTriggered: driveController.calibratePositionSensor() 
 		}

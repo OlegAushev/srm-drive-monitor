@@ -1,10 +1,14 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
+import QtQuick.Controls.Material 2.1
 
 
 ApplicationWindow {
 	id: appWindow
+
+	Material.primary: Material.color(Material.BlueGrey)			// used for EVOCARGO build
+	Material.accent: Material.color(Material.DeepOrange, Material.Shade700)	// used for EVOCARGO build
 	
 	visible: true
 	minimumWidth: 1340

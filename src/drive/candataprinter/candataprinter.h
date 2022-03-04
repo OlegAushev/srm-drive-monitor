@@ -78,7 +78,7 @@ private:
 	const std::vector<std::pair<std::string, std::string>> WATCH_NAMES_AND_UNITS = {
 		{"Uptime",	"s"},
 		{"State",	""},
-		{"Fault",	""},
+		{"Fault",	"hex"},
 		{"Vdc",		"V"},
 		{"Idc",		"A"},
 		{"If", 		"A"},

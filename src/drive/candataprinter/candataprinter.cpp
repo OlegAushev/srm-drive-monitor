@@ -184,8 +184,8 @@ void CanDataPrinter::processRpdo3(microcanopen::CobRpdo3 message)
 ///
 void CanDataPrinter::processRpdo4(microcanopen::CobRpdo4 message)
 {
-	m_tpdo4Table->setValue(0, QString::number(message.faultCode, 16).toUpper());
-	m_tpdo4Table->setValue(1, QString::number(message.warningCode, 16).toUpper());
+	m_tpdo4Table->setValue(0, QString("0x") + QString::number(message.faultCode, 16).toUpper());
+	m_tpdo4Table->setValue(1, QString("0x") + QString::number(message.warningCode, 16).toUpper());
 	m_tpdo4Table->setValue(2, QString::number(message.nWarnings));
 }
 

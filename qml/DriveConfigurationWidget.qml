@@ -15,14 +15,14 @@ Frame {
 		
 		ComboBox {
 			id: parameterCategory
-			width: 200
+			width: 300
 			anchors.horizontalCenter: parent.horizontalCenter
 			model: driveConfigEditor.parameterCategories()
 		}
 
 		ComboBox {
 			id: parameterName
-			width: 200
+			width: 300
 			anchors.horizontalCenter: parent.horizontalCenter
 			model: driveConfigEditor.parameterNames(parameterCategory.currentText)
 		}

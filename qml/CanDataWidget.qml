@@ -10,7 +10,7 @@ Item {
 		
 		BasicDataTableOnListView {
 			id: watchDataTable
-			name: "Watch Data"
+			name: "Watch"
 			sourceTable: driveCanDataPrinter.watchTable()
 			tableWidth: 240
 		}
@@ -23,14 +23,14 @@ Item {
 				spacing: 8
 				BasicDataTableOnListView {
 					id: tpdo1DataTable
-					name: "TPDO1 Data"
+					name: "TPDO1"
 					sourceTable: driveCanDataPrinter.tpdo1Table()
 					tableWidth: 240
 				}
 				
 				BasicDataTableOnListView {
 					id: tpdo2DataTable
-					name: "TPDO2 Data"
+					name: "TPDO2"
 					sourceTable: driveCanDataPrinter.tpdo2Table()
 					tableWidth: 240
 				}
@@ -40,14 +40,14 @@ Item {
 
 					BasicDataTableOnListView {
 						id: tpdo3DataTable
-						name: "TPDO3 Data"
+						name: "TPDO3"
 						sourceTable: driveCanDataPrinter.tpdo3Table()
 						tableWidth: 240
 					}
 
 					BasicDataTableOnListView {
 						id: tpdo4DataTable
-						name: "TPDO4 Data"
+						name: "TPDO4"
 						sourceTable: driveCanDataPrinter.tpdo4Table()
 						tableWidth: 240
 					}

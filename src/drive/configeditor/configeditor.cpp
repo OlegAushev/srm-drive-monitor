@@ -58,17 +58,17 @@ QStringList ConfigEditor::parameterNames(QString category)
 ///
 ///
 ///
-void ConfigEditor::readParameter(const QString& name)
+void ConfigEditor::readParameter(const QString& category, const QString& name)
 {
-	m_mcoClient->sendOdReadRequest(name);
+	m_mcoClient->sendOdReadRequest(category, name);
 }
 
 ///
 ///
 ///
-void ConfigEditor::writeParameter(const QString& name, const QString& value)
+void ConfigEditor::writeParameter(const QString& category, const QString& name, const QString& value)
 {
-	auto key = microcanopen::findODEntry(name);
+	auto key = microcanopen::findODEntry(category, name);
 	float valueF32 = value.toFloat();
 	uint32_t valueU32 = valueF32;
 
@@ -78,15 +78,15 @@ void ConfigEditor::writeParameter(const QString& name, const QString& value)
 		{
 			valueU32 = 1;
 		}
-		m_mcoClient->sendOdWriteRequest(name, valueU32);
+		m_mcoClient->sendOdWriteRequest(category, name, valueU32);
 	}
 	else if (microcanopen::OBJECT_DICTIONARY.at(key).dataType == microcanopen::OD_UINT32)
 	{
-		m_mcoClient->sendOdWriteRequest(name, valueU32);
+		m_mcoClient->sendOdWriteRequest(category, name, valueU32);
 	}
 	else if (microcanopen::OBJECT_DICTIONARY.at(key).dataType == microcanopen::OD_FLOAT32)
 	{
-		m_mcoClient->sendOdWriteRequest(name, valueF32);
+		m_mcoClient->sendOdWriteRequest(category, name, valueF32);
 	}
 }
 
@@ -95,7 +95,7 @@ void ConfigEditor::writeParameter(const QString& name, const QString& value)
 ///
 void ConfigEditor::applyParameters()
 {
-	m_mcoClient->sendOdWriteRequest("APPLY PARAMETERS");
+	m_mcoClient->sendOdWriteRequest("SYSTEM CONTROL", "APPLY PARAMETERS");
 }
 
 ///
@@ -103,7 +103,7 @@ void ConfigEditor::applyParameters()
 ///
 void ConfigEditor::resetParameters()
 {
-	m_mcoClient->sendOdWriteRequest("RESET PARAMETERS");
+	m_mcoClient->sendOdWriteRequest("SYSTEM CONTROL", "RESET PARAMETERS");
 }
 
 

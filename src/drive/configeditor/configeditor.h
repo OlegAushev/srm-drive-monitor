@@ -32,8 +32,8 @@ public:
 	Q_INVOKABLE QStringList parameterCategories();
 	Q_INVOKABLE QStringList parameterNames(QString category);
 
-	Q_INVOKABLE void readParameter(const QString& name);
-	Q_INVOKABLE void writeParameter(const QString& name, const QString& value);
+	Q_INVOKABLE void readParameter(const QString& category, const QString& name);
+	Q_INVOKABLE void writeParameter(const QString& category, const QString& name, const QString& value);
 	Q_INVOKABLE void applyParameters();
 	Q_INVOKABLE void resetParameters();
 

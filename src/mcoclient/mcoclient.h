@@ -23,8 +23,8 @@ public:
 	~McoClient();
 
 	void setTpdoPeriod(TpdoNum tpdoNum, int msec) { m_tpdoTimers[static_cast<size_t>(tpdoNum)]->setInterval(msec); }
-	void sendOdReadRequest(const QString& odEntryName);
-	void sendOdWriteRequest(const QString& odEntryName, CobSdoData data = {});
+	void sendOdReadRequest(const QString& odEntrySubcategory, const QString& odEntryName);
+	void sendOdWriteRequest(const QString& odEntrySubcategory, const QString& odEntryName, CobSdoData data = {});
 
 	int timeMsec()
 	{

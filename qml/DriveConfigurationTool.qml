@@ -52,7 +52,7 @@ Frame {
 				text: "Read"
 				onClicked: {
 					valueInput.clear();
-					driveConfigEditor.readParameter(parameterName.currentText);
+					driveConfigEditor.readParameter(parameterCategory.currentText, parameterName.currentText);
 				}
 			}
 
@@ -61,7 +61,7 @@ Frame {
 				width: 92
 				text: "Write"
 				onClicked: {
-					driveConfigEditor.writeParameter(parameterName.currentText, valueInput.displayText);
+					driveConfigEditor.writeParameter(parameterCategory.currentText, parameterName.currentText, valueInput.displayText);
 					valueInput.clear();
 				}
 			}

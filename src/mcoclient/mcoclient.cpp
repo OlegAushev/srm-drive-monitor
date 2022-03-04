@@ -167,9 +167,9 @@ void McoClient::sendMessageTpdo4(CobTpdo4 message)
 ///
 ///
 ///
-void McoClient::sendOdReadRequest(const QString& odEntryName)
+void McoClient::sendOdReadRequest(const QString& odEntrySubcategory, const QString& odEntryName)
 {
-	ODEntryKey key = findODEntry(odEntryName);
+	ODEntryKey key = findODEntry(odEntrySubcategory, odEntryName);
 	if (OBJECT_DICTIONARY.at(key).readAccess == false)
 	{
 		emit onInfoMessageMustBeSent(QString("Object dictionary bad read request: ") + odEntryName);
@@ -187,9 +187,9 @@ void McoClient::sendOdReadRequest(const QString& odEntryName)
 ///
 ///
 ///
-void McoClient::sendOdWriteRequest(const QString& odEntryName, CobSdoData data)
+void McoClient::sendOdWriteRequest(const QString& odEntrySubcategory, const QString& odEntryName, CobSdoData data)
 {
-	ODEntryKey key = findODEntry(odEntryName);
+	ODEntryKey key = findODEntry(odEntrySubcategory, odEntryName);
 	if (OBJECT_DICTIONARY.at(key).writeAccess == false)
 	{
 		emit onInfoMessageMustBeSent(QString("Object dictionary bad write request: ") + odEntryName);

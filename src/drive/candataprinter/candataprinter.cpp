@@ -206,7 +206,7 @@ void CanDataPrinter::sendWatchRequest()
 	}
 	else
 	{
-		m_mcoClient->sendOdReadRequest(entryIt->second.name);
+		m_mcoClient->sendOdReadRequest("WATCH", entryIt->second.name);
 		++subindex;
 	}
 }

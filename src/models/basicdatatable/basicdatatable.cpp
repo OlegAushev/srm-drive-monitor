@@ -4,7 +4,7 @@
 ///
 ///
 ///
-BasicDataTable::BasicDataTable(size_t rowCount, size_t columnCount, QObject* parent)
+BasicDataTable::BasicDataTable(int rowCount, int columnCount, QObject* parent)
 	: QObject(parent)
 	, m_rowCount(rowCount)
 	, m_columnCount(columnCount)

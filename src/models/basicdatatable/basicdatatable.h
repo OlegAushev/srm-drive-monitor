@@ -10,14 +10,14 @@ class BasicDataTable : public QObject
 {
 	Q_OBJECT
 public:
-	explicit BasicDataTable(size_t rowCount, size_t columnCount, QObject* parent = nullptr);
+	explicit BasicDataTable(int rowCount, int columnCount, QObject* parent = nullptr);
 
 	const QVector<QString>& headerNames() const { return m_headerNames; }
 	const QVector<QVector<QString>>& data() const { return m_data; }
-	size_t rowCount() const { return m_rowCount; }
-	size_t columnCount() const { return m_columnCount; }
+	int rowCount() const { return m_rowCount; }
+	int columnCount() const { return m_columnCount; }
 
-	void setValue(size_t row, size_t column, QString value)
+	void setValue(int row, int column, QString value)
 	{
 		Q_UNUSED(value);
 		if (row >= rowCount() || column >= columnCount())
@@ -27,7 +27,7 @@ public:
 		m_data[column][row] = value;
 	}
 
-	void setHeader(size_t column, QString name)
+	void setHeader(int column, QString name)
 	{
 		if (column >= columnCount())
 		{
@@ -37,8 +37,8 @@ public:
 	}
 
 private:
-	const size_t m_rowCount;
-	const size_t m_columnCount;
+	const int m_rowCount;
+	const int m_columnCount;
 	QVector<QString> m_headerNames;
 	QVector< QVector <QString> > m_data;
 	

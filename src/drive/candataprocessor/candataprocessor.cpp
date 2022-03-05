@@ -38,31 +38,31 @@ CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlot
 		m_tpdo4Table->setHeader(i, HEADER_NAMES[i]);
 	}
 
-	for (size_t i = 0; i < m_watchTable->rowCount(); ++i)
+	for (auto i = 0; i < m_watchTable->rowCount(); ++i)
 	{
 		m_watchTable->setValue(i, 0, WATCH_NAMES_AND_UNITS[i].first);
 		m_watchTable->setValue(i, 2, WATCH_NAMES_AND_UNITS[i].second);
 	}
 
-	for (size_t i = 0; i < m_tpdo1Table->rowCount(); ++i)
+	for (auto i = 0; i < m_tpdo1Table->rowCount(); ++i)
 	{
 		m_tpdo1Table->setValue(i, 0, TPDO1_NAMES_AND_UNITS[i].first);
 		m_tpdo1Table->setValue(i, 2, TPDO1_NAMES_AND_UNITS[i].second);
 	}
 
-	for (size_t i = 0; i < m_tpdo2Table->rowCount(); ++i)
+	for (auto i = 0; i < m_tpdo2Table->rowCount(); ++i)
 	{
 		m_tpdo2Table->setValue(i, 0, TPDO2_NAMES_AND_UNITS[i].first);
 		m_tpdo2Table->setValue(i, 2, TPDO2_NAMES_AND_UNITS[i].second);
 	}
 
-	for (size_t i = 0; i < m_tpdo3Table->rowCount(); ++i)
+	for (auto i = 0; i < m_tpdo3Table->rowCount(); ++i)
 	{
 		m_tpdo3Table->setValue(i, 0, TPDO3_NAMES_AND_UNITS[i].first);
 		m_tpdo3Table->setValue(i, 2, TPDO3_NAMES_AND_UNITS[i].second);
 	}
 
-	for (size_t i = 0; i < m_tpdo4Table->rowCount(); ++i)
+	for (auto i = 0; i < m_tpdo4Table->rowCount(); ++i)
 	{
 		m_tpdo4Table->setValue(i, 0, TPDO4_NAMES_AND_UNITS[i].first);
 		m_tpdo4Table->setValue(i, 2, TPDO4_NAMES_AND_UNITS[i].second);

@@ -7,6 +7,7 @@
 #include "drive/drivecontroller/drivecontroller.h"
 #include "drive/configeditor/configeditor.h"
 #include "drive/candataprocessor/candataprocessor.h"
+#include "drive/syslog/syslog.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
 #include "chartplotter/chartplotter.h"
@@ -33,8 +34,9 @@ int main(int argc, char *argv[])
 
 	drive::DriveController driveController(&mcoClient);
 	drive::ConfigEditor driveConfigEditor(&mcoClient);
+	drive::Syslog syslog;
 	ChartPlotter chartPlotter;
-	drive::CanDataProcessor driveCanDataProcessor(&mcoClient, &chartPlotter);
+	drive::CanDataProcessor driveCanDataProcessor(&mcoClient, &chartPlotter, &syslog);
 
 	// START QML ENGINE
 	QQmlApplicationEngine engine;

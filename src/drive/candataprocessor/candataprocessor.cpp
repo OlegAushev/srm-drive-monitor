@@ -15,11 +15,12 @@ BasicDataTable* CanDataProcessor::m_tpdo4Table = nullptr;
 ///
 ///
 ///
-CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter)
+CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter, Syslog* syslog)
 	: m_mcoClient(mcoClient)
 	, m_watchTimer(new QTimer(this))
 	, m_refreshTimer(new QTimer(this))
 	, m_chartPlotter(chartPlotter)
+	, m_syslog(syslog)
 {
 	m_watchTable = new BasicDataTable(WATCH_NAMES_AND_UNITS, this);
 	m_tpdo1Table = new BasicDataTable(TPDO1_NAMES_AND_UNITS, this);
@@ -64,7 +65,7 @@ void CanDataProcessor::processSdo(microcanopen::CobSdo message)
 		switch (message.subindex)
 		{
 		case 0x01:
-			m_watchTable->setValue(message.subindex, QString(DRIVE_STATES[message.data.u32()]));
+			m_watchTable->setValue(message.subindex, m_syslog->driveStatesList().at(message.data.u32()));
 			break;
 				
 		case 0x02:
@@ -173,10 +174,10 @@ void CanDataProcessor::processRpdo3(microcanopen::CobRpdo3 message)
 	m_tpdo3Table->setValue(1, QString::number(message.voltageNegHousing/255.0 * 1620.0));
 	m_tpdo3Table->setValue(2, QString::number(message.statusInsulationLow));
 	m_tpdo3Table->setValue(3, QString::number(message.currentDC/127.0 * 200.0));
-	uint32_t syslogMsg = message.syslogInfo;
-	if ((syslogMsg > 0) && (syslogMsg < SYSLOG_MESSAGES.size()))
+	int syslogMsgIndex = message.syslogInfo;
+	if ((syslogMsgIndex > 0) && (syslogMsgIndex < m_syslog->messagesList().size()))
 	{
-		m_textMessages.append(SYSLOG_MESSAGES.at(syslogMsg));
+		m_textMessages.append(m_syslog->messagesList().at(syslogMsgIndex));
 	}
 }
 ///

@@ -4,7 +4,8 @@
 #include "mcoclient/mcoclient.h"
 #include "models/basicdatatable/basicdatatable.h"
 #include "chartplotter/chartplotter.h"
-#include <QDebug>
+#include "../syslog/syslog.h"
+
 #include <QTime>
 
 
@@ -16,7 +17,7 @@ class CanDataProcessor : public QObject
 	Q_OBJECT
 	Q_PROPERTY(QStringList textMessages MEMBER m_textMessages NOTIFY textMessagesChanged)
 public:
-	CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter);
+	CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter, Syslog* syslog);
 
 	Q_INVOKABLE BasicDataTable* watchTable() { return m_watchTable; }
 	Q_INVOKABLE BasicDataTable* tpdo1Table() { return m_tpdo1Table; }
@@ -36,6 +37,7 @@ private:
 	QStringList m_textMessages;
 
 	ChartPlotter* m_chartPlotter = nullptr;
+	Syslog* m_syslog = nullptr;
 
 	void sendRefreshSignals();
 
@@ -126,39 +128,6 @@ private:
 		{"Fault", "hex"},
 		{"Warning", "hex"},
 		{"WarnCnt", ""}};
-
-	const std::vector<QString> DRIVE_STATES = {
-		"STANDBY",
-		"IDLE",
-		"PWRUP",
-		"READY",
-		"PREP",
-		"START",
-		"INOP",
-		"STOP",
-		"PWRDOWN",
-		"CALPWRUP",
-		"CALPOSSENS",
-		"EVALMOTOR"
-	};
-
-	const std::vector<QString> SYSLOG_MESSAGES = {
-	"No message",
-	"[ INFO ] Device boot - success",
-	"[ INFO ] Device is busy",
-	"[ INFO ] Device is resetting...",
-	"[ INFO ] Read configs from EEPROM - success",
-	"[ FAIL ] Read configs from EEPROM - fail",
-	"[ INFO ] Reset configs - success",
-	"[ FAIL ] Reset configs - fail",
-	"[ INFO ] Apply configs - success",
-	"[ FAIL ] Apply configs - fail",
-	"[ INFO ] Position sensor calibration - success",
-	"[ FAIL ] Position sensor calibration - fail",
-	"[ INFO ] Write calibration data to EEPROM - success",
-	"[ FAIL ] Write calibration data to EEPROM - fail",
-	};
-
 };
 
 

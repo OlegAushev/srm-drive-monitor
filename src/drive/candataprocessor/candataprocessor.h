@@ -11,12 +11,12 @@
 namespace drive {
 
 
-class CanDataPrinter : public QObject
+class CanDataProcessor : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(QStringList textMessages MEMBER m_textMessages NOTIFY textMessagesChanged)
 public:
-	CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter);
+	CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter);
 
 	Q_INVOKABLE BasicDataTable* watchTable() { return m_watchTable; }
 	Q_INVOKABLE BasicDataTable* tpdo1Table() { return m_tpdo1Table; }
@@ -130,16 +130,16 @@ private:
 	const std::vector<QString> DRIVE_STATES = {
 		"STANDBY",
 		"IDLE",
-		"POWERUP",
+		"PWRUP",
 		"READY",
-		"PREPARING",
-		"STARTING",
-		"IN_OPERATION",
-		"STOPPING",
-		"POWERDOWN",
-		"CALIBRATING_POS_SENSOR_POWERUP",
-		"CALIBRATING_POS_SENSOR",
-		"EVALUATING_MOTOR"
+		"PREP",
+		"START",
+		"INOP",
+		"STOP",
+		"PWRDOWN",
+		"CALPWRUP",
+		"CALPOSSENS",
+		"EVALMOTOR"
 	};
 
 	const std::vector<QString> SYSLOG_MESSAGES = {

@@ -1,4 +1,4 @@
-#include "candataprinter.h"
+#include "candataprocessor.h"
 #include <QDebug>
 
 namespace drive {
@@ -6,16 +6,16 @@ namespace drive {
 ///
 ///
 ///
-BasicDataTable* CanDataPrinter::m_watchTable = nullptr;
-BasicDataTable* CanDataPrinter::m_tpdo1Table = nullptr;
-BasicDataTable* CanDataPrinter::m_tpdo2Table = nullptr;
-BasicDataTable* CanDataPrinter::m_tpdo3Table = nullptr;
-BasicDataTable* CanDataPrinter::m_tpdo4Table = nullptr;
+BasicDataTable* CanDataProcessor::m_watchTable = nullptr;
+BasicDataTable* CanDataProcessor::m_tpdo1Table = nullptr;
+BasicDataTable* CanDataProcessor::m_tpdo2Table = nullptr;
+BasicDataTable* CanDataProcessor::m_tpdo3Table = nullptr;
+BasicDataTable* CanDataProcessor::m_tpdo4Table = nullptr;
 
 ///
 ///
 ///
-CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter)
+CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter)
 	: m_mcoClient(mcoClient)
 	, m_watchTimer(new QTimer(this))
 	, m_refreshTimer(new QTimer(this))
@@ -27,23 +27,23 @@ CanDataPrinter::CanDataPrinter(microcanopen::McoClient* mcoClient, ChartPlotter*
 	m_tpdo3Table = new BasicDataTable(TPDO3_NAMES_AND_UNITS, this);
 	m_tpdo4Table = new BasicDataTable(TPDO4_NAMES_AND_UNITS, this);
 
-	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageSdoReceived, this, &CanDataPrinter::processSdo);
-	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo1Received, this, &CanDataPrinter::processRpdo1);
-	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo2Received, this, &CanDataPrinter::processRpdo2);
-	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo3Received, this, &CanDataPrinter::processRpdo3);
-	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo4Received, this, &CanDataPrinter::processRpdo4);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageSdoReceived, this, &CanDataProcessor::processSdo);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo1Received, this, &CanDataProcessor::processRpdo1);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo2Received, this, &CanDataProcessor::processRpdo2);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo3Received, this, &CanDataProcessor::processRpdo3);
+	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo4Received, this, &CanDataProcessor::processRpdo4);
 
-	QObject::connect(m_watchTimer, &QTimer::timeout, this, &CanDataPrinter::sendWatchRequest);
+	QObject::connect(m_watchTimer, &QTimer::timeout, this, &CanDataProcessor::sendWatchRequest);
 	m_watchTimer->start(10);
 
-	QObject::connect(m_refreshTimer, &QTimer::timeout, this, &CanDataPrinter::sendRefreshSignals);
+	QObject::connect(m_refreshTimer, &QTimer::timeout, this, &CanDataProcessor::sendRefreshSignals);
 	m_refreshTimer->start(100);
 }
 
 ///
 ///
 ///
-void CanDataPrinter::processSdo(microcanopen::CobSdo message)
+void CanDataProcessor::processSdo(microcanopen::CobSdo message)
 {
 	microcanopen::ODEntryKey key = {message.index, message.subindex};
 	auto entryIt = microcanopen::OBJECT_DICTIONARY.find(key);
@@ -137,7 +137,7 @@ void CanDataPrinter::processSdo(microcanopen::CobSdo message)
 ///
 ///
 ///
-void CanDataPrinter::processRpdo1(microcanopen::CobRpdo1 message)
+void CanDataProcessor::processRpdo1(microcanopen::CobRpdo1 message)
 {
 	m_tpdo1Table->setValue(0, QString::number(message.statusRun));
 	m_tpdo1Table->setValue(1, QString::number(message.statusFault));
@@ -155,7 +155,7 @@ void CanDataPrinter::processRpdo1(microcanopen::CobRpdo1 message)
 ///
 ///
 ///
-void CanDataPrinter::processRpdo2(microcanopen::CobRpdo2 message)
+void CanDataProcessor::processRpdo2(microcanopen::CobRpdo2 message)
 {
 	m_tpdo2Table->setValue(0, QString::number(message.tempMotorS - 40));
 	m_tpdo2Table->setValue(1, QString::number(message.voltageOut/255.0 * 100.0, 'f', 1));
@@ -167,7 +167,7 @@ void CanDataPrinter::processRpdo2(microcanopen::CobRpdo2 message)
 ///
 ///
 ///
-void CanDataPrinter::processRpdo3(microcanopen::CobRpdo3 message)
+void CanDataProcessor::processRpdo3(microcanopen::CobRpdo3 message)
 {
 	m_tpdo3Table->setValue(0, QString::number(message.voltagePosHousing/255.0 * 1620.0));
 	m_tpdo3Table->setValue(1, QString::number(message.voltageNegHousing/255.0 * 1620.0));
@@ -182,7 +182,7 @@ void CanDataPrinter::processRpdo3(microcanopen::CobRpdo3 message)
 ///
 ///
 ///
-void CanDataPrinter::processRpdo4(microcanopen::CobRpdo4 message)
+void CanDataProcessor::processRpdo4(microcanopen::CobRpdo4 message)
 {
 	m_tpdo4Table->setValue(0, QString("0x") + QString::number(message.faultCode, 16).toUpper());
 	m_tpdo4Table->setValue(1, QString("0x") + QString::number(message.warningCode, 16).toUpper());
@@ -192,7 +192,7 @@ void CanDataPrinter::processRpdo4(microcanopen::CobRpdo4 message)
 ///
 ///
 ///
-void CanDataPrinter::sendWatchRequest()
+void CanDataProcessor::sendWatchRequest()
 {
 	static uint32_t subindex = 0;
 
@@ -214,7 +214,7 @@ void CanDataPrinter::sendWatchRequest()
 ///
 ///
 ///
-void CanDataPrinter::sendRefreshSignals()
+void CanDataProcessor::sendRefreshSignals()
 {
 	m_watchTable->dataChanged(0, 1, m_watchTable->rowCount()-1, 1);
 	m_tpdo1Table->dataChanged(0, 1, 9, 1);

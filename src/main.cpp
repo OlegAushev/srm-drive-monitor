@@ -6,7 +6,7 @@
 #include "mcoclient/mcoclient.h"
 #include "drive/drivecontroller/drivecontroller.h"
 #include "drive/configeditor/configeditor.h"
-#include "drive/candataprinter/candataprinter.h"
+#include "drive/candataprocessor/candataprocessor.h"
 #include "models/basicdatatable/basicdatatablemodel.h"
 #include "models/basicdatatable/basicdatatable.h"
 #include "chartplotter/chartplotter.h"
@@ -34,14 +34,14 @@ int main(int argc, char *argv[])
 	drive::DriveController driveController(&mcoClient);
 	drive::ConfigEditor driveConfigEditor(&mcoClient);
 	ChartPlotter chartPlotter;
-	drive::CanDataPrinter driveCanDataPrinter(&mcoClient, &chartPlotter);
+	drive::CanDataProcessor driveCanDataProcessor(&mcoClient, &chartPlotter);
 
 	// START QML ENGINE
 	QQmlApplicationEngine engine;
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);
-	engine.rootContext()->setContextProperty("driveCanDataPrinter", &driveCanDataPrinter);
+	engine.rootContext()->setContextProperty("driveCanDataProcessor", &driveCanDataProcessor);
 	engine.rootContext()->setContextProperty("chartPlotter", &chartPlotter);
 
 

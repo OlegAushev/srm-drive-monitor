@@ -38,7 +38,7 @@ ApplicationWindow {
 					horizontalAlignment: Qt.AlignHCenter
 					verticalAlignment: Qt.AlignVCenter
 					//placeholderText: "Watch request period (ms)"
-					text: driveCanDataPrinter.watchPeriod()
+					text: driveCanDataProcessor.watchPeriod()
 					validator: IntValidator{ bottom: 0; top: 999; }
 				}
 			}
@@ -50,7 +50,7 @@ ApplicationWindow {
 				Button {
 					text: "Ok"
 					onClicked: {
-						driveCanDataPrinter.setWatchPeriod(Number.fromLocaleString(Qt.locale("en_EN"), valueInput.text))
+						driveCanDataProcessor.setWatchPeriod(Number.fromLocaleString(Qt.locale("en_EN"), valueInput.text))
 						root.close()
 					}
 				}

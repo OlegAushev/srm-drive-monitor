@@ -11,7 +11,7 @@ Item {
 		BasicDataTableOnListView {
 			id: watchDataTable
 			name: "Watch"
-			sourceTable: driveCanDataPrinter.watchTable()
+			sourceTable: driveCanDataProcessor.watchTable()
 			tableWidth: 240
 		}
 
@@ -24,14 +24,14 @@ Item {
 				BasicDataTableOnListView {
 					id: tpdo1DataTable
 					name: "TPDO1"
-					sourceTable: driveCanDataPrinter.tpdo1Table()
+					sourceTable: driveCanDataProcessor.tpdo1Table()
 					tableWidth: 240
 				}
 				
 				BasicDataTableOnListView {
 					id: tpdo2DataTable
 					name: "TPDO2"
-					sourceTable: driveCanDataPrinter.tpdo2Table()
+					sourceTable: driveCanDataProcessor.tpdo2Table()
 					tableWidth: 240
 				}
 
@@ -41,14 +41,14 @@ Item {
 					BasicDataTableOnListView {
 						id: tpdo3DataTable
 						name: "TPDO3"
-						sourceTable: driveCanDataPrinter.tpdo3Table()
+						sourceTable: driveCanDataProcessor.tpdo3Table()
 						tableWidth: 240
 					}
 
 					BasicDataTableOnListView {
 						id: tpdo4DataTable
 						name: "TPDO4"
-						sourceTable: driveCanDataPrinter.tpdo4Table()
+						sourceTable: driveCanDataProcessor.tpdo4Table()
 						tableWidth: 240
 					}
 				}
@@ -71,7 +71,7 @@ Item {
 							id: canMsgListView
 							anchors.fill: parent
 							anchors.margins: 8
-							model: driveCanDataPrinter.textMessages
+							model: driveCanDataProcessor.textMessages
 
 							delegate: Rectangle {
 								width: canMsgListView.width
@@ -100,7 +100,7 @@ Item {
 						anchors.right: parent.right
 						anchors.bottomMargin: 4
 						anchors.rightMargin: 24
-						onClicked: driveCanDataPrinter.clearTextMessages()
+						onClicked: driveCanDataProcessor.clearTextMessages()
 					}
 				}
 			}

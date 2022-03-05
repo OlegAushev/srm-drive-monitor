@@ -77,7 +77,9 @@ private slots:
 	void sendWatchRequest();
 
 private:
-	const std::vector<std::pair<std::string, std::string>> WATCH_NAMES_AND_UNITS = {
+	const QVector<QString> HEADER_NAMES = {"Name", "Value", "Unit"};
+
+	const QVector<QPair<QString, QString>> WATCH_NAMES_AND_UNITS = {
 		{"Uptime",	"s"},
 		{"State",	""},
 		{"Fault",	"hex"},
@@ -101,7 +103,7 @@ private:
 		{"Torque",	"Nm"},
 		{"Pm",		"W"},
 		{"Pel",		"W"}};
-	const std::vector<std::pair<std::string, std::string>> TPDO1_NAMES_AND_UNITS = {
+	const QVector<QPair<QString, QString>> TPDO1_NAMES_AND_UNITS = {
 		{"Run",		"bool"},
 		{"Fault",	"bool"},
 		{"Warning",	"bool"},
@@ -112,19 +114,19 @@ private:
 		{"Power",	"W"},
 		{"Vdc",		"V"},
 		{"If",		"A"}};
-	const std::vector<std::pair<std::string, std::string>> TPDO2_NAMES_AND_UNITS = {
+	const QVector<QPair<QString, QString>> TPDO2_NAMES_AND_UNITS = {
 		{"Tmot",	"°C"},
 		{"Vout",	"%"},
 		{"TorqLim",	"bool"},
 		{"Tfw",		"°C"},
 		{"Ths",		"°C"},
 		{"Tair",	"°C"}};
-	const std::vector<std::pair<std::string, std::string>> TPDO3_NAMES_AND_UNITS = {
+	const QVector<QPair<QString, QString>> TPDO3_NAMES_AND_UNITS = {
 		{"Vpc",		"V"}, 
 		{"Vnc",		"V"},
 		{"Status",	""},
 		{"Idc",		"A"}};
-	const std::vector<std::pair<std::string, std::string>> TPDO4_NAMES_AND_UNITS = {
+	const QVector<QPair<QString, QString>> TPDO4_NAMES_AND_UNITS = {
 		{"Fault", "hex"},
 		{"Warning", "hex"},
 		{"WarnCnt", ""}};

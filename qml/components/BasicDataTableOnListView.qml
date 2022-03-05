@@ -114,7 +114,7 @@ Item {
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				text: name
+				text: model.Name
 			}
 
 			Label {
@@ -128,7 +128,7 @@ Item {
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				text: value
+				text: model.Value
 			}
 
 			Label {
@@ -142,7 +142,7 @@ Item {
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				text: unit
+				text: model.Unit
 			}
 		}
 	}

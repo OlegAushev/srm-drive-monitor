@@ -23,13 +23,6 @@ public:
 	void setTable(BasicDataTable* table);
 
 private:
-	enum RoleName
-	{
-		NAME = Qt::UserRole,
-		VALUE,
-		UNIT
-	};
-
 	BasicDataTable* m_table;
 
 signals:
@@ -39,3 +32,5 @@ public slots:
 private slots:
 
 };
+
+

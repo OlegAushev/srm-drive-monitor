@@ -69,43 +69,7 @@ QVariant BasicDataTableModel::data(const QModelIndex &index, int role) const
 	{
 		return QVariant();
 	}
-
-	switch (role)
-	{
-	case NAME:
-		return m_table->names().at(index.row());
-		break;
-	case VALUE:
-		return m_table->values().at(index.row());
-		break;
-	case UNIT:
-		return m_table->units().at(index.row());
-		break;
-	default:
-		break;
-	}
-
-	/*switch (role)
-	{
-	case Qt::DisplayRole:
-		switch (index.column())
-		{
-		case 0:
-			return m_table->names().at(index.row());
-			break;
-		case 1:
-			return m_table->values().at(index.row());
-			break;
-		case 2:
-			return m_table->units().at(index.row());
-			break;	
-		default:
-			break;
-		}
-	default:
-		break;
-	} - Qt5.15*/
-	return QVariant();
+	return m_table->data().at(role - Qt::UserRole).at(index.row());
 }
 
 ///
@@ -113,12 +77,16 @@ QVariant BasicDataTableModel::data(const QModelIndex &index, int role) const
 ///
 QHash<int, QByteArray> BasicDataTableModel::roleNames() const 
 {
+	int role = Qt::UserRole;
 	QHash<int, QByteArray> names;
-	names[NAME] = "name";
-	names[VALUE] = "value";
-	names[UNIT] = "unit";
+
+	for (const auto& name : m_table->headerNames())
+	{
+		names[role] = name.toUtf8();
+		++role;
+	}
 	return names;
-	//return { {Qt::DisplayRole, "display"} }; - Qt5.15
+	//return { {Qt::DisplayRole, "display"} };// - Qt5.15
 }
 
 ///
@@ -139,8 +107,9 @@ void BasicDataTableModel::setTable(BasicDataTable* table)
 			[this](int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
 			{
 				emit dataChanged(createIndex(topLeftRow, topLeftCol), 
-						createIndex(bottomRightRow, bottomRightCol), 
-						{VALUE});	// Qt::DisplayRole - Qt5.15
+						createIndex(bottomRightRow, bottomRightCol));
 			});
 	}
 }
+
+

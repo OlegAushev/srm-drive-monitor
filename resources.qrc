@@ -14,7 +14,8 @@
 		<file>qml/ControlAndConfigurationWidget.qml</file>
 		<file>qml/DriveConfigurationWidget.qml</file>
 
-		<file>qml/components/BasicDataTableOnListView.qml</file>
+		<file>qml/components/DataTableOnListView2Col.qml</file>
+		<file>qml/components/DataTableOnListView3Col.qml</file>
 		<file>qml/components/SliderAndTextInput.qml</file>
 		<file>qml/WatchSettingsWindow.qml</file>
 

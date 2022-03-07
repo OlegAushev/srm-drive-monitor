@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);
 	engine.rootContext()->setContextProperty("driveCanDataProcessor", &driveCanDataProcessor);
+	engine.rootContext()->setContextProperty("syslog", &syslog);
 	engine.rootContext()->setContextProperty("chartPlotter", &chartPlotter);
 
 

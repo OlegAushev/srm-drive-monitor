@@ -21,11 +21,58 @@ public:
 	const QVector<QString>& driveStatesList() const { return DRIVE_STATES; }
 	const QVector<QString>& messagesList() const { return SYSLOG_MESSAGES; }
 
+	void setFault(uint32_t faults)
+	{
+		if (faults == m_faults)
+		{
+			return;
+		}
+
+		m_faults = faults;
+		for (auto i = 0; i < FAULTS.size(); ++i)
+		{
+			if ((faults & (uint32_t(1) << i)) != 0)
+			{
+				m_faultsTable->setValue(i, 1, "X");
+			}
+			else
+			{
+				m_faultsTable->setValue(i, 1, "");
+			}
+		}
+		m_faultsTable->dataChanged(0, 0, FAULTS.size()-1, 0);
+	}
+
+	void setWarning(uint16_t warnings)
+	{
+		if (warnings == m_warnings)
+		{
+			return;
+		}
+
+		m_warnings = warnings;
+		for (auto i = 0; i < WARNINGS.size(); ++i)
+		{
+			if ((warnings & (uint16_t(1) << i)) != 0)
+			{
+				m_warningsTable->setValue(i, 1, "X");
+			}
+			else
+			{
+				m_warningsTable->setValue(i, 1, "");
+			}
+			m_warningsTable->dataChanged(0, 0, WARNINGS.size()-1, 0);
+		}
+	}
+
 private:
+	uint32_t m_faults = 0;
+	uint16_t m_warnings = 0;
+
 	static BasicDataTable* m_faultsTable;
 	static BasicDataTable* m_warningsTable;
 
-	const QVector<QString> FAULTS_AND_WARNINGS_HEADERS = {"Name", "Value"};
+	const QVector<QString> FAULTS_AND_WARNINGS_HEADERS = {"Name", "State"};
 	const QVector<QString> FAULTS = {
 		"DC_UNDERVOLTAGE",
 		"DC_OVERVOLTAGE",

@@ -27,7 +27,7 @@ Syslog::Syslog()
 
 	for (auto i = 0; i < m_warningsTable->rowCount(); ++i)
 	{
-		m_warningsTable->setValue(i, 0, FAULTS[i]);
+		m_warningsTable->setValue(i, 0, WARNINGS[i]);
 	}
 }
 

@@ -228,7 +228,9 @@ void CanDataProcessor::processRpdo3(microcanopen::CobRpdo3 message)
 void CanDataProcessor::processRpdo4(microcanopen::CobRpdo4 message)
 {
 	m_tpdo4Table->setValue(0, 1, QString("0x") + QString::number(message.faultCode, 16).toUpper());
+	m_syslog->setFault(message.faultCode);
 	m_tpdo4Table->setValue(1, 1, QString("0x") + QString::number(message.warningCode, 16).toUpper());
+	m_syslog->setWarning(message.warningCode);
 	m_tpdo4Table->setValue(2, 1, QString::number(message.nWarnings));
 }
 

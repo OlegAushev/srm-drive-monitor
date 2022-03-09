@@ -121,12 +121,12 @@ Item {
 				Layout.preferredHeight: rowHeight
 				Layout.preferredWidth: getColumnWidth(1)
 				background: Rectangle {
-					color: index % 2 == 0 ? "transparent" : rowAlternateColor
+					color: parent.text ? Material.color(Material.Red) : Material.color(Material.Green)
 					border.color: Material.color(Material.Grey)
 				}
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
-				text: model.Value
+				text: model.State
 			}
 		}
 	}

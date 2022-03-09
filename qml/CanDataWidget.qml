@@ -8,7 +8,7 @@ Item {
 		padding: 2
 		spacing: 8
 		
-		DataTableOnListView3Col {
+		CanDataTable {
 			id: watchDataTable
 			name: "Watch"
 			sourceTable: driveCanDataProcessor.watchTable()
@@ -21,14 +21,14 @@ Item {
 
 			Row {
 				spacing: 8
-				DataTableOnListView3Col {
+				CanDataTable {
 					id: tpdo1DataTable
 					name: "TPDO1"
 					sourceTable: driveCanDataProcessor.tpdo1Table()
 					tableWidth: 240
 				}
 				
-				DataTableOnListView3Col {
+				CanDataTable {
 					id: tpdo2DataTable
 					name: "TPDO2"
 					sourceTable: driveCanDataProcessor.tpdo2Table()
@@ -38,14 +38,14 @@ Item {
 				Column {
 					spacing: 8
 
-					DataTableOnListView3Col {
+					CanDataTable {
 						id: tpdo3DataTable
 						name: "TPDO3"
 						sourceTable: driveCanDataProcessor.tpdo3Table()
 						tableWidth: 240
 					}
 
-					DataTableOnListView3Col {
+					CanDataTable {
 						id: tpdo4DataTable
 						name: "TPDO4"
 						sourceTable: driveCanDataProcessor.tpdo4Table()

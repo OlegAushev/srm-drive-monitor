@@ -6,14 +6,14 @@ Item {
 		padding: 2
 		spacing: 8
 
-		DataTableOnListView2Col {
+		FaultsTable {
 			id: faultsTable
 			name: "Faults"
 			sourceTable: syslog.faultsTable()
 			tableWidth: 360
 		}
 
-		DataTableOnListView2Col {
+		FaultsTable {
 			id: warningsTable
 			name: "Warnings"
 			sourceTable: syslog.warningsTable()

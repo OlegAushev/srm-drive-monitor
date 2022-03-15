@@ -212,10 +212,10 @@ void CanDataProcessor::processRpdo2(microcanopen::CobRpdo2 message)
 ///
 void CanDataProcessor::processRpdo3(microcanopen::CobRpdo3 message)
 {
-	m_tpdo3Table->setValue(0, 1, QString::number(message.voltagePosHousing/255.0 * 1620.0));
-	m_tpdo3Table->setValue(1, 1, QString::number(message.voltageNegHousing/255.0 * 1620.0));
+	m_tpdo3Table->setValue(0, 1, QString::number(message.voltagePosHousing/255.0 * 1620.0, 'f', 0));
+	m_tpdo3Table->setValue(1, 1, QString::number(message.voltageNegHousing/255.0 * 1620.0, 'f', 0));
 	m_tpdo3Table->setValue(2, 1, QString::number(message.statusInsulationLow));
-	m_tpdo3Table->setValue(3, 1, QString::number(message.currentDC/127.0 * 200.0));
+	m_tpdo3Table->setValue(3, 1, QString::number(message.currentDC/127.0 * 200.0, 'f', 0));
 	int syslogMsgIndex = message.syslogInfo;
 	if ((syslogMsgIndex > 0) && (syslogMsgIndex < m_syslog->messagesList().size()))
 	{

@@ -76,8 +76,8 @@ Frame {
 
 				text: slider.value.toLocaleString(Qt.locale("en_EN"), 'f', decimals)
 
-				onEditingFinished: {
-        				slider.value =  parseFloat(text);
+				onAccepted: {
+        				slider.value = parseFloat(text);
 					root.valueChanged(slider.value)
                 		}
 			}

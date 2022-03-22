@@ -116,6 +116,7 @@ void CanDataProcessor::processSdo(microcanopen::CobSdo message)
 
 		default:
 			m_watchTable->setValue(message.subindex, 1, QString::number(message.data.f32(), 'f', 2));
+			m_chartPlotter->addData(entryIt->second.name, {m_mcoClient->timeMsec() / 1000.0, message.data.f32()});
 			break;
 		}
 	}

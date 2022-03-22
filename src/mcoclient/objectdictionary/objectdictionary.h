@@ -3,6 +3,7 @@
 
 #include "../mcodef.h"
 #include <QString>
+#include <QStringList>
 #include <map>
 
 
@@ -24,6 +25,20 @@ inline ODEntryKey findODEntry(const QString& subcategory, const QString& name)
 	return entryIt->first;
 }
 
+
+inline QStringList watchEntriesList()
+{
+	QStringList list;
+	for (auto entry : OBJECT_DICTIONARY)
+	{
+		if ((entry.second.category == "WATCH") 
+				&& (entry.second.dataType == OD_FLOAT32))
+		{
+			list.append(entry.second.name);
+		}
+	}
+	return list;
+}
 
 
 }

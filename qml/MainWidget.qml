@@ -18,10 +18,10 @@ Item {
 			width: implicitWidth
 		}
 
-		/*TabButton {
+		TabButton {
 			text: "Charts"
 			width: implicitWidth
-		}*/
+		}
 	}
 
 	StackLayout {
@@ -42,62 +42,14 @@ Item {
 			InfoWidget {}
 		}
 
-		/*Item {
+		Item {
 			id: tabCharts
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop | Qt.AlignRight | Qt.AlignBottom
 			ChartsWidget {}
-		}*/
+		}
 
 
 	}
-
-
-
-
-
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-C1.TabView {
-
-	C1.Tab {
-		id: tabCanData
-		title: "CAN Data"
-
-		
-	}
-	
-	C1.Tab {
-		id: tabCharts
-		title: "Charts"
-
-		Charts {}
-	}
-}
-
-*/

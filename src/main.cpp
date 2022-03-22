@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	drive::DriveController driveController(&mcoClient);
 	drive::ConfigEditor driveConfigEditor(&mcoClient);
 	drive::Syslog syslog;
-	ChartPlotter chartPlotter;
+	ChartPlotter chartPlotter(microcanopen::watchEntriesList());
 	drive::CanDataProcessor driveCanDataProcessor(&mcoClient, &chartPlotter, &syslog);
 
 	// START QML ENGINE

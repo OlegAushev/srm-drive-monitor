@@ -2,6 +2,7 @@
 
 
 #include <QObject>
+#include <QStringList>
 #include <QtCharts/QAbstractSeries>
 #include <QtCharts/QXYSeries>
 
@@ -16,24 +17,18 @@ class ChartPlotter : public QObject
 {
 	Q_OBJECT
 public:
-	ChartPlotter();
+	ChartPlotter(QStringList channelList);
 	~ChartPlotter();
 
 	Q_INVOKABLE QStringList channelList() const { return m_channelList; };
 
-	int timeMsec()
-	{
-		if (!m_sysTimer.isValid())
-		{
-			return 0;
-		}
-		return m_sysTimer.nsecsElapsed() / 1000'000; 
-	}
-
-	Q_INVOKABLE double timeSec() { return timeMsec() / 1000.0; }
-
 	Q_INVOKABLE double minValue(const QString& channel) 
 	{	
+		if (m_data[channel].empty())
+		{
+			return -100;
+		}
+
 		return (*std::min_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
 			{
@@ -43,6 +38,11 @@ public:
 	
 	Q_INVOKABLE double maxValue(const QString& channel)
 	{
+		if (m_data[channel].empty())
+		{
+			return 100;
+		}
+
 		return (*std::max_element(m_data[channel].begin(), m_data[channel].end(),
 			[](const QPointF& first, const QPointF& second)
 			{
@@ -50,25 +50,21 @@ public:
 			})).y();
 	}
 
+	Q_INVOKABLE double timeSec() { return m_timeSec; }
+
 private:
-	static const inline int CHANNEL_COUNT = 3;
 	static const inline int CHANNEL_BUF_LENGTH = 600;
-	static const inline double TIME_RESOLUTION = 0.1;
-	QStringList m_channelList = {"Channel1", "Channel2", "Channel3"};
+	static const inline double TIME_RESOLUTION = 0;
+	QStringList m_channelList;
 
 	QMap<QString, QList<QPointF>> m_data;
-	QMap<QString, double> m_minValues;
-	QMap<QString, double> m_maxValues;
-
-	QTimer* m_timer;
-	QElapsedTimer m_sysTimer;
+	double m_timeSec = 0;
 
 public slots:
 	void update(const QString& channel, QtCharts::QAbstractSeries* series);
 	void addData(const QString& channel, QPointF point);
 
 private slots:
-	void generateData();
 
 private:
 

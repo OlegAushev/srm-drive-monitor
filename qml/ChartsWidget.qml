@@ -9,7 +9,7 @@ Item {
 	anchors.fill: parent
 
 	property real updateFreq: 30
-	property real axisUpdateFreq: 4
+	property real axisUpdateFreq: 0.5
 	property real timeWindow: 60
 	property real timeNow: 0
 

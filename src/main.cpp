@@ -3,6 +3,7 @@
 #include <QtQml/QQmlContext>
 #include <QIcon>
 
+#include "appsettings/appsettings.h"
 #include "mcoclient/mcoclient.h"
 #include "drive/drivecontroller/drivecontroller.h"
 #include "drive/configeditor/configeditor.h"
@@ -16,6 +17,10 @@
 
 int main(int argc, char *argv[])
 {
+	QCoreApplication::setOrganizationName("ECAO");
+	QCoreApplication::setApplicationName("srm-drive-monitor");
+	AppSettings settings;
+
 #ifdef EDGE_COMPUTER
 	system("sh ../scripts/connect_can_edge.sh");
 #endif
@@ -40,6 +45,7 @@ int main(int argc, char *argv[])
 
 	// START QML ENGINE
 	QQmlApplicationEngine engine;
+	engine.rootContext()->setContextProperty("appSettings", &settings);
 	engine.rootContext()->setContextProperty("mcoClient", &mcoClient);
 	engine.rootContext()->setContextProperty("driveController", &driveController);
 	engine.rootContext()->setContextProperty("driveConfigEditor", &driveConfigEditor);

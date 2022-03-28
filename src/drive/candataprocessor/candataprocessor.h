@@ -7,6 +7,7 @@
 #include "../syslog/syslog.h"
 
 #include <QTime>
+#include <QSettings>
 
 
 namespace drive {
@@ -57,12 +58,11 @@ public slots:
 	{
 		if (period <= 0)
 		{
-			m_watchTimer->stop();
+			return;
 		}
-		else
-		{
-			m_watchTimer->start(period);
-		}
+		QSettings settings;
+		settings.setValue("mcoClient/sdoWatchPeriod", period);
+		m_watchTimer->start(period);
 	}
 
 	int watchPeriod() const { return m_watchTimer->interval(); }

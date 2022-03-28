@@ -22,6 +22,8 @@ CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlot
 	, m_chartPlotter(chartPlotter)
 	, m_syslog(syslog)
 {
+	QSettings settings;
+
 	m_watchTable = new BasicDataTable(WATCH_NAMES_AND_UNITS.size(), 3, this);
 	m_tpdo1Table = new BasicDataTable(TPDO1_NAMES_AND_UNITS.size(), 3, this);
 	m_tpdo2Table = new BasicDataTable(TPDO2_NAMES_AND_UNITS.size(), 3, this);
@@ -77,7 +79,8 @@ CanDataProcessor::CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlot
 	QObject::connect(m_mcoClient, &microcanopen::McoClient::messageRpdo4Received, this, &CanDataProcessor::processRpdo4);
 
 	QObject::connect(m_watchTimer, &QTimer::timeout, this, &CanDataProcessor::sendWatchRequest);
-	m_watchTimer->start(10);
+	int watchTimerPeriod = settings.value("mcoClient/sdoWatchPeriod", 10).toInt();
+	m_watchTimer->start(watchTimerPeriod);
 
 	QObject::connect(m_refreshTimer, &QTimer::timeout, this, &CanDataProcessor::sendRefreshSignals);
 	m_refreshTimer->start(100);

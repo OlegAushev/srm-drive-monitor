@@ -8,12 +8,12 @@ Item {
 	id: root
 	anchors.fill: parent
 
-	property real updateFreq: 30
-	property real axisUpdateFreq: 0.5
-	property real timeWindow: 60
+	property real updateFreq: appSettings.value("charts/updateFreq")
+	property real axisUpdateFreq: appSettings.value("charts/axisUpdateFreq")
+	property real timeWindow: appSettings.value("charts/timeWindow")
 	property real timeNow: 0
 
-	property bool openGL: true 
+	property bool openGL: appSettings.value("charts/openGL")
 
 	ColumnLayout {
 		anchors.fill: root

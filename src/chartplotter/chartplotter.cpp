@@ -7,6 +7,10 @@
 ChartPlotter::ChartPlotter(QStringList channelList)
 	: m_channelList(channelList)
 {
+	QSettings settings;
+	m_channelBufLength = settings.value("charts/bufSize", 10).toInt();
+	m_timeResolution = settings.value("charts/timeResolution", 0).toDouble();
+
 	for (auto channel : m_channelList)
 	{
 		m_data.insert(channel, {});
@@ -39,14 +43,14 @@ void ChartPlotter::update(const QString& channel, QtCharts::QAbstractSeries* ser
 ///
 void ChartPlotter::addData(const QString& channel, QPointF point)
 {
-	if ((point.x() - m_data[channel].last().x()) < TIME_RESOLUTION)
+	if ((point.x() - m_data[channel].last().x()) < m_timeResolution)
 	{
 		return;
 	}
 
 	m_data[channel].append(point);
 
-	if (m_data[channel].size() > CHANNEL_BUF_LENGTH)
+	if (m_data[channel].size() > m_channelBufLength)
 	{
 		m_data[channel].removeFirst();
 	}

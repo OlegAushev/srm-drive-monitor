@@ -77,9 +77,10 @@ Frame {
 				text: slider.value.toLocaleString(Qt.locale("en_EN"), 'f', decimals)
 
 				onAccepted: {
-        				slider.value = parseFloat(text);
+					slider.value = parseFloat(text);
 					root.valueChanged(slider.value)
-                		}
+					selectAll();
+				}
 			}
 		}
 	}

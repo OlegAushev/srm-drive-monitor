@@ -5,7 +5,10 @@
 		<file>qml/AppMenuBar.qml</file>
 		<file>qml/AppToolBar.qml</file>
 		<file>qml/AppStatusBar.qml</file>
-		<file>qml/WatchSettingsWindow.qml</file>
+		
+		<file>qml/settings/WatchSettingsWindow.qml</file>
+		<file>qml/settings/MainSettingsWindow.qml</file>
+		<file>qml/settings/ChartsSettings.qml</file>
 
 		<file>qml/MainWidget.qml</file>
 		<file>qml/CanDataWidget.qml</file>
@@ -18,6 +21,7 @@
 		<file>qml/components/FaultsTable.qml</file>
 		<file>qml/components/CanDataTable.qml</file>
 		<file>qml/components/SliderAndTextInput.qml</file>
+		<file>qml/components/SettingsTextInput.qml</file>
 
 
 		<file>images/desktop-classic.png</file>

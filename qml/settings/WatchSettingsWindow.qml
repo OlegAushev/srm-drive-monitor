@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 
 ApplicationWindow {
 	id: root
+	title: "SRM Drive Monitor"
 	minimumWidth: label.width + 50
 	minimumHeight: 160
 	maximumHeight: minimumHeight

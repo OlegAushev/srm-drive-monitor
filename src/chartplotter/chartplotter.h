@@ -8,9 +8,7 @@
 
 #include <QTimer>
 #include <QElapsedTimer>
-#include <QtCore/QRandomGenerator>
-#include <cmath>
-#include <algorithm>
+#include <QSettings>
 
 
 class ChartPlotter : public QObject
@@ -53,8 +51,8 @@ public:
 	Q_INVOKABLE double timeSec() { return m_timeSec; }
 
 private:
-	static const inline int CHANNEL_BUF_LENGTH = 600;
-	static const inline double TIME_RESOLUTION = 0;
+	int m_channelBufLength;
+	double m_timeResolution;
 	QStringList m_channelList;
 
 	QMap<QString, QList<QPointF>> m_data;

@@ -16,6 +16,11 @@ public:
 		return m_settings.value(key);
 	}
 
+	Q_INVOKABLE void setValue(const QString& key, const QVariant& value)
+	{
+		m_settings.setValue(key, value);
+	}
+
 private:
 	QSettings m_settings;
 };

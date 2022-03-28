@@ -15,6 +15,15 @@ AppSettings::AppSettings()
 		m_settings.setValue("sdoWatchPeriod", 10);
 		m_settings.endGroup();
 
+		m_settings.beginGroup("charts");
+		m_settings.setValue("updateFreq", 30);
+		m_settings.setValue("axisUpdateFreq", 0.5);
+		m_settings.setValue("timeWindow", 60);
+		m_settings.setValue("openGL", true);
+		m_settings.setValue("bufSize", 600);
+		m_settings.setValue("timeResolution", 0);
+		m_settings.endGroup();
+
 		m_settings.setValue("firstRun", false);
 	}
 	else

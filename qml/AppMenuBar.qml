@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import "settings"
 
 
 MenuBar {
@@ -24,7 +25,14 @@ MenuBar {
 			onTriggered: driveController.getBuildConfiguration() 
 		}
 
-		MenuSeparator { }
+		MenuSeparator {}
+		
+		MenuItem {
+			text: "Settings"
+			onTriggered: mainSettingsWindow.show()
+		}
+		
+		MenuSeparator {}
 
 		MenuItem {
 			text: "Quit"
@@ -106,7 +114,9 @@ MenuBar {
 
 	WatchSettingsWindow {
 		id: watchSettingsWindow
-		width: 300;
-		height: 300;
+	}
+
+	MainSettingsWindow {
+		id: mainSettingsWindow
 	}
 }

@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.11
 import "../components"
 
 
@@ -7,8 +8,9 @@ Item {
 	id: root
 	anchors.fill: parent
 
-	Column {
+	ColumnLayout {
 		anchors.fill: parent
+		anchors.margins: 8
 
 		SettingsTextInput {
 			width: 400
@@ -41,6 +43,22 @@ Item {
 			valueFrom: 10
 			valueTo: 600
 			decimals: 0
+		}
+
+		SettingsCheckboxInput {
+			width: 400
+			height: 40
+			name: "Use OpenGL"
+			parameterKey: "charts/openGL"
+		}
+
+		Button {
+			width: 100
+			Layout.alignment: Qt.AlignRight
+			text: "Restore Settings"
+			onClicked: {
+				appSettings.restoreDefaultChartsSettings();
+			}
 		}
 	}
 }

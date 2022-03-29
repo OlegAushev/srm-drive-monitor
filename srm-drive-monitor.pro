@@ -6,6 +6,7 @@ DEFINES += EDGE_COMPUTER
 
 SOURCES += \
 	src/main.cpp							\
+	src/appsettings/appsettings.cpp					\
 	src/cansocketdevice/cansocketdevice.cpp				\
 	src/mcoclient/mcoclient.cpp					\
 	src/mcoclient/objectdictionary/objectdictionary.cpp		\
@@ -17,6 +18,7 @@ SOURCES += \
 	src/models/basicdatatable/basicdatatablemodel.cpp		\
 
 HEADERS += \
+	src/appsettings/appsettings.h					\
 	src/cansocketdevice/cansocketdevice.h				\
 	src/mcoclient/mcoclient.h					\
 	src/mcoclient/mcodef.h						\

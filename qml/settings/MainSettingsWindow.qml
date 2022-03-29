@@ -11,30 +11,39 @@ ApplicationWindow {
 	Material.accent: Material.color(Material.DeepOrange, Material.Shade700)	// used for EVOCARGO build
 
 	title: "SRM Drive Monitor Settings"
-	minimumWidth: 400
+	minimumWidth: 450
 	minimumHeight: 300
-	maximumHeight: minimumHeight
-	maximumWidth: minimumWidth
+	maximumWidth: 450
+	maximumHeight: 300
 
-	TabBar {
-		id: tabbar
-		TabButton {
-			text: "Charts"
-			width: implicitWidth
+	Row {
+		anchors.fill: parent
+		anchors.leftMargin: 2
+		anchors.topMargin: 2
+		anchors.rightMargin: 2
+		anchors.bottomMargin: 2
+
+		TabBar {
+			id: tabbar
+			TabButton {
+				text: "Charts"
+				width: implicitWidth
+			}
 		}
-	}
 
-	StackLayout {
-		anchors.top: tabbar.bottom
-		anchors.bottom: root.bottom
-		anchors.left: root.left
-		anchors.right: root.right
-		currentIndex: tabbar.currentIndex
-		
-		Item {
-			id: tabData
-			ChartsSettings {}
+		StackLayout {
+			anchors.top: tabbar.bottom
+			anchors.bottom: root.bottom
+			anchors.left: root.left
+			anchors.right: root.right
+			currentIndex: tabbar.currentIndex
 			
+			Item {
+				id: chartsSettings
+				ChartsSettings {}
+			}
 		}
 	}
+
+	
 }

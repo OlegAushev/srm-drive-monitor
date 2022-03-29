@@ -21,6 +21,8 @@ public:
 		m_settings.setValue(key, value);
 	}
 
+	Q_INVOKABLE void restoreDefaultChartsSettings();
+
 private:
 	QSettings m_settings;
 };

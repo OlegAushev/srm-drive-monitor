@@ -22,6 +22,7 @@
 		<file>qml/components/CanDataTable.qml</file>
 		<file>qml/components/SliderAndTextInput.qml</file>
 		<file>qml/components/SettingsTextInput.qml</file>
+		<file>qml/components/SettingsCheckboxInput.qml</file>
 
 
 		<file>images/desktop-classic.png</file>

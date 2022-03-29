@@ -4,6 +4,7 @@ import "settings"
 
 
 MenuBar {
+	id: root
 
 	Menu {
 		title: "App"
@@ -29,7 +30,11 @@ MenuBar {
 		
 		MenuItem {
 			text: "Settings"
-			onTriggered: mainSettingsWindow.show()
+			onTriggered: {
+				var component = Qt.createComponent("settings/MainSettingsWindow.qml");
+				var window = component.createObject(root);
+				window.show();
+			}
 		}
 		
 		MenuSeparator {}
@@ -78,7 +83,9 @@ MenuBar {
 				implicitWidth: 100
 				text: "Set Period"
 				onTriggered: {
-					watchSettingsWindow.show()
+					var component = Qt.createComponent("settings/WatchSettingsWindow.qml");
+					var window = component.createObject(root);
+					window.show();
 				}
 			}
 		}
@@ -110,13 +117,5 @@ MenuBar {
 			text: "Reset Device"
 			onTriggered: driveController.resetDevice()
 		}
-	}
-
-	WatchSettingsWindow {
-		id: watchSettingsWindow
-	}
-
-	MainSettingsWindow {
-		id: mainSettingsWindow
 	}
 }

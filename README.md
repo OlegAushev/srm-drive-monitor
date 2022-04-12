@@ -1,7 +1,7 @@
 # Установка
 **Системные требования**: 
 * Ubuntu 20.04 и выше
-* Установленные библиотеки Qt5: `sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2`
+* Установленные библиотеки Qt5: `sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts`
 
 # Описание интерфейса
 

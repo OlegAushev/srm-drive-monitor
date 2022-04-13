@@ -28,7 +28,8 @@
 }
 
 </style>
-        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -42,7 +43,7 @@
 .task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
 </style>
         
-        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
         
     </head>
     <body class="vscode-body vscode-light">
@@ -50,9 +51,18 @@
 <p><strong>Системные требования</strong>:</p>
 <ul>
 <li>Ubuntu 20.04 и выше</li>
-<li>Установленные библиотеки Qt5: <code>sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts</code></li>
+<li>Установленные библиотеки Qt5:</li>
+</ul>
+<pre><code><code><div>$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts
+</div></code></code></pre>
+<ul>
 <li>Файлам <code>srm-drive-monitor</code> и <code>connect_can.sh</code> установить разрешение на выполенение как программам</li>
 </ul>
+<h1 id="запуск">Запуск</h1>
+<pre><code><code><div>$ cd &lt;расположение srm-drive-monitor&gt;
+$ ./srm-drive-monitor
+</div></code></code></pre>
+<p>Для подключения к CAN-шине: <em>Connect CAN Device</em> -&gt; <em>can0</em>, в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>.</p>
 <h1 id="описание-интерфейса">Описание интерфейса</h1>
 <h2 id="1-область-меню">1. Область меню</h2>
 <h3 id="app">App</h3>
@@ -60,7 +70,7 @@
 <p><strong>Software Version</strong> - выводит версию прошивки подключённого преобразователя.</p>
 <p><strong>Software Build Configuration</strong> - выводит название конфигурации сборки прошивки подключённого преобразователя (<em>REVA</em>, <em>REVB</em> и т.д.).</p>
 <h3 id="network">Network</h3>
-<p><strong>Connect CAN Device</strong> - подключение к CAN-шине (необходимо выбрать интерфейс <em>can0</em>, далее в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>).</p>
+<p><strong>Connect CAN Device</strong> - подключение к CAN-шине (необходимо выбрать интерфейс <em>can0</em>, в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>).</p>
 <p><strong>Disconnect CAN Device</strong> - отключение от CAN-шины.</p>
 <p><strong>Watch Requests</strong> - меню настройки частоты отправки <em>SDO</em>-запросов (<em>CAN ID</em> 0x601/0x581) вспомогательной диагностической информации, которая выводится в таблице <em>Watch</em>.</p>
 <h3 id="drive-control">Drive Control</h3>
@@ -351,6 +361,21 @@
 </tr>
 </tbody>
 </table>
+<h1 id="процедура-прошивки-микроконтроллера-посредством-утилиты-uniflash">Процедура прошивки микроконтроллера посредством утилиты <em>UniFlash</em></h1>
+<ol>
+<li>Подать питание 24В на микроконтроллерную плату.</li>
+<li>Запустить утилиту <em>UniFlash</em>.</li>
+<li>В меню <strong>Choose Your Device</strong> выбрать <em>TMS320F28377D</em>.</li>
+<li>В меню <strong>Choose Your Connection</strong> выбрать <em>Texas Instruments XDS100v3 USB Debug Probe</em>.</li>
+<li>Нажать <strong>Start</strong>.</li>
+<li><strong>Program</strong> -&gt; <strong>C28xx_CPU1</strong> -&gt; <strong>Flash Image(s)</strong> -&gt; <strong>Browse</strong> -&gt; выбрать файл прошивки <code>srm-drive-c28x-cpu1.out</code>.</li>
+<li>Нажать <strong>Load Image</strong>.</li>
+<li>Дождаться окончания.</li>
+<li><strong>Program</strong> -&gt; <strong>C28xx_CPU2</strong> -&gt; <strong>Flash Image(s)</strong> -&gt; <strong>Browse</strong> -&gt; выбрать файл прошивки <code>srm-drive-c28x-cpu2.out</code>.</li>
+<li>Нажать <strong>Load Image</strong>.</li>
+<li>Дождаться окончания.</li>
+<li>Снять питание с микроконтроллерной платы.</li>
+</ol>
 
     </body>
     </html>

@@ -1,8 +1,20 @@
 # Установка
 **Системные требования**: 
 * Ubuntu 20.04 и выше
-* Установленные библиотеки Qt5: `sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts`
+* Установленные библиотеки Qt5:
+```
+$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts
+```
 * Файлам `srm-drive-monitor` и `connect_can.sh` установить разрешение на выполенение как программам
+
+# Запуск
+
+```
+$ cd <расположение srm-drive-monitor>
+$ ./srm-drive-monitor
+```
+
+Для подключения к CAN-шине: *Connect CAN Device* -> *can0*, в появившемся файловом диалоге выбрать скрипт `connect_can.sh`.
 
 # Описание интерфейса
 
@@ -18,7 +30,7 @@
 
 ### Network
 
-**Connect CAN Device** - подключение к CAN-шине (необходимо выбрать интерфейс *can0*, далее в появившемся файловом диалоге выбрать скрипт `connect_can.sh`).
+**Connect CAN Device** - подключение к CAN-шине (необходимо выбрать интерфейс *can0*, в появившемся файловом диалоге выбрать скрипт `connect_can.sh`).
 
 **Disconnect CAN Device** - отключение от CAN-шины.
 
@@ -131,4 +143,17 @@
 | Пороговое напряжение шины постоянного тока при отключении                                           | DCLINK_DISCHARGE_THRESHOLD | 300      | В        |
 | Время ожидания снижения напряжения до порогового уровня при отключении                              | DCLINK_DISCHARGE_TIMEOUT   | 5000     | мс       |
 
+# Процедура прошивки микроконтроллера посредством утилиты *UniFlash*
 
+1. Подать питание 24В на микроконтроллерную плату.
+2. Запустить утилиту *UniFlash*.
+3. В меню **Choose Your Device** выбрать *TMS320F28377D*.
+4. В меню **Choose Your Connection** выбрать *Texas Instruments XDS100v3 USB Debug Probe*.
+5. Нажать **Start**.
+6. **Program** -> **C28xx_CPU1** -> **Flash Image(s)** -> **Browse** -> выбрать файл прошивки `srm-drive-c28x-cpu1.out`.
+7. Нажать **Load Image**.
+8. Дождаться окончания.
+9.  **Program** -> **C28xx_CPU2** -> **Flash Image(s)** -> **Browse** -> выбрать файл прошивки `srm-drive-c28x-cpu2.out`.
+10. Нажать **Load Image**.
+11. Дождаться окончания.
+12. Снять питание с микроконтроллерной платы.

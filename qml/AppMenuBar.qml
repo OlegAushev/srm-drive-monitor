@@ -76,7 +76,7 @@ MenuBar {
 				text: "Enable"
 				checked: true
 				checkable: true
-				onTriggered: checked ? driveCanDataPrinter.startWatch() : driveCanDataPrinter.stopWatch()
+				onTriggered: checked ? driveCanDataProcessor.startWatch() : driveCanDataProcessor.stopWatch()
 			}
 
 			MenuItem {
@@ -109,6 +109,24 @@ MenuBar {
 		MenuItem {
 			text: "Invert Rotation Direction"
 			onTriggered: driveController.invertRotationDirection() 
+		}
+
+		Menu {
+			title: "Set Reference"
+			
+			MenuItem {
+				text: "Speed"
+				onTriggered: {
+					driveConfigEditor.writeParameter("MODEL", "REFERENCE", 0);
+				}
+			}
+
+			MenuItem {
+				text: "Torque"
+				onTriggered: {
+					driveConfigEditor.writeParameter("MODEL", "REFERENCE", 1);
+				}
+			}
 		}
 
 		MenuSeparator { }

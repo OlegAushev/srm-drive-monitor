@@ -17,6 +17,7 @@ class CanDataProcessor : public QObject
 {
 	Q_OBJECT
 	Q_PROPERTY(QStringList textMessages MEMBER m_textMessages NOTIFY textMessagesChanged)
+	Q_PROPERTY(bool speedRefActive READ speedRefActive NOTIFY speedRefActiveChanged)
 public:
 	CanDataProcessor(microcanopen::McoClient* mcoClient, ChartPlotter* chartPlotter, Syslog* syslog);
 
@@ -25,17 +26,22 @@ public:
 	Q_INVOKABLE BasicDataTable* tpdo2Table() { return m_tpdo2Table; }
 	Q_INVOKABLE BasicDataTable* tpdo3Table() { return m_tpdo3Table; }
 	Q_INVOKABLE BasicDataTable* tpdo4Table() { return m_tpdo4Table; }
+	bool speedRefActive() const { return m_speedRefActive; }
 
 private:
 	microcanopen::McoClient* m_mcoClient = nullptr;
+
 	static BasicDataTable* m_watchTable;
 	static BasicDataTable* m_tpdo1Table;
 	static BasicDataTable* m_tpdo2Table;
 	static BasicDataTable* m_tpdo3Table;
 	static BasicDataTable* m_tpdo4Table;
+
 	QTimer* m_watchTimer = nullptr;
 	QTimer* m_refreshTimer = nullptr;
 	QStringList m_textMessages;
+
+	bool m_speedRefActive = false;
 
 	ChartPlotter* m_chartPlotter = nullptr;
 	Syslog* m_syslog = nullptr;
@@ -44,6 +50,7 @@ private:
 
 signals:
 	void textMessagesChanged();
+	void speedRefActiveChanged();
 
 public slots:
 	void startWatch() { m_watchTimer->start(); }

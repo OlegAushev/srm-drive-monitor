@@ -29,15 +29,18 @@ Item{
 				spacing: 4
 
 				SliderAndTextInput {
+					id: speedControl
 					name: "Speed"
 					unit: "rpm"
 					valueFrom: -8000
 					valueTo: 8000
 					sliderStep: 100
 					onValueChanged: driveController.setSpeed(value)
+					active: false
 				}
 
 				SliderAndTextInput {
+					id: torqueControl
 					name: "Torque"
 					unit: "%"
 					valueFrom: -100
@@ -45,6 +48,7 @@ Item{
 					sliderStep: 1
 					decimals: 2
 					onValueChanged: driveController.setTorque(value)
+					active: true
 				}
 
 				SliderAndTextInput {
@@ -55,6 +59,7 @@ Item{
 					sliderStep: 0.1
 					decimals: 1
 					onValueChanged: driveController.setFieldCurrent(value)
+					active: false
 				}
 
 				SliderAndTextInput {
@@ -64,6 +69,15 @@ Item{
 					valueTo: 180
 					sliderStep: 1
 					onValueChanged: driveController.setGammaCorrection(value)
+					active: true
+				}
+
+				Connections {
+					target: driveCanDataProcessor
+					onSpeedRefActiveChanged: {
+						speedControl.active = driveCanDataProcessor.speedRefActive;
+						torqueControl.active = !driveCanDataProcessor.speedRefActive;
+					}
 				}
 			}
 		}

@@ -70,7 +70,8 @@ struct CobRpdo3
 	uint16_t statusInsulationLow : 1;		// bit 1
 	uint16_t statusInsulationLowWoFilter : 1;	// bit 2
 	uint16_t statusReserved2 : 1;			// bit 3
-	uint16_t reserved1 : 4;
+	uint16_t reserved1 : 3;
+	uint16_t driveReference : 1;
 	int8_t currentDC : 8;
 	uint32_t syslogInfo : 32;
 	CobRpdo3() = default;

@@ -225,6 +225,13 @@ void CanDataProcessor::processRpdo3(microcanopen::CobRpdo3 message)
 	{
 		m_textMessages.append(m_syslog->messagesList().at(syslogMsgIndex));
 	}
+
+	bool ref = message.driveReference;
+	if (ref != m_speedRefActive)
+	{
+		m_speedRefActive = ref;
+		emit speedRefActiveChanged();
+	}
 }
 ///
 ///

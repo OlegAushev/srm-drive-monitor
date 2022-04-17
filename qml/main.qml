@@ -12,7 +12,7 @@ ApplicationWindow {
 	
 	visible: true
 	minimumWidth: 1340
-	minimumHeight: 700
+	minimumHeight: 640
 	title: "SRM Drive Monitor"
 	
 	menuBar: AppMenuBar {

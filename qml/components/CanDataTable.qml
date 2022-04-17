@@ -13,7 +13,7 @@ Item {
 	property QtObject sourceTable
 	property real tableWidth
 	property real cellSpacing: 1
-	property real rowHeight: 22
+	property real rowHeight: 20
 
 	property real defaultColumnWidth: tableWidth/3;
 

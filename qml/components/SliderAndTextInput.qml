@@ -17,9 +17,9 @@ Frame {
 	padding: 0
 
 	Item {
-		width: 320
+		width: 280
 		height: 80
-		implicitWidth: 320
+		implicitWidth: 280
 		implicitHeight: 80
 		anchors.fill: parent
 
@@ -41,7 +41,7 @@ Frame {
 
 		Slider {
 			id: slider
-			width: 200
+			width: 160
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.rightMargin: 4

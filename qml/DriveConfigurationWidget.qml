@@ -5,7 +5,7 @@ import QtQuick.Controls 2.4
 Frame {
 	id: root
 
-	width: 320
+	width: 280
 	height: 400
 
 	Column {
@@ -15,14 +15,14 @@ Frame {
 		
 		ComboBox {
 			id: parameterCategory
-			width: 300
+			width: 260
 			anchors.horizontalCenter: parent.horizontalCenter
 			model: driveConfigEditor.parameterCategories()
 		}
 
 		ComboBox {
 			id: parameterName
-			width: 300
+			width: 260
 			anchors.horizontalCenter: parent.horizontalCenter
 			model: driveConfigEditor.parameterNames(parameterCategory.currentText)
 		}

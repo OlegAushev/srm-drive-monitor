@@ -11,7 +11,7 @@ ApplicationWindow {
 	Material.accent: Material.color(Material.DeepOrange, Material.Shade700)	// used for EVOCARGO build
 	
 	visible: true
-	minimumWidth: 1340
+	minimumWidth: 1284
 	minimumHeight: 640
 	title: "SRM Drive Monitor"
 	
@@ -51,7 +51,7 @@ ApplicationWindow {
 		ControlAndConfigurationWidget {
 			id: controlTabView
 			Layout.alignment: Qt.AlignLeft | Qt.AlignTop 
-			Layout.preferredWidth: 332
+			Layout.preferredWidth: 286
 			Layout.preferredHeight: 400
 			Layout.fillWidth: false
 			Layout.fillHeight: true

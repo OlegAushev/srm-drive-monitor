@@ -92,7 +92,7 @@ MenuBar {
 	}
 
 	Menu {
-		title: "Drive Control"
+		title: "Drive"
 		width: menu3LongItem.width
 
 		MenuItem {

@@ -141,6 +141,7 @@ private:
 	"[ FAIL ] Position sensor calibration - fail",
 	"[ INFO ] Write calibration data to EEPROM - success",
 	"[ FAIL ] Write calibration data to EEPROM - fail",
+	"[ FAIL } Operation cannot be performed"
 	};
 };
 

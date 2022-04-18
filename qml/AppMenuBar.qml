@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
+import QtQuick.Dialogs 1.3
 import "settings"
 
 
@@ -103,12 +104,30 @@ MenuBar {
 		MenuItem {
 			id: menu3LongItem
 			text: "Calibrate Position Sensor"
-			onTriggered: driveController.calibratePositionSensor() 
+			onTriggered: calibrateDialog.open()
+
+			MessageDialog {
+				id: calibrateDialog
+				icon: StandardIcon.Warning
+				title: "Warning!"
+				text: "The calibration procedure is about to begin.\nMake sure that the driving wheels DO NOT touch the ground!\nContinue?"
+				standardButtons: StandardButton.Yes | StandardButton.No
+				onYes: driveController.calibratePositionSensor();
+			}
 		}
 		
 		MenuItem {
 			text: "Invert Rotation Direction"
-			onTriggered: driveController.invertRotationDirection() 
+			onTriggered: invertDialog.open()
+
+			MessageDialog {
+				id: invertDialog
+				icon: StandardIcon.Warning
+				title: "Warning!"
+				text: "The default direction of rotation will be changed.\nContinue?"
+				standardButtons: StandardButton.Yes | StandardButton.No
+				onYes: driveController.invertRotationDirection()
+			}
 		}
 
 		Menu {

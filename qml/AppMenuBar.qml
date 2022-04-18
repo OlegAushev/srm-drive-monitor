@@ -118,6 +118,7 @@ MenuBar {
 				text: "Speed"
 				onTriggered: {
 					driveConfigEditor.writeParameter("MODEL", "REFERENCE", 0);
+					driveConfigEditor.applyParameters();
 				}
 			}
 
@@ -125,6 +126,7 @@ MenuBar {
 				text: "Torque"
 				onTriggered: {
 					driveConfigEditor.writeParameter("MODEL", "REFERENCE", 1);
+					driveConfigEditor.applyParameters();
 				}
 			}
 		}

@@ -83,6 +83,7 @@ Item {
 									text: modelData
 									horizontalAlignment: Qt.AlignLeft
 									leftPadding: 4
+									font.family: "Monospace"
 								}
 							}
 

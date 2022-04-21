@@ -23,7 +23,7 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2000, 0x0C}, {"WATCH",	"WATCH", "PHA_TEMP",		"°C",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x0D}, {"WATCH",	"WATCH", "PHB_TEMP",		"°C",	OD_FLOAT32,	true,	false}},
 {{0x2000, 0x0E}, {"WATCH",	"WATCH", "PHC_TEMP",		"°C",	OD_FLOAT32, 	true,	false}},
-{{0x2000, 0x0F}, {"WATCH",	"WATCH", "AIR_TEMP",		"°C",	OD_FLOAT32, 	true,	false}},
+{{0x2000, 0x0F}, {"WATCH",	"WATCH", "CASE_TEMP",		"°C",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x10}, {"WATCH",	"WATCH", "MOTOR_S_TEMP",	"°C",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x11}, {"WATCH",	"WATCH", "MOTOR_FW_TEMP",	"°C",	OD_FLOAT32, 	true,	false}},
 {{0x2000, 0x12}, {"WATCH",	"WATCH", "GAMMA_ANGLE_DEG",	"°",	OD_FLOAT32, 	true,	true}},
@@ -78,7 +78,7 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2102, 0x03}, {"CONFIG",	"CONVERTER",	"OCP_FIELD", 		"A",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x04}, {"CONFIG",	"CONVERTER",	"OCP_DC",		"A",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x05}, {"CONFIG",	"CONVERTER",	"OTP_JUNCTION",		"°C",	OD_FLOAT32, 	true,	true}},
-{{0x2102, 0x06}, {"CONFIG",	"CONVERTER",	"OTP_AIR",		"°C",	OD_FLOAT32, 	true,	true}},
+{{0x2102, 0x06}, {"CONFIG",	"CONVERTER",	"OTP_CASE",		"°C",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x07}, {"CONFIG",	"CONVERTER",	"FAN_TEMP_TH_ON",	"°C",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x08}, {"CONFIG",	"CONVERTER",	"FAN_TEMP_TH_OFF",	"°C",	OD_FLOAT32, 	true,	true}},
 

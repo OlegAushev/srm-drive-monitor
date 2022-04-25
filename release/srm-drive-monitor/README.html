@@ -43,8 +43,6 @@
 .task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
 </style>
         
-        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
-        
     </head>
     <body class="vscode-body vscode-light">
         <h1 id="установка">Установка</h1>
@@ -53,16 +51,18 @@
 <li>Ubuntu 20.04 и выше</li>
 <li>Установленные библиотеки Qt5:</li>
 </ul>
-<pre><code><code><div>$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts
+<pre><code><code><div>$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts qml-module-qtquick-dialogs qml-module-qtquick-extras qml-module-qtquick-controls
 </div></code></code></pre>
 <ul>
-<li>Файлам <code>srm-drive-monitor</code> и <code>connect_can.sh</code> установить разрешение на выполенение как программам</li>
+<li>Папку <code>srm-drive-monitor</code> поместить в каталог <code>/home/&lt;user&gt;</code>.</li>
+<li>Файлам <code>srm-drive-monitor</code> и <code>connect_can.sh</code> установить разрешение на выполенение как программам.</li>
+<li><em>Необязательно</em>. Для добавления иконки запуска в панель приложений в файле <code>srm-drive-monitor.desktop</code> заменить $USER на имя пользователя и поместить указанный файл в каталог <code>home/&lt;user&gt;/.local/share/applications</code>. Перезапустить окружение рабочего стола, по умолчанию: <code>Alt+F2</code>, выполнить <code>r</code>.</li>
 </ul>
 <h1 id="запуск">Запуск</h1>
 <pre><code><code><div>$ cd &lt;расположение srm-drive-monitor&gt;
 $ ./srm-drive-monitor
 </div></code></code></pre>
-<p>Для подключения к CAN-шине: <em>Connect CAN Device</em> -&gt; <em>can0</em>, в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>.</p>
+<p>Для подключения к CAN-шине: <em>Connect CAN Device</em> → <em>can0</em>, в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>.</p>
 <h1 id="описание-интерфейса">Описание интерфейса</h1>
 <h2 id="1-область-меню">1. Область меню</h2>
 <h3 id="app">App</h3>
@@ -73,10 +73,11 @@ $ ./srm-drive-monitor
 <p><strong>Connect CAN Device</strong> - подключение к CAN-шине (необходимо выбрать интерфейс <em>can0</em>, в появившемся файловом диалоге выбрать скрипт <code>connect_can.sh</code>).</p>
 <p><strong>Disconnect CAN Device</strong> - отключение от CAN-шины.</p>
 <p><strong>Watch Requests</strong> - меню настройки частоты отправки <em>SDO</em>-запросов (<em>CAN ID</em> 0x601/0x581) вспомогательной диагностической информации, которая выводится в таблице <em>Watch</em>.</p>
-<h3 id="drive-control">Drive Control</h3>
+<h3 id="drive">Drive</h3>
 <p><strong>Reset Faults</strong> - сброс ошибок и предупреждений.</p>
 <p><strong>Calibrate Position Sensor</strong> - калибровка датчика положения ротора. <strong>ВНИМАНИЕ!</strong> Данная операция сопряжена с вращением ротора двигателя, поэтому перед началом данной операции должно быть обеспечено вывешенное состояние ведущих колёс.</p>
 <p><strong>Invert Rotation Direction</strong> - изменить &quot;положительное&quot; направление вращения двигателя. Изначально за &quot;положительное&quot; направление вращения двигателя принимается то направление, в котором осуществляется калибровка датчика положения ротора. &quot;Положительное&quot; направление вращения двигателя должно приводить к направлению вращения колёс автомобиля, соответсвующему движению автомобиля вперёд.</p>
+<p><strong>Set Reference</strong> - установить тип управляющего задания: скорость (<em>Speed</em>) или момент (<em>Torque</em>).</p>
 <p><strong>Reset Device</strong> - перезагрузить преобразователь.</p>
 <h2 id="2-область-панели-упавления">2. Область панели упавления</h2>
 <p><strong>TLC Emulation On/Off</strong> - вкл/выкл эмуляцию КВУ посредством генерирования управляющих <em>PDO</em>-сообщений (<em>CAN ID</em> 0x194, 0x294).</p>
@@ -96,6 +97,7 @@ $ ./srm-drive-monitor
 <p><strong>Torque</strong> - задание момента.</p>
 <p><strong>Field Current</strong> - не используется.</p>
 <p><strong>Gamma Correction</strong> - не используется.</p>
+<p>Индикатор в правом верхнем углу каждого органа управления обозначает его активность, т.е. формирует ли орган управления в данный момент времени соответствующий сигнал задания для преобразователя.</p>
 <h3 id="configuration">CONFIGURATION</h3>
 <p>Область конфигурации параметров преобразователя, хранимых в его EEPROM. После записи параметров (кнопка <strong>WRITE</strong>) необходимо осуществить их применение путём нажатия на кнопку <strong>APPLY</strong>. Возврат к значениям по умолчанию возможен путём нажатия на кнопку <strong>RESET TO DEFAULT</strong>. Конфигурирование преобразователя требуется производить в режиме <em>STANDBY</em>. Чтение параметров (кнопка <strong>READ</strong>) возможно в любом режиме работы преобразователя.</p>
 <h1 id="перечень-параметров-преобразователя-и-их-значений-по-умолчанию">Перечень параметров преобразователя и их значений по умолчанию</h1>
@@ -363,19 +365,34 @@ $ ./srm-drive-monitor
 </table>
 <h1 id="процедура-прошивки-микроконтроллера-посредством-утилиты-uniflash">Процедура прошивки микроконтроллера посредством утилиты <em>UniFlash</em></h1>
 <ol>
+<li>Подключить программатор к микроконтроллерной плате и ПК.</li>
 <li>Подать питание 24В на микроконтроллерную плату.</li>
 <li>Запустить утилиту <em>UniFlash</em>.</li>
 <li>В меню <strong>Choose Your Device</strong> выбрать <em>TMS320F28377D</em>.</li>
 <li>В меню <strong>Choose Your Connection</strong> выбрать <em>Texas Instruments XDS100v3 USB Debug Probe</em>.</li>
 <li>Нажать <strong>Start</strong>.</li>
-<li><strong>Program</strong> -&gt; <strong>C28xx_CPU1</strong> -&gt; <strong>Flash Image(s)</strong> -&gt; <strong>Browse</strong> -&gt; выбрать файл прошивки <code>srm-drive-c28x-cpu1.out</code>.</li>
+<li><strong>Program</strong> → <strong>C28xx_CPU1</strong> → <strong>Flash Image(s)</strong> → <strong>Browse</strong> → выбрать файл прошивки <code>srm-drive-c28x-cpu1.out</code>.</li>
 <li>Нажать <strong>Load Image</strong>.</li>
 <li>Дождаться окончания.</li>
-<li><strong>Program</strong> -&gt; <strong>C28xx_CPU2</strong> -&gt; <strong>Flash Image(s)</strong> -&gt; <strong>Browse</strong> -&gt; выбрать файл прошивки <code>srm-drive-c28x-cpu2.out</code>.</li>
+<li><strong>Program</strong> → <strong>C28xx_CPU2</strong> → <strong>Flash Image(s)</strong> → <strong>Browse</strong> → выбрать файл прошивки <code>srm-drive-c28x-cpu2.out</code>.</li>
 <li>Нажать <strong>Load Image</strong>.</li>
 <li>Дождаться окончания.</li>
 <li>Снять питание с микроконтроллерной платы.</li>
+<li>Отключить программатор.</li>
+</ol>
+<h1 id="процедура-первого-запуска-преобразователся">Процедура первого запуска преобразователся</h1>
+<ol>
+<li>Подключить <em>CAN</em>-адаптер к преобразователю и ПК.</li>
+<li>Запустить программу <strong>SRM Drive Monitor</strong>, подключиться к <em>CAN</em>-шине, включить режим эмуляции КВУ.</li>
+<li>Включить питание преобразователя. Должны появиться данные в таблице <em>WATCH</em> (если <em>SDO</em>-запросы не отключены).</li>
+<li>Произвести сброс преобразователя к настройкам по умолчанию: <strong>CONFIGURATION</strong> → <strong>RESET TO DEFAULT</strong>. В окне лога должны появиться сообщения об успехе операции, преобразователь дожлен перезагрузиться, и должны появиться данные <em>PDO</em>-сообщений.</li>
+<li>Проверить отсутствие ошибок.</li>
+<li>Наиболее простым способом проверки работоспособности преобразователя является запуск процедуры калибровки датчика положения ротора подключённого к преобразователю двигателя. Для этого параметры <em>UVP_DC</em> и <em>DCLINK_CHARGE_THRESHOLD</em> требуется установить на уровне ниже напряжения аккумуляторной батареи: ~0.8<em>Vbatt</em> и ~0.9..0.95<em>Vbatt</em> соответственно (<strong>WRITE</strong> → <strong>APPLY</strong>).</li>
+<li>Запустить калибровку: <strong>Drive</strong> → <strong>Calibrate Position Sensor</strong>.</li>
+<li>После успешной калибровки преобразователь готов к реализации задания момента/скорости.</li>
 </ol>
 
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
     </body>
     </html>

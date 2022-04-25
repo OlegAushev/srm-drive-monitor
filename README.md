@@ -3,9 +3,11 @@
 * Ubuntu 20.04 и выше
 * Установленные библиотеки Qt5:
 ```
-$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts
-```
-* Файлам `srm-drive-monitor` и `connect_can.sh` установить разрешение на выполенение как программам
+$ sudo apt install libqt5charts5 libqt5qml5 qml-module-qtquick2 qml-module-qtquick-controls2 qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtcharts qml-module-qtquick-dialogs qml-module-qtquick-extras qml-module-qtquick-controls
+``` 
+* Папку `srm-drive-monitor` поместить в каталог `/home/<user>`.  
+* Файлам `srm-drive-monitor` и `connect_can.sh` установить разрешение на выполенение как программам.
+* *Необязательно*. Для добавления иконки запуска в панель приложений в файле `srm-drive-monitor.desktop` заменить $USER на имя пользователя и поместить указанный файл в каталог `home/<user>/.local/share/applications`. Перезапустить окружение рабочего стола, по умолчанию: `Alt+F2`, выполнить `r`.
 
 # Запуск
 

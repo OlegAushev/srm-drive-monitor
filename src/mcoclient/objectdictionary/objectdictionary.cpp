@@ -94,6 +94,12 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2104, 0x03}, {"CONFIG",	"MCOSERVER",	"PERIOD_TPDO3",		"ms",	OD_UINT32, 	true,	true}},
 {{0x2104, 0x04}, {"CONFIG",	"MCOSERVER",	"PERIOD_TPDO4",		"ms",	OD_UINT32, 	true,	true}},
 
+{{0x2105, 0x00}, {"CONFIG",	"POSSENS",	"SECTORS",		"",	OD_UINT32, 	true,	true}},
+{{0x2105, 0x01}, {"CONFIG",	"POSSENS",	"CAL_S_CURRENT",	"A",	OD_FLOAT32, 	true,	true}},
+{{0x2105, 0x02}, {"CONFIG",	"POSSENS",	"CAL_F_CURRENT",	"A",	OD_FLOAT32, 	true,	true}},
+{{0x2105, 0x03}, {"CONFIG",	"POSSENS",	"CAL_SPEED_RPM",	"rpm",	OD_FLOAT32, 	true,	true}},
+
+
 {{0xFFFF, 0xFF}, {"NULL", "NULL", "END_OF_OD", "", OD_FUNC, false, false}}
 };
 

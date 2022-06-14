@@ -61,7 +61,6 @@ void CanSocketDevice::connectDevice(const QString& interface)
 	if (exitCode != 0)
 	{
 		emit statusMessageAvailable("CAN device connection failed. Exit code: " + QString::number(exitCode));
-		return;
 	}
 
 	m_socket = socket(PF_CAN, SOCK_RAW, CAN_RAW);

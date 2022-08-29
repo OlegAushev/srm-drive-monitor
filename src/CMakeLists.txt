@@ -60,3 +60,8 @@ COMMAND echo Built with options: ${target_options})
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
 COMMAND echo Built with features: ${target_features})
 
+install(TARGETS ${CMAKE_PROJECT_NAME}
+	RUNTIME
+	DESTINATION /app/bin
+)
+

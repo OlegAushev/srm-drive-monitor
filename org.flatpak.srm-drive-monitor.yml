@@ -1,0 +1,19 @@
+app-id: org.flatpak.srm-drive-monitor
+runtime: org.kde.Platform
+runtime-version: '5.15-21.08'
+sdk: org.kde.Sdk
+command: srm-drive-monitor
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --filesystem=host
+  - --device=dri
+modules:
+  - name: srm-drive-monitor
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: dir
+        path: /home/oleg/MEGA/workdir/vscode/git-repos/srm-drive-monitor

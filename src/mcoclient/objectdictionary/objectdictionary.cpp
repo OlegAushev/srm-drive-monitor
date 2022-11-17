@@ -52,6 +52,7 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2100, 0x06}, {"CONFIG",	"MOTOR",	"OTP_FW", 		"°C",	OD_FLOAT32,	true,	true}},
 {{0x2100, 0x07}, {"CONFIG",	"MOTOR",	"FAN_TEMP_TH_ON", 	"°C",	OD_FLOAT32,	true,	true}},
 {{0x2100, 0x08}, {"CONFIG",	"MOTOR",	"FAN_TEMP_TH_OFF", 	"°C",	OD_FLOAT32,	true,	true}},
+{{0x2100, 0x09}, {"CONFIG",	"MOTOR",	"MOTOR_ID", 		"",	OD_UINT32,	true,	true}},
 
 {{0x2101, 0x00}, {"CONFIG",	"MODEL",	"REFERENCE", 		"n-M",	OD_ENUM, 	true,	true}},
 {{0x2101, 0x01}, {"CONFIG",	"MODEL_REGULATORS",	"KP_SPEED", 		"",	OD_FLOAT32, 	true,	true}},
@@ -81,6 +82,7 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2102, 0x06}, {"CONFIG",	"CONVERTER",	"OTP_CASE",		"°C",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x07}, {"CONFIG",	"CONVERTER",	"FAN_TEMP_TH_ON",	"°C",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x08}, {"CONFIG",	"CONVERTER",	"FAN_TEMP_TH_OFF",	"°C",	OD_FLOAT32, 	true,	true}},
+{{0x2102, 0x09}, {"CONFIG",	"CONVERTER",	"CONVERTER_ID",		"",	OD_UINT32, 	true,	true}},
 
 {{0x2103, 0x00}, {"CONFIG",	"CONTACTOR",	"DCLINK_CHARGE_THRESHOLD",	"V",	OD_FLOAT32, 	true,	true}},
 {{0x2103, 0x01}, {"CONFIG",	"CONTACTOR",	"DCLINK_CHARGE_TIMEOUT",	"ms",	OD_UINT32, 	true,	true}},

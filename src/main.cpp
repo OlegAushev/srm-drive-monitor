@@ -13,10 +13,29 @@
 #include "models/basicdatatable/basicdatatable.h"
 #include "chartplotter/chartplotter.h"
 
+#include <iostream>
+#include <sstream>
 
 
 int main(int argc, char *argv[])
 {
+    unsigned int client_canid = 0x14;
+    unsigned int server_canid = 0x01;
+
+    if (argc == 3) {
+        std::istringstream s1(argv[1]);
+        std::istringstream s2(argv[2]);
+        unsigned int id1, id2;
+        if ((s1 >> std::hex >> id1) && (s2 >> std::hex >> id2)) {     
+            client_canid = id1;
+            server_canid = id2;
+        }
+
+    } 
+
+    std::cout << "Client CAN ID: 0x" << std::hex << client_canid << "\n"; 
+    std::cout << "Server CAN ID: 0x" << std::hex << server_canid << std::dec << "\n"; 
+
 	QCoreApplication::setOrganizationName("ECAO");
 	QCoreApplication::setApplicationName("srm-drive-monitor");
 	AppSettings settings;
@@ -33,7 +52,7 @@ int main(int argc, char *argv[])
 	qmlRegisterType<BasicDataTableModel>("BasicDataTableModel", 1, 0, "BasicDataTableModel");
 	qmlRegisterUncreatableType<BasicDataTable>("BasicDataTable", 1, 0, "BasicDataTable", QStringLiteral("BasicDataTable"));
 	
-	microcanopen::McoClient mcoClient(microcanopen::NodeId(0x14), microcanopen::NodeId(0x01));
+	microcanopen::McoClient mcoClient(microcanopen::NodeId{client_canid}, microcanopen::NodeId{server_canid});
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM1, 250);
 	mcoClient.setTpdoPeriod(microcanopen::TpdoNum::NUM2, 100);
 

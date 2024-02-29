@@ -73,6 +73,9 @@ extern const std::map<ODEntryKey, ODEntryValue> OBJECT_DICTIONARY = {
 {{0x2101, 0x10}, {"CONFIG",	"MODEL_FLUX_WEAKENING",	"KI_FLUXWEAK",		"",	OD_FLOAT32, 	true,	true}},
 {{0x2101, 0x11}, {"CONFIG",	"MODEL_FLUX_WEAKENING",	"ID_MAX_FLUXWEAK",	"A",	OD_FLOAT32, 	true,	true}},
 
+{{0x2101, 0x12}, {"CONFIG", "MODEL_MRAS",    "KP_MRAS",      "", OD_FLOAT32,     true,   true}},
+{{0x2101, 0x13}, {"CONFIG", "MODEL_MRAS",    "KI_MRAS",      "", OD_FLOAT32,     true,   true,}},
+
 {{0x2102, 0x00}, {"CONFIG",	"CONVERTER",	"UVP_DC",		"V",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x01}, {"CONFIG",	"CONVERTER",	"OVP_DC",		"V",	OD_FLOAT32, 	true,	true}},
 {{0x2102, 0x02}, {"CONFIG",	"CONVERTER",	"OCP_PHASE", 		"A",	OD_FLOAT32, 	true,	true}},
